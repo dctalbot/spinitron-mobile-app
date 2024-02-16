@@ -7,13 +7,8 @@ import * as SystemUI from "expo-system-ui";
 import { Appearance, useColorScheme } from "react-native";
 import NetInfo from "@react-native-community/netinfo";
 import { onlineManager } from "@tanstack/react-query";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
-import { API_BASE_URL } from "../config";
-import { SpinsAPI } from "../types/types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SpinsView } from "./SpinsView";
 
 const queryClient = new QueryClient();
 
@@ -43,23 +38,6 @@ function DetailsScreen() {
   );
 }
 
-function Example() {
-  const { isPending, error, data } = useQuery<SpinsAPI>({
-    queryKey: ["repoData"],
-    queryFn: () => fetch(API_BASE_URL + "/spins").then((res) => res.json()),
-  });
-
-  if (isPending) return <Text>{"Loading..."}</Text>;
-
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
-
-  return (
-    <View>
-      <Text>{data.items.length}</Text>
-    </View>
-  );
-}
-
 export default function App() {
   const Stack = createNativeStackNavigator();
   let colorScheme = useColorScheme();
@@ -82,7 +60,7 @@ export default function App() {
       <NavigationContainer>
         <StatusBar style="auto" />
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Example" component={Example} />
+          <Stack.Screen name="Spins" component={SpinsView} />
           <Stack.Screen name="Details" component={DetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
