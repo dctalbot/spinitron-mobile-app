@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import * as React from "react";
 
 import { API_BASE_URL } from "../config";
@@ -20,7 +20,7 @@ function SpinsView() {
     queryFn: async ({ pageParam }) => {
       console.log(pageParam);
       return fetch(API_BASE_URL + "/spins?page=" + pageParam).then((res) =>
-        res.json()
+        res.json(),
       );
     },
     initialPageParam: 1,
@@ -45,6 +45,11 @@ function SpinsView() {
         )}
         estimatedItemSize={100}
         onEndReached={() => fetchNextPage()}
+        ListFooterComponent={() => {
+          return (
+            <ActivityIndicator animating={isFetching || isFetchingNextPage} />
+          );
+        }}
       />
     </View>
   );
