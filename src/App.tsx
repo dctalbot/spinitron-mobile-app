@@ -1,8 +1,10 @@
-// import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 import { Text, View, Button } from "react-native";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as SystemUI from "expo-system-ui";
+import { Appearance, useColorScheme } from "react-native";
 
 function HomeScreen({ navigation }: any) {
   return (
@@ -26,11 +28,24 @@ function DetailsScreen() {
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  let colorScheme = useColorScheme();
+
+  React.useEffect(() => {
+    const doAsync = async () => {
+      const color = await SystemUI.getBackgroundColorAsync();
+      let appearance = Appearance.getColorScheme();
+
+      console.log("color", color);
+      console.log("colorScheme", colorScheme);
+      console.log("appearance", appearance);
+    };
+
+    doAsync();
+  }, []);
 
   return (
-    //   <StatusBar style="auto" />
-
     <NavigationContainer>
+      <StatusBar style="auto" />
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
