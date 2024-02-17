@@ -45,7 +45,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <StatusBar style="auto" />
-        <Stack.Navigator initialRouteName="Playlists">
+        <Stack.Navigator initialRouteName="Spins">
           <Stack.Screen name="Personas" component={PersonasView} />
           <Stack.Screen name="Persona" component={PersonaView} />
           <Stack.Screen name="Shows" component={ShowsView} />
