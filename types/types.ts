@@ -1,3 +1,5 @@
+type HTMLString = string;
+
 export interface SpinAPI {
   id: number;
   playlist_id: number;
@@ -60,5 +62,40 @@ export interface SpinsAPI {
     pageCount: boolean;
     currentPage: number;
     perPage: number;
+  };
+}
+
+export interface PlaylistAPI {
+  id: number;
+  persona_id: number;
+  show_id: number;
+  start: string;
+  end: string;
+  duration: number;
+  timezone: string;
+  category: string;
+  title: string;
+  description: HTMLString;
+  since: number;
+  url: string;
+  hide_dj: number;
+  image: string;
+  automation: number;
+  episode_name: string;
+  episode_description: HTMLString;
+  spinsCount: string;
+  _links: {
+    self: {
+      href: string;
+    };
+    persona: {
+      href: string;
+    };
+    show: {
+      href: string;
+    };
+    spins: {
+      href: string;
+    };
   };
 }

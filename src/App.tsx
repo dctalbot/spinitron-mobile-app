@@ -10,6 +10,7 @@ import { onlineManager } from "@tanstack/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SpinsView } from "./SpinsView";
 import { SpinView } from "./SpinView";
+import { PlaylistView } from "./PlaylistView";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Spins" component={SpinsView} />
           <Stack.Screen name="Spin" component={SpinView} />
+          <Stack.Screen name="Playlist" component={PlaylistView} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

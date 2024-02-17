@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { API_BASE_URL } from "../config";

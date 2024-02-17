@@ -1,13 +1,14 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, Button, Text, View } from "react-native";
 import * as React from "react";
 
 import { API_BASE_URL } from "../config";
 import { SpinAPI } from "../types/types";
 import { useQuery } from "@tanstack/react-query";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 function SpinView() {
   const route = useRoute();
+  const navigation = useNavigation();
   const id = route?.params?.id ?? "";
 
   const { isPending, error, data } = useQuery<SpinAPI>({
@@ -60,6 +61,12 @@ function SpinView() {
       <Text>{data?.isrc}</Text>
       <Text>{data?.upc}</Text>
       <Text>{data?.iswc}</Text>
+      <Button
+        title="Playlist"
+        onPress={() =>
+          navigation.navigate("Playlist", { id: data?.playlist_id })
+        }
+      ></Button>
     </View>
   );
 }
