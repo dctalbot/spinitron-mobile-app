@@ -1,10 +1,7 @@
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
-import { API_BASE_URL } from "../config";
-import { PlaylistsAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylists } from "./api/usePlaylists";
 

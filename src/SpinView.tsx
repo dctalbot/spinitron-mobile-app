@@ -1,21 +1,15 @@
 import { ActivityIndicator, Button, Text, View } from "react-native";
 import * as React from "react";
 
-import { API_BASE_URL } from "../config";
-import { SpinAPI } from "../types/types";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useSpin } from "./api/useSpin";
 
 function SpinView() {
   const route = useRoute();
   const navigation = useNavigation();
   const id = route?.params?.id ?? "";
 
-  const { isPending, error, data } = useQuery<SpinAPI>({
-    queryKey: ["spin", id],
-    queryFn: () =>
-      fetch(API_BASE_URL + "/spins/" + id).then((res) => res.json()),
-  });
+  const { isPending, error, data } = useSpin({ id });
 
   if (isPending)
     return (
@@ -42,7 +36,6 @@ function SpinView() {
       <Text>{data?.release}</Text>
       <Text>{data?.["release-custom"]}</Text>
       <Text>{data?.released}</Text>
-      <Text>{data?.added}</Text>
       <Text>{data?.medium}</Text>
       <Text>{data?.va}</Text>
       <Text>{data?.label}</Text>
