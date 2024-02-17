@@ -16,12 +16,12 @@ import { API_BASE_URL } from "../config";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
-  let colorScheme = useColorScheme();
+  const colorScheme = useColorScheme();
 
   React.useEffect(() => {
     const doAsync = async () => {
       const color = await SystemUI.getBackgroundColorAsync();
-      let appearance = Appearance.getColorScheme();
+      const appearance = Appearance.getColorScheme();
 
       console.log("color", color);
       console.log("colorScheme", colorScheme);

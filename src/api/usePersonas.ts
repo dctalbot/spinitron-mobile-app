@@ -9,7 +9,7 @@ export type PersonasQueryInput = NonNullable<
 export type PersonasQueryData =
   paths["/personas"]["get"]["responses"]["200"]["content"]["application/json"];
 
-function usePersonas(input?: PersonasQueryInput) {
+function usePersonas(_input?: PersonasQueryInput) {
   const base = useBaseURL();
   return useInfiniteQuery<PersonasQueryData>({
     queryKey: ["personas"],

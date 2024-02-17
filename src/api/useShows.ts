@@ -9,7 +9,7 @@ export type ShowsQueryInput = NonNullable<
 export type ShowsQueryData =
   paths["/shows"]["get"]["responses"]["200"]["content"]["application/json"];
 
-function useShows(input?: ShowsQueryInput) {
+function useShows(_input?: ShowsQueryInput) {
   const base = useBaseURL();
 
   return useInfiniteQuery<ShowsQueryData>({

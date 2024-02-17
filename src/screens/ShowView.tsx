@@ -22,7 +22,7 @@ function ShowView() {
 
   if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
 
-  let personaIDs = (data?._links?.personas ?? []).map((p) => {
+  const personaIDs = (data?._links?.personas ?? []).map((p) => {
     const url = new URL(p.href);
     const segments = url.pathname.split("/");
     return segments[segments.length - 1];

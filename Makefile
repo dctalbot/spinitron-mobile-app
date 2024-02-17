@@ -10,6 +10,8 @@ fmt:
 .PHONY: check
 check: 
 	npx tsc
+	npx eslint . --fix
+	git diff --exit-code
 
 .PHONY: generate
 generate: 
