@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -35,7 +34,6 @@ export default function App() {
   return (
     <ApiClientProvider baseURL={API_BASE_URL}>
       <NavigationContainer>
-        <StatusBar style="auto" />
         <Stack.Navigator initialRouteName="Spins">
           <Stack.Screen name="Personas" component={PersonasView} />
           <Stack.Screen name="Persona" component={PersonaView} />
