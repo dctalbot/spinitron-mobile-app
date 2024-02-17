@@ -2,7 +2,7 @@ import { ActivityIndicator, Button, Text, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { usePlaylist } from "./api/usePlaylist";
+import { usePlaylist } from "../api/usePlaylist";
 
 function PlaylistView() {
   const route = useRoute();

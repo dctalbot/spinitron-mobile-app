@@ -2,7 +2,7 @@ import { ActivityIndicator, Text, View } from "react-native";
 import * as React from "react";
 
 import { useRoute } from "@react-navigation/native";
-import { usePersona } from "./api/usePersona";
+import { usePersona } from "../api/usePersona";
 
 function PersonaView() {
   const route = useRoute();

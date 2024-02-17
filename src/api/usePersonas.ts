@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { API_BASE_URL } from "../../config";
 import { paths } from "./openapi-types";
+import { useBaseURL } from "./ApiProvider";
 
 export type PersonasQueryInput = NonNullable<
   paths["/personas"]["get"]["parameters"]["query"]
@@ -10,10 +10,11 @@ export type PersonasQueryData =
   paths["/personas"]["get"]["responses"]["200"]["content"]["application/json"];
 
 function usePersonas(input?: PersonasQueryInput) {
+  const base = useBaseURL();
   return useInfiniteQuery<PersonasQueryData>({
     queryKey: ["personas"],
     queryFn: async ({ pageParam }) => {
-      return fetch(API_BASE_URL + "/personas?page=" + pageParam).then((res) =>
+      return fetch(base + "/personas?page=" + pageParam).then((res) =>
         res.json()
       );
     },

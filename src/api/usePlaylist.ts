@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { API_BASE_URL } from "../../config";
 import { paths } from "./openapi-types";
+import { useBaseURL } from "./ApiProvider";
 
 export type PlaylistQueryInput =
   paths["/playlists/{id}"]["get"]["parameters"]["path"] &
@@ -10,10 +10,11 @@ export type PlaylistQueryData =
   paths["/playlists/{id}"]["get"]["responses"]["200"]["content"]["application/json"];
 
 function usePlaylist(input: PlaylistQueryInput) {
+  const base = useBaseURL();
   return useQuery<PlaylistQueryData>({
     queryKey: ["playlists", input],
     queryFn: () =>
-      fetch(API_BASE_URL + "/playlists/" + input.id).then((res) => res.json()),
+      fetch(base + "/playlists/" + input.id).then((res) => res.json()),
   });
 }
 

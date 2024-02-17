@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { API_BASE_URL } from "../../config";
 
 import { paths } from "./openapi-types";
+import { useBaseURL } from "./ApiProvider";
 
 export type PlaylistsQueryInput = NonNullable<
   paths["/playlists"]["get"]["parameters"]["query"]
@@ -12,13 +12,14 @@ export type PlaylistsQueryData =
 
 function usePlaylists(input?: PlaylistsQueryInput) {
   const show_id = input?.show_id ?? "";
+  const base = useBaseURL();
 
   return useInfiniteQuery<PlaylistsQueryData>({
     queryKey: ["playlists", input],
     queryFn: async ({ pageParam }) => {
       const suffix = show_id ? `&show_id=${show_id}` : "";
-      return fetch(API_BASE_URL + "/playlists?page=" + pageParam + suffix).then(
-        (res) => res.json()
+      return fetch(base + "/playlists?page=" + pageParam + suffix).then((res) =>
+        res.json()
       );
     },
     initialPageParam: 1,

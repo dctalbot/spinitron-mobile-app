@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useSpins } from "./api/useSpins";
+import { useSpins } from "../api/useSpins";
 
 function SpinsView() {
   const navigation = useNavigation();

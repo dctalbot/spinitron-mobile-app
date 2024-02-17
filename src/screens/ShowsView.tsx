@@ -3,9 +3,9 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { usePersonas } from "./api/usePersonas";
+import { useShows } from "../api/useShows";
 
-function PersonasView() {
+function ShowsView() {
   const navigation = useNavigation();
 
   const {
@@ -16,7 +16,7 @@ function PersonasView() {
     isFetching,
     isFetchingNextPage,
     status,
-  } = usePersonas();
+  } = useShows();
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
@@ -30,9 +30,9 @@ function PersonasView() {
         data={listdata}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.push("Persona", { id: item?.id })}
+            onPress={() => navigation.push("Show", { id: item?.id })}
           >
-            <Text style={[{ height: 50 }]}>{item?.name}</Text>
+            <Text style={[{ height: 50 }]}>{item?.title}</Text>
           </TouchableOpacity>
         )}
         estimatedItemSize={50}
@@ -47,4 +47,4 @@ function PersonasView() {
   );
 }
 
-export { PersonasView };
+export { ShowsView };

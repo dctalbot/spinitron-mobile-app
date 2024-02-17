@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { API_BASE_URL } from "../../config";
 
 import { paths } from "./openapi-types";
+import { useBaseURL } from "./ApiProvider";
 
 export type SpinsQueryInput = NonNullable<
   paths["/spins"]["get"]["parameters"]["query"]
@@ -12,13 +12,14 @@ export type SpinsQueryData =
 
 function useSpins(input?: SpinsQueryInput) {
   const playlist_id = input?.playlist_id ?? "";
+  const base = useBaseURL();
 
   return useInfiniteQuery<SpinsQueryData>({
     queryKey: ["spins", input],
     queryFn: async ({ pageParam }) => {
       const suffix = playlist_id ? `&playlist_id=${playlist_id}` : "";
-      return fetch(API_BASE_URL + "/spins?page=" + pageParam + suffix).then(
-        (res) => res.json()
+      return fetch(base + "/spins?page=" + pageParam + suffix).then((res) =>
+        res.json()
       );
     },
     initialPageParam: 1,

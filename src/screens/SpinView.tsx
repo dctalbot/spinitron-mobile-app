@@ -2,7 +2,7 @@ import { ActivityIndicator, Button, Text, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useSpin } from "./api/useSpin";
+import { useSpin } from "../api/useSpin";
 
 function SpinView() {
   const route = useRoute();
