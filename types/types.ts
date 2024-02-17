@@ -185,7 +185,40 @@ export interface PersonaAPIInput {
   // expand?: string[];
 }
 
+export interface ShowsAPIInput {
+  // start?: string;
+  // end?: string;
+  // count?: number;
+  // page?: number;
+  // fields?: string[];
+  // expand?: string[];
+}
+
+export interface ShowAPIInput {
+  id: number;
+  // fields?: string[];
+  // expand?: string[];
+}
+
 export interface PlaylistsAPIInput {
+  show_id?: number;
+  // start?: string;
+  // end?: string;
+  // persona_id?: number;
+
+  // count?: number;
+  // page?: number;
+  // fields?: string[];
+  // expand?: string[];
+}
+
+export interface PlaylistAPIInput {
+  id: number;
+  // fields?: string[];
+  // expand?: string[];
+}
+
+export interface SpinsAPIInput {
   show_id?: number;
   // start?: string;
   // end?: string;

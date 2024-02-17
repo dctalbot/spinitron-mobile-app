@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_BASE_URL } from "../../config";
-import { components, paths } from "./openapi-types";
+import { paths } from "./openapi-types";
 
 export type PersonaQueryInput =
   paths["/personas/{id}"]["get"]["parameters"]["path"] &
