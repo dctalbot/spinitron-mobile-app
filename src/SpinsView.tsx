@@ -27,7 +27,7 @@ function SpinsView() {
       const suffix = playlist_id ? `&playlist_id=${playlist_id}` : "";
       console.log(suffix);
       return fetch(API_BASE_URL + "/spins?page=" + pageParam + suffix).then(
-        (res) => res.json()
+        (res) => res.json(),
       );
     },
     initialPageParam: 1,

@@ -118,3 +118,30 @@ export interface PersonaAPI {
     }[];
   };
 }
+
+export interface ShowAPI {
+  id: number;
+  start: string;
+  end: string;
+  duration: number;
+  timezone: string;
+  one_off: boolean;
+  category: string;
+  title: string;
+  description: HTMLString;
+  since: number;
+  url: URLString;
+  hide_dj: number;
+  image: URLString;
+  _links: {
+    self: {
+      href: URLString;
+    };
+    personas: {
+      href: URLString;
+    }[];
+    playlists: {
+      href: URLString;
+    };
+  };
+}
