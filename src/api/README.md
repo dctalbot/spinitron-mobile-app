@@ -34,3 +34,13 @@ function MyComponent() {
   );
 }
 ```
+
+## Type generation
+
+The client is written in Typescript and is based on the OpenAPI specification.
+
+To generate these types, run:
+
+```sh
+make generate
+```
