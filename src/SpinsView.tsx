@@ -5,10 +5,13 @@ import { API_BASE_URL } from "../config";
 import { SpinsAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 function SpinsView() {
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const playlist_id = route?.params?.playlist_id ?? "";
 
   const {
     data,
@@ -21,8 +24,10 @@ function SpinsView() {
   } = useInfiniteQuery<SpinsAPI>({
     queryKey: ["spins"],
     queryFn: async ({ pageParam }) => {
-      return fetch(API_BASE_URL + "/spins?page=" + pageParam).then((res) =>
-        res.json()
+      const suffix = playlist_id ? `&playlist_id=${playlist_id}` : "";
+      console.log(suffix);
+      return fetch(API_BASE_URL + "/spins?page=" + pageParam + suffix).then(
+        (res) => res.json()
       );
     },
     initialPageParam: 1,

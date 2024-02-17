@@ -26,6 +26,12 @@ function PlaylistView() {
 
   if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
 
+  let playlist_id = "";
+  if (data._links.spins) {
+    const url = new URL(data._links.spins.href);
+    playlist_id = url.searchParams.get("playlist_id") ?? "";
+  }
+
   return (
     <View style={[{ flex: 1 }]}>
       <Text>{data?.id}</Text>
@@ -48,7 +54,16 @@ function PlaylistView() {
       <Text>{data?.spinsCount}</Text>
       <Text>persona info ...</Text>
       <Text>show info ...</Text>
-      <Text>spins info ...</Text>
+      {playlist_id && (
+        <Button
+          title="Spins"
+          onPress={() =>
+            navigation.navigate("SpinsForPlaylist", {
+              playlist_id,
+            })
+          }
+        ></Button>
+      )}
     </View>
   );
 }

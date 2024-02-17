@@ -45,6 +45,7 @@ export default function App() {
           <Stack.Screen name="Spins" component={SpinsView} />
           <Stack.Screen name="Spin" component={SpinView} />
           <Stack.Screen name="Playlist" component={PlaylistView} />
+          <Stack.Screen name="SpinsForPlaylist" component={SpinsView} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
