@@ -22,7 +22,7 @@ const custom = {
 };
 
 const ignore = {
-  ignores: [".expo", "babel.config.js"],
+  ignores: [".expo", "babel.config.js", "babel.config.cjs"],
 };
 
 const defaults = tseslint.config(
