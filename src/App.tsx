@@ -4,9 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SystemUI from "expo-system-ui";
 import { Appearance, useColorScheme } from "react-native";
-import NetInfo from "@react-native-community/netinfo";
-import { onlineManager } from "@tanstack/react-query";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SpinsView } from "./screens/SpinsView";
 import { SpinView } from "./screens/SpinView";
 import { PlaylistView } from "./screens/PlaylistView";
@@ -17,14 +14,6 @@ import { PersonasView } from "./screens/PersonasView";
 import { ShowsView } from "./screens/ShowsView";
 import { ApiClientProvider } from "./api/ApiProvider";
 import { API_BASE_URL } from "../config";
-
-const queryClient = new QueryClient();
-
-onlineManager.setEventListener((setOnline) => {
-  return NetInfo.addEventListener((state) => {
-    setOnline(!!state.isConnected);
-  });
-});
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -45,21 +34,19 @@ export default function App() {
 
   return (
     <ApiClientProvider baseURL={API_BASE_URL}>
-      <QueryClientProvider client={queryClient}>
-        <NavigationContainer>
-          <StatusBar style="auto" />
-          <Stack.Navigator initialRouteName="Spins">
-            <Stack.Screen name="Personas" component={PersonasView} />
-            <Stack.Screen name="Persona" component={PersonaView} />
-            <Stack.Screen name="Shows" component={ShowsView} />
-            <Stack.Screen name="Show" component={ShowView} />
-            <Stack.Screen name="Playlists" component={PlaylistsView} />
-            <Stack.Screen name="Playlist" component={PlaylistView} />
-            <Stack.Screen name="Spins" component={SpinsView} />
-            <Stack.Screen name="Spin" component={SpinView} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </QueryClientProvider>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <Stack.Navigator initialRouteName="Spins">
+          <Stack.Screen name="Personas" component={PersonasView} />
+          <Stack.Screen name="Persona" component={PersonaView} />
+          <Stack.Screen name="Shows" component={ShowsView} />
+          <Stack.Screen name="Show" component={ShowView} />
+          <Stack.Screen name="Playlists" component={PlaylistsView} />
+          <Stack.Screen name="Playlist" component={PlaylistView} />
+          <Stack.Screen name="Spins" component={SpinsView} />
+          <Stack.Screen name="Spin" component={SpinView} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </ApiClientProvider>
   );
 }

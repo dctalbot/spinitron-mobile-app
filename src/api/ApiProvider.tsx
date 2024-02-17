@@ -1,4 +1,7 @@
 import * as React from "react";
+import NetInfo from "@react-native-community/netinfo";
+import { onlineManager } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface ApiClientContextValue {
   baseURL: string;
@@ -13,24 +16,27 @@ type ApiClientProviderProps = {
   children?: React.ReactNode;
 };
 
+const queryClient = new QueryClient();
+
+onlineManager.setEventListener((setOnline) => {
+  return NetInfo.addEventListener((state) => {
+    setOnline(!!state.isConnected);
+  });
+});
+
 const ApiClientProvider = ({
   baseURL,
   children,
 }: ApiClientProviderProps): JSX.Element => {
   return (
     <ApiClientContext.Provider value={{ baseURL }}>
-      {children}
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </ApiClientContext.Provider>
   );
 };
 
 function useBaseURL(): string {
   const client = React.useContext(ApiClientContext);
-
-  if (!client) {
-    throw new Error("No QueryClient set, use ApiClientProvider to set one");
-  }
-
   return client.baseURL;
 }
 
