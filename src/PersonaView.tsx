@@ -1,21 +1,14 @@
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import * as React from "react";
 
-import { API_BASE_URL } from "../config";
-import { PersonaAPI } from "../types/types";
-import { useQuery } from "@tanstack/react-query";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import { usePersona } from "./api/usePersona";
 
 function PersonaView() {
   const route = useRoute();
-  const navigation = useNavigation();
   const id = route?.params?.id ?? "";
 
-  const { isPending, error, data } = useQuery<PersonaAPI>({
-    queryKey: ["persona", id],
-    queryFn: () =>
-      fetch(API_BASE_URL + "/personas/" + id).then((res) => res.json()),
-  });
+  const { isPending, error, data } = usePersona(id);
 
   if (isPending)
     return (
