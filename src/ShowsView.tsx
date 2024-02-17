@@ -1,11 +1,9 @@
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
-import { API_BASE_URL } from "../config";
-import { ShowsAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useNavigation } from "@react-navigation/native";
+import { useShows } from "./api/useShows";
 
 function ShowsView() {
   const navigation = useNavigation();
@@ -18,16 +16,7 @@ function ShowsView() {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery<ShowsAPI>({
-    queryKey: ["shows"],
-    queryFn: async ({ pageParam }) => {
-      return fetch(API_BASE_URL + "/shows?page=" + pageParam).then((res) =>
-        res.json(),
-      );
-    },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage._meta.currentPage + 1,
-  });
+  } = useShows();
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
@@ -41,9 +30,9 @@ function ShowsView() {
         data={listdata}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.push("Show", { id: item.id })}
+            onPress={() => navigation.push("Show", { id: item?.id })}
           >
-            <Text style={[{ height: 50 }]}>{item.title}</Text>
+            <Text style={[{ height: 50 }]}>{item?.title}</Text>
           </TouchableOpacity>
         )}
         estimatedItemSize={50}
