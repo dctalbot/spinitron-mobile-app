@@ -1,12 +1,21 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import * as React from "react";
 
 import { API_BASE_URL } from "../config";
 import { SpinsAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useNavigation } from "@react-navigation/native";
 
 function SpinsView() {
+  const navigation = useNavigation();
+
   const {
     data,
     error,
@@ -18,9 +27,8 @@ function SpinsView() {
   } = useInfiniteQuery<SpinsAPI>({
     queryKey: ["spins"],
     queryFn: async ({ pageParam }) => {
-      console.log(pageParam);
       return fetch(API_BASE_URL + "/spins?page=" + pageParam).then((res) =>
-        res.json(),
+        res.json()
       );
     },
     initialPageParam: 1,
@@ -38,10 +46,12 @@ function SpinsView() {
       <FlashList
         data={listdata}
         renderItem={({ item }) => (
-          <>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Spin", { id: item.id })}
+          >
             <Text style={[{ height: 50 }]}>{item.song}</Text>
             <Text style={[{ height: 50 }]}>{item.artist}</Text>
-          </>
+          </TouchableOpacity>
         )}
         estimatedItemSize={100}
         onEndReached={() => fetchNextPage()}

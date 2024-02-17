@@ -9,6 +9,7 @@ import NetInfo from "@react-native-community/netinfo";
 import { onlineManager } from "@tanstack/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SpinsView } from "./SpinsView";
+import { SpinView } from "./SpinView";
 
 const queryClient = new QueryClient();
 
@@ -17,26 +18,6 @@ onlineManager.setEventListener((setOnline) => {
     setOnline(!!state.isConnected);
   });
 });
-
-function HomeScreen({ navigation }: any) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
-    </View>
-  );
-}
-
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -61,7 +42,7 @@ export default function App() {
         <StatusBar style="auto" />
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Spins" component={SpinsView} />
-          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="Spin" component={SpinView} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
