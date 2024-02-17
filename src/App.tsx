@@ -13,6 +13,7 @@ import { PlaylistView } from "./PlaylistView";
 import { PersonaView } from "./PersonaView";
 import { ShowView } from "./ShowView";
 import { PlaylistsView } from "./PlaylistsView";
+import { PersonasView } from "./PersonasView";
 
 const queryClient = new QueryClient();
 
@@ -43,7 +44,8 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <StatusBar style="auto" />
-        <Stack.Navigator initialRouteName="Spins">
+        <Stack.Navigator initialRouteName="Personas">
+          <Stack.Screen name="Personas" component={PersonasView} />
           <Stack.Screen name="Persona" component={PersonaView} />
           <Stack.Screen name="Show" component={ShowView} />
           <Stack.Screen name="Playlists" component={PlaylistsView} />

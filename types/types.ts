@@ -158,3 +158,9 @@ export interface SpinsAPI {
   _links: PaginationLinks;
   _meta: PaginationMeta;
 }
+
+export interface PersonasAPI {
+  items: PersonaAPI[];
+  _links: PaginationLinks;
+  _meta: PaginationMeta;
+}
