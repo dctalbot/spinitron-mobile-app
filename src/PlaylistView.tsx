@@ -52,8 +52,26 @@ function PlaylistView() {
       <Text>{data?.episode_name}</Text>
       <Text>{data?.episode_description}</Text>
       <Text>{data?.spinsCount}</Text>
-      <Text>persona info ...</Text>
-      <Text>show info ...</Text>
+      {data?.persona_id && (
+        <Button
+          title="Persona"
+          onPress={() =>
+            navigation.navigate("Persona", {
+              id: data.persona_id,
+            })
+          }
+        ></Button>
+      )}
+      {data?.show_id && (
+        <Button
+          title="Show"
+          onPress={() =>
+            navigation.navigate("Show", {
+              id: data.show_id,
+            })
+          }
+        ></Button>
+      )}
       {playlist_id && (
         <Button
           title="Spins"

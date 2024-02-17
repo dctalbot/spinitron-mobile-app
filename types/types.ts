@@ -1,4 +1,5 @@
 type HTMLString = string;
+type URLString = string;
 
 export interface SpinAPI {
   id: number;
@@ -36,10 +37,10 @@ export interface SpinAPI {
   iswc: null;
   _links: {
     self: {
-      href: string;
+      href: URLString;
     };
     playlist: {
-      href: string;
+      href: URLString;
     };
   };
 }
@@ -48,13 +49,13 @@ export interface SpinsAPI {
   items: SpinAPI[];
   _links: {
     self: {
-      href: string;
+      href: URLString;
     };
     first: {
-      href: string;
+      href: URLString;
     };
     next: {
-      href: string;
+      href: URLString;
     };
   };
   _meta: {
@@ -86,16 +87,34 @@ export interface PlaylistAPI {
   spinsCount: string;
   _links: {
     self: {
-      href: string;
+      href: URLString;
     };
     persona: {
-      href: string;
+      href: URLString;
     };
     show: {
-      href: string;
+      href: URLString;
     };
     spins: {
-      href: string;
+      href: URLString;
     };
+  };
+}
+
+export interface PersonaAPI {
+  id: number;
+  name: string;
+  bio: HTMLString;
+  since: number;
+  email: string;
+  website: URLString;
+  image: URLString;
+  _links: {
+    self: {
+      href: URLString;
+    };
+    shows: {
+      href: URLString;
+    }[];
   };
 }
