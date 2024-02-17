@@ -2,12 +2,12 @@ import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { API_BASE_URL } from "../config";
-import { PersonasAPI } from "../types/types";
+import { ShowsAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useNavigation } from "@react-navigation/native";
 
-function PersonasView() {
+function ShowsView() {
   const navigation = useNavigation();
 
   const {
@@ -18,10 +18,10 @@ function PersonasView() {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery<PersonasAPI>({
-    queryKey: ["personas"],
+  } = useInfiniteQuery<ShowsAPI>({
+    queryKey: ["shows"],
     queryFn: async ({ pageParam }) => {
-      return fetch(API_BASE_URL + "/personas?page=" + pageParam).then((res) =>
+      return fetch(API_BASE_URL + "/shows?page=" + pageParam).then((res) =>
         res.json(),
       );
     },
@@ -41,9 +41,9 @@ function PersonasView() {
         data={listdata}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.push("Persona", { id: item.id })}
+            onPress={() => navigation.push("Show", { id: item.id })}
           >
-            <Text style={[{ height: 50 }]}>{item.name}</Text>
+            <Text style={[{ height: 50 }]}>{item.title}</Text>
           </TouchableOpacity>
         )}
         estimatedItemSize={50}
@@ -58,4 +58,4 @@ function PersonasView() {
   );
 }
 
-export { PersonasView };
+export { ShowsView };

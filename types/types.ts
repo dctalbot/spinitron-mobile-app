@@ -164,3 +164,9 @@ export interface PersonasAPI {
   _links: PaginationLinks;
   _meta: PaginationMeta;
 }
+
+export interface ShowsAPI {
+  items: ShowAPI[];
+  _links: PaginationLinks;
+  _meta: PaginationMeta;
+}

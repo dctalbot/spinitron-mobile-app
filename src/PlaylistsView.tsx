@@ -12,7 +12,6 @@ function PlaylistsView() {
   const route = useRoute();
 
   const show_id = route?.params?.show_id ?? "";
-  console.log("show_id", show_id);
 
   const {
     data,
@@ -28,7 +27,7 @@ function PlaylistsView() {
       const suffix = show_id ? `&show_id=${show_id}` : "";
       console.log(suffix);
       return fetch(API_BASE_URL + "/playlists?page=" + pageParam + suffix).then(
-        (res) => res.json()
+        (res) => res.json(),
       );
     },
     initialPageParam: 1,
