@@ -1,11 +1,9 @@
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
-import { API_BASE_URL } from "../config";
-import { PersonasAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { useNavigation } from "@react-navigation/native";
+import { usePersonas } from "./api/usePersonas";
 
 function PersonasView() {
   const navigation = useNavigation();
@@ -18,16 +16,7 @@ function PersonasView() {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery<PersonasAPI>({
-    queryKey: ["personas"],
-    queryFn: async ({ pageParam }) => {
-      return fetch(API_BASE_URL + "/personas?page=" + pageParam).then((res) =>
-        res.json(),
-      );
-    },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage._meta.currentPage + 1,
-  });
+  } = usePersonas();
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
