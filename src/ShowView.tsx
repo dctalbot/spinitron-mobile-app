@@ -6,6 +6,8 @@ import { ShowAPI } from "../types/types";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
+const STUB = "http://x.io";
+
 function ShowView() {
   const route = useRoute();
   const navigation = useNavigation();
@@ -32,6 +34,12 @@ function ShowView() {
     return segments[segments.length - 1];
   });
 
+  let playlistID = data?._links?.playlists?.href ?? "";
+  if (playlistID) {
+    const url = new URL(STUB + data?._links?.playlists?.href);
+    playlistID = url.searchParams.get("playlist_id") ?? "";
+  }
+
   return (
     <View style={[{ flex: 1 }]}>
       <Text>{data?.id}</Text>
@@ -50,15 +58,24 @@ function ShowView() {
 
       {personaIDs.map((id, i) => (
         <Button
+          key={id}
           title={"Persona " + (i + 1)}
           onPress={() =>
-            navigation.navigate("Persona", {
+            navigation.push("Persona", {
               id,
             })
           }
         />
       ))}
-      <Text>playlists info ...</Text>
+
+      <Button
+        title={"playlists for this show"}
+        onPress={() =>
+          navigation.push("Playlists", {
+            show_id: id,
+          })
+        }
+      />
     </View>
   );
 }

@@ -2,16 +2,17 @@ import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { API_BASE_URL } from "../config";
-import { SpinsAPI } from "../types/types";
+import { PlaylistsAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-function SpinsView() {
+function PlaylistsView() {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const playlist_id = route?.params?.playlist_id ?? "";
+  const show_id = route?.params?.show_id ?? "";
+  console.log("show_id", show_id);
 
   const {
     data,
@@ -21,12 +22,12 @@ function SpinsView() {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery<SpinsAPI>({
-    queryKey: ["spins", playlist_id],
+  } = useInfiniteQuery<PlaylistsAPI>({
+    queryKey: ["playlists", show_id],
     queryFn: async ({ pageParam }) => {
-      const suffix = playlist_id ? `&playlist_id=${playlist_id}` : "";
+      const suffix = show_id ? `&show_id=${show_id}` : "";
       console.log(suffix);
-      return fetch(API_BASE_URL + "/spins?page=" + pageParam + suffix).then(
+      return fetch(API_BASE_URL + "/playlists?page=" + pageParam + suffix).then(
         (res) => res.json()
       );
     },
@@ -46,10 +47,31 @@ function SpinsView() {
         data={listdata}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.push("Spin", { id: item.id })}
+            onPress={() =>
+              navigation.push("Playlist", {
+                id: item.id,
+              })
+            }
           >
-            <Text style={[{ height: 50 }]}>{item.song}</Text>
-            <Text style={[{ height: 50 }]}>{item.artist}</Text>
+            {/* id: number;
+                persona_id: number;
+                show_id: number;
+                start: string;
+                end: string;
+                duration: number;
+                timezone: string;
+                category: string;
+                title: string;
+                description: HTMLString;
+                since: number;
+                url: string;
+                hide_dj: number;
+                image: string;
+                automation: number;
+                episode_name: string;
+                episode_description: HTMLString;
+                spinsCount: string; */}
+            <Text style={[{ height: 50 }]}>{item.start}</Text>
           </TouchableOpacity>
         )}
         estimatedItemSize={100}
@@ -64,4 +86,4 @@ function SpinsView() {
   );
 }
 
-export { SpinsView };
+export { PlaylistsView };

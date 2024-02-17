@@ -1,6 +1,28 @@
 type HTMLString = string;
 type URLString = string;
 
+interface PaginationLinks {
+  self: {
+    href: URLString;
+  };
+  first: {
+    href: URLString;
+  };
+  next: {
+    href: URLString;
+  };
+  last?: {
+    href: URLString;
+  };
+}
+
+interface PaginationMeta {
+  totalCount: number;
+  pageCount: number;
+  currentPage: number;
+  perPage: number;
+}
+
 export interface SpinAPI {
   id: number;
   playlist_id: number;
@@ -42,27 +64,6 @@ export interface SpinAPI {
     playlist: {
       href: URLString;
     };
-  };
-}
-
-export interface SpinsAPI {
-  items: SpinAPI[];
-  _links: {
-    self: {
-      href: URLString;
-    };
-    first: {
-      href: URLString;
-    };
-    next: {
-      href: URLString;
-    };
-  };
-  _meta: {
-    totalCount: boolean;
-    pageCount: boolean;
-    currentPage: number;
-    perPage: number;
   };
 }
 
@@ -141,7 +142,19 @@ export interface ShowAPI {
       href: URLString;
     }[];
     playlists: {
-      href: URLString;
+      href: string; // NOTE: this one is weird -- it omits the domain e.g. "/api/playlists?show_id=1"
     };
   };
+}
+
+export interface PlaylistsAPI {
+  items: PlaylistAPI[];
+  _links: PaginationLinks;
+  _meta: PaginationMeta;
+}
+
+export interface SpinsAPI {
+  items: SpinAPI[];
+  _links: PaginationLinks;
+  _meta: PaginationMeta;
 }

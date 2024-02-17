@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "id": 18562786,
+      "persona_id": 167326,
+      "show_id": 249781,
+      "start": "2024-02-17T03:00:00+0000",
+      "end": "2024-02-17T04:00:00+0000",
+      "duration": 3600,
+      "timezone": "America/New_York",
+      "category": "Freeform",
+      "title": "Live from the Dungeon",
+      "description": "<p>I try to make this exclusively a Hip-Hop.</p><p>Welcome to the Dungeon.</p>",
+      "since": 2022,
+      "url": "https://www.example.com/",
+      "hide_dj": 0,
+      "image": "https://spinitron.com/images/Show/24/97/249781-img_show-original.jpg?v=1705854637",
+      "automation": 0,
+      "episode_name": "What's Love... ? (Season 5 Episode 5 (2/16/2024))",
+      "episode_description": "<p>On this week's broadcast, we investigate the ways in which Hip-Hop interfaces with the concept of love. Enjoy.</p><p>~DJ Double Two<br></p>",
+      "spinsCount": "10",
+      "_links": {
+        "self": { "href": "https://spinitron.com/api/shows/18562786" },
+        "persona": { "href": "https://spinitron.com/api/personas/167326" },
+        "show": { "href": "https://spinitron.com/api/shows/249781" },
+        "spins": {
+          "href": "https://spinitron.com/api/spins?playlist_id=18562786"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": { "href": "https://spinitron.com/api/playlists?page=1" },
+    "first": { "href": "https://spinitron.com/api/playlists?page=1" },
+    "last": { "href": "https://spinitron.com/api/playlists?page=310" },
+    "next": { "href": "https://spinitron.com/api/playlists?page=2" }
+  },
+  "_meta": {
+    "totalCount": 6193,
+    "pageCount": 310,
+    "currentPage": 1,
+    "perPage": 20
+  }
+}

@@ -26,12 +26,6 @@ function PlaylistView() {
 
   if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
 
-  let playlist_id = "";
-  if (data._links.spins) {
-    const url = new URL(data._links.spins.href);
-    playlist_id = url.searchParams.get("playlist_id") ?? "";
-  }
-
   return (
     <View style={[{ flex: 1 }]}>
       <Text>{data?.id}</Text>
@@ -56,7 +50,7 @@ function PlaylistView() {
         <Button
           title="Persona"
           onPress={() =>
-            navigation.navigate("Persona", {
+            navigation.push("Persona", {
               id: data.persona_id,
             })
           }
@@ -66,22 +60,20 @@ function PlaylistView() {
         <Button
           title="Show"
           onPress={() =>
-            navigation.navigate("Show", {
+            navigation.push("Show", {
               id: data.show_id,
             })
           }
         ></Button>
       )}
-      {playlist_id && (
-        <Button
-          title="Spins"
-          onPress={() =>
-            navigation.navigate("SpinsForPlaylist", {
-              playlist_id,
-            })
-          }
-        ></Button>
-      )}
+      <Button
+        title="Spins"
+        onPress={() =>
+          navigation.push("Spins", {
+            playlist_id: id,
+          })
+        }
+      ></Button>
     </View>
   );
 }

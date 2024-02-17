@@ -63,9 +63,7 @@ function SpinView() {
       <Text>{data?.iswc}</Text>
       <Button
         title="Playlist"
-        onPress={() =>
-          navigation.navigate("Playlist", { id: data?.playlist_id })
-        }
+        onPress={() => navigation.push("Playlist", { id: data?.playlist_id })}
       ></Button>
     </View>
   );
