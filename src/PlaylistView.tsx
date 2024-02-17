@@ -1,21 +1,15 @@
 import { ActivityIndicator, Button, Text, View } from "react-native";
 import * as React from "react";
 
-import { API_BASE_URL } from "../config";
-import { PlaylistAPI } from "../types/types";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { usePlaylist } from "./api/usePlaylist";
 
 function PlaylistView() {
   const route = useRoute();
   const navigation = useNavigation();
   const id = route?.params?.id ?? "";
 
-  const { isPending, error, data } = useQuery<PlaylistAPI>({
-    queryKey: ["playlist", id],
-    queryFn: () =>
-      fetch(API_BASE_URL + "/playlists/" + id).then((res) => res.json()),
-  });
+  const { isPending, error, data } = usePlaylist({ id });
 
   if (isPending)
     return (
@@ -45,7 +39,6 @@ function PlaylistView() {
       <Text>{data?.automation}</Text>
       <Text>{data?.episode_name}</Text>
       <Text>{data?.episode_description}</Text>
-      <Text>{data?.spinsCount}</Text>
       {data?.persona_id && (
         <Button
           title="Persona"
