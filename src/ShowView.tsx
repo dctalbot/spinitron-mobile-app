@@ -1,10 +1,8 @@
 import { ActivityIndicator, Button, Text, View } from "react-native";
 import * as React from "react";
 
-import { API_BASE_URL } from "../config";
-import { ShowAPI } from "../types/types";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useShow } from "./api/useShow";
 
 const STUB = "http://x.io";
 
@@ -13,11 +11,7 @@ function ShowView() {
   const navigation = useNavigation();
   const id = route?.params?.id ?? "";
 
-  const { isPending, error, data } = useQuery<ShowAPI>({
-    queryKey: ["show", id],
-    queryFn: () =>
-      fetch(API_BASE_URL + "/shows/" + id).then((res) => res.json()),
-  });
+  const { isPending, error, data } = useShow({ id });
 
   if (isPending)
     return (

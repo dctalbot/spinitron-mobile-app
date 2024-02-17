@@ -11,7 +11,7 @@ export type PlaylistQueryData =
 
 function usePlaylist(input: PlaylistQueryInput) {
   return useQuery<PlaylistQueryData>({
-    queryKey: ["playlists", input.id],
+    queryKey: ["playlists", input],
     queryFn: () =>
       fetch(API_BASE_URL + "/playlists/" + input.id).then((res) => res.json()),
   });

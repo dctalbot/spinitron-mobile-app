@@ -11,7 +11,7 @@ export type PersonaQueryData =
 
 function usePersona(input: PersonaQueryInput) {
   return useQuery<PersonaQueryData>({
-    queryKey: ["personas", input.id],
+    queryKey: ["personas", input],
     queryFn: () =>
       fetch(API_BASE_URL + "/personas/" + input.id).then((res) => res.json()),
   });
