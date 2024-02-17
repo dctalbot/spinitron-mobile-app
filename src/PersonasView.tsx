@@ -30,9 +30,9 @@ function PersonasView() {
         data={listdata}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.push("Persona", { id: item.id })}
+            onPress={() => navigation.push("Persona", { id: item?.id })}
           >
-            <Text style={[{ height: 50 }]}>{item.name}</Text>
+            <Text style={[{ height: 50 }]}>{item?.name}</Text>
           </TouchableOpacity>
         )}
         estimatedItemSize={50}

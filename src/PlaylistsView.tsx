@@ -6,6 +6,7 @@ import { PlaylistsAPI } from "../types/types";
 import { FlashList } from "@shopify/flash-list";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { usePlaylists } from "./api/usePlaylists";
 
 function PlaylistsView() {
   const navigation = useNavigation();
@@ -21,18 +22,7 @@ function PlaylistsView() {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery<PlaylistsAPI>({
-    queryKey: ["playlists", show_id],
-    queryFn: async ({ pageParam }) => {
-      const suffix = show_id ? `&show_id=${show_id}` : "";
-      console.log(suffix);
-      return fetch(API_BASE_URL + "/playlists?page=" + pageParam + suffix).then(
-        (res) => res.json(),
-      );
-    },
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage._meta.currentPage + 1,
-  });
+  } = usePlaylists({ show_id });
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
@@ -48,7 +38,7 @@ function PlaylistsView() {
           <TouchableOpacity
             onPress={() =>
               navigation.push("Playlist", {
-                id: item.id,
+                id: item?.id,
               })
             }
           >
@@ -70,7 +60,7 @@ function PlaylistsView() {
                 episode_name: string;
                 episode_description: HTMLString;
                 spinsCount: string; */}
-            <Text style={[{ height: 50 }]}>{item.start}</Text>
+            <Text style={[{ height: 50 }]}>{item?.start}</Text>
           </TouchableOpacity>
         )}
         estimatedItemSize={100}

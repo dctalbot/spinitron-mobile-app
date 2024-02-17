@@ -8,7 +8,7 @@ function PersonaView() {
   const route = useRoute();
   const id = route?.params?.id ?? "";
 
-  const { isPending, error, data } = usePersona(id);
+  const { isPending, error, data } = usePersona({ id });
 
   if (isPending)
     return (

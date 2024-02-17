@@ -170,3 +170,29 @@ export interface ShowsAPI {
   _links: PaginationLinks;
   _meta: PaginationMeta;
 }
+
+export interface PersonasAPIInput {
+  // name?: string;
+  // count?: number;
+  // page?: number;
+  // fields?: string[];
+  // expand?: string[];
+}
+
+export interface PersonaAPIInput {
+  id: number;
+  // fields?: string[];
+  // expand?: string[];
+}
+
+export interface PlaylistsAPIInput {
+  show_id?: number;
+  // start?: string;
+  // end?: string;
+  // persona_id?: number;
+
+  // count?: number;
+  // page?: number;
+  // fields?: string[];
+  // expand?: string[];
+}
