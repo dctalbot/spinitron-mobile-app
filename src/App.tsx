@@ -14,8 +14,13 @@ import { ShowsView } from "./screens/ShowsView";
 import { ApiClientProvider } from "./api/ApiProvider";
 import { API_BASE_URL } from "../config";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import Ionicons from "@expo/vector-icons/Ionicons";
 const Tab = createBottomTabNavigator();
+
+const getIcon = (
+  name: React.ComponentProps<typeof Ionicons>["name"],
+  color: string,
+) => <Ionicons name={name} size={23} color={color} />;
 
 interface StackNavProps {
   initialRouteName: string;
@@ -54,28 +59,43 @@ export default function App() {
   return (
     <ApiClientProvider baseURL={API_BASE_URL}>
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="Schedule">
+        <Tab.Navigator
+          initialRouteName="Schedule"
+          screenOptions={{ headerShown: false }}
+        >
           <Tab.Screen
             name="ScheduleTab"
-            options={{ headerShown: false, tabBarLabel: "Schedule" }}
+            options={{
+              tabBarLabel: "Schedule",
+              tabBarIcon: ({ color }) => getIcon("calendar", color),
+            }}
           >
             {() => <StackNav initialRouteName={"Shows"} />}
           </Tab.Screen>
           <Tab.Screen
             name="SpinsTab"
-            options={{ headerShown: false, tabBarLabel: "Spins" }}
+            options={{
+              tabBarLabel: "Spins",
+              tabBarIcon: ({ color }) => getIcon("radio-outline", color),
+            }}
           >
             {() => <StackNav initialRouteName={"Spins"} />}
           </Tab.Screen>
           <Tab.Screen
             name="PersonasTab"
-            options={{ headerShown: false, tabBarLabel: "People" }}
+            options={{
+              tabBarLabel: "People",
+              tabBarIcon: ({ color }) => getIcon("musical-notes", color),
+            }}
           >
             {() => <StackNav initialRouteName={"Personas"} />}
           </Tab.Screen>
           <Tab.Screen
             name="PlaylistsTab"
-            options={{ headerShown: false, tabBarLabel: "Playlists" }}
+            options={{
+              tabBarLabel: "Playlists",
+              tabBarIcon: ({ color }) => getIcon("settings-sharp", color),
+            }}
           >
             {() => <StackNav initialRouteName={"Playlists"} />}
           </Tab.Screen>
