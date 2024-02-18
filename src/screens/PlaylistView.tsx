@@ -1,16 +1,31 @@
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  ScrollView,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylist } from "../api/usePlaylist";
 import { PlaylistNav, PlaylistRoute } from "../nav/types";
+import RenderHtml from "react-native-render-html";
 
 function PlaylistView() {
   const nav = useNavigation<PlaylistNav>();
   const route = useRoute<PlaylistRoute>();
+  const { width } = useWindowDimensions();
   const id = route?.params?.id ?? 0;
 
   const { isPending, error, data } = usePlaylist({ id });
+
+  React.useEffect(() => {
+    if (data?.title) {
+      nav.setOptions({ title: data?.title });
+    }
+  }, [data]);
 
   if (isPending)
     return (
@@ -23,39 +38,54 @@ function PlaylistView() {
 
   return (
     <View style={[{ flex: 1 }]}>
-      <Text>{data?.id}</Text>
-      <Text>{data?.persona_id}</Text>
-      <Text>{data?.show_id}</Text>
-      <Text>{data?.start}</Text>
-      <Text>{data?.end}</Text>
-      <Text>{data?.duration}</Text>
-      <Text>{data?.timezone}</Text>
-      <Text>{data?.category}</Text>
-      <Text>{data?.title}</Text>
-      <Text>{data?.description}</Text>
-      <Text>{data?.since}</Text>
-      <Text>{data?.url}</Text>
-      <Text>{data?.hide_dj}</Text>
-      <Text>{data?.image}</Text>
-      <Text>{data?.automation}</Text>
-      <Text>{data?.episode_name}</Text>
-      <Text>{data?.episode_description}</Text>
-      {data?.persona_id && (
-        <Button
-          title="Persona"
-          onPress={() => nav.push("Persona", { id: data.persona_id })}
-        ></Button>
-      )}
-      {data?.show_id && (
-        <Button
-          title="Show"
-          onPress={() => nav.push("Show", { id: data.show_id })}
-        ></Button>
-      )}
-      <Button
-        title="Spins"
-        onPress={() => nav.push("Spins", { playlist_id: id })}
-      ></Button>
+      <ScrollView>
+        {/* <Text>{data?.hide_dj}</Text> */}
+        {/* <Text>{data?.persona_id}</Text> */}
+        {/* <Text>{data?.show_id}</Text> */}
+
+        <Text>{data?.start}</Text>
+        <Text>{data?.timezone}</Text>
+
+        {/* <Text>{data?.end}</Text> */}
+        {/* <Text>{data?.category}</Text> */}
+        {/* <Text>{data?.title}</Text> */}
+        {/* <Text>{data?.description}</Text> */}
+        {/* <Text>{data?.since}</Text> */}
+        {/* <Text>{data?.url}</Text> */}
+
+        {/* <Text>{data?.image}</Text> */}
+        {/* <Text>{data?.automation}</Text> */}
+
+        {data.episode_description && (
+          <RenderHtml
+            contentWidth={width}
+            source={{ html: data.episode_description }}
+          />
+        )}
+
+        {data?.persona_id && (
+          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+            <Button
+              title="See DJ →"
+              onPress={() => nav.push("Persona", { id: data.persona_id })}
+            ></Button>
+          </View>
+        )}
+        {data?.show_id && (
+          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+            <Button
+              title="See Show →"
+              onPress={() => nav.push("Show", { id: data.show_id })}
+            ></Button>
+          </View>
+        )}
+        <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+          <Button
+            title="See Spins →"
+            onPress={() => nav.push("Spins", { playlist_id: id })}
+          ></Button>
+        </View>
+      </ScrollView>
     </View>
   );
 }

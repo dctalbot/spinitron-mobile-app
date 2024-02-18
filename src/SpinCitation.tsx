@@ -50,12 +50,12 @@ interface SpinCitationProps {
 export function SpinCitation(props: SpinCitationProps) {
   const { isPending, error, data } = useSpin({ id: props.id });
 
-  const artistValue = Boolean(data?.va)
+  const artistValue = data?.va
     ? "Various Artists"
     : data?.["artist-custom"] ?? data?.artist;
 
   const genreValue =
-    data?.genre || (Boolean(data?.classical) ? "Classical" : null);
+    data?.genre || (data?.classical ? "Classical" : null);
 
   if (isPending) {
     return null;
