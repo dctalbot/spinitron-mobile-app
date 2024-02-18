@@ -54,8 +54,7 @@ export function SpinCitation(props: SpinCitationProps) {
     ? "Various Artists"
     : data?.["artist-custom"] ?? data?.artist;
 
-  const genreValue =
-    data?.genre || (data?.classical ? "Classical" : null);
+  const genreValue = data?.genre || (data?.classical ? "Classical" : null);
 
   if (isPending) {
     return null;

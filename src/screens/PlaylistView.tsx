@@ -12,6 +12,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylist } from "../api/usePlaylist";
 import { PlaylistNav, PlaylistRoute } from "../nav/types";
 import RenderHtml from "react-native-render-html";
+import { SpinList } from "../SpinList";
 
 function PlaylistView() {
   const nav = useNavigation<PlaylistNav>();
@@ -71,6 +72,9 @@ function PlaylistView() {
             ></Button>
           </View>
         )}
+
+        <SpinList useSpinsInput={{ playlist_id: id }} />
+
         {data?.show_id && (
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
             <Button
@@ -79,12 +83,6 @@ function PlaylistView() {
             ></Button>
           </View>
         )}
-        <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-          <Button
-            title="See Spins →"
-            onPress={() => nav.push("Spins", { playlist_id: id })}
-          ></Button>
-        </View>
       </ScrollView>
     </View>
   );
