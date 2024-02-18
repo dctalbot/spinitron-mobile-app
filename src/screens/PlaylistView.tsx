@@ -3,11 +3,12 @@ import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylist } from "../api/usePlaylist";
+import { PlaylistNav, PlaylistRoute } from "../nav/types";
 
 function PlaylistView() {
-  const route = useRoute();
-  const navigation = useNavigation();
-  const id = route?.params?.id ?? "";
+  const nav = useNavigation<PlaylistNav>();
+  const route = useRoute<PlaylistRoute>();
+  const id = route?.params?.id ?? 0;
 
   const { isPending, error, data } = usePlaylist({ id });
 
@@ -42,30 +43,18 @@ function PlaylistView() {
       {data?.persona_id && (
         <Button
           title="Persona"
-          onPress={() =>
-            navigation.push("Persona", {
-              id: data.persona_id,
-            })
-          }
+          onPress={() => nav.push("Persona", { id: data.persona_id })}
         ></Button>
       )}
       {data?.show_id && (
         <Button
           title="Show"
-          onPress={() =>
-            navigation.push("Show", {
-              id: data.show_id,
-            })
-          }
+          onPress={() => nav.push("Show", { id: data.show_id })}
         ></Button>
       )}
       <Button
         title="Spins"
-        onPress={() =>
-          navigation.push("Spins", {
-            playlist_id: id,
-          })
-        }
+        onPress={() => nav.push("Spins", { playlist_id: id })}
       ></Button>
     </View>
   );

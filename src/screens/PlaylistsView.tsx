@@ -4,12 +4,13 @@ import * as React from "react";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylists } from "../api/usePlaylists";
+import { PlaylistsNav, PlaylistsRoute } from "../nav/types";
 
 function PlaylistsView() {
-  const navigation = useNavigation();
-  const route = useRoute();
+  const nav = useNavigation<PlaylistsNav>();
+  const route = useRoute<PlaylistsRoute>();
 
-  const show_id = route?.params?.show_id ?? "";
+  const show_id = route?.params?.show_id;
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     usePlaylists({ show_id });
@@ -26,11 +27,7 @@ function PlaylistsView() {
         data={listdata}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() =>
-              navigation.push("Playlist", {
-                id: item?.id,
-              })
-            }
+            onPress={() => nav.push("Playlist", { id: item?.id })}
           >
             {/* id: number;
                 persona_id: number;

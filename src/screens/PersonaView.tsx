@@ -9,17 +9,18 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { A } from "@expo/html-elements";
 import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
+import { PersonaRoute } from "../nav/types";
 
 const AVATAR_SIZE = 80;
 
 function PersonaView() {
-  const route = useRoute();
+  const route = useRoute<PersonaRoute>();
   const nav = useNavigation();
   const name = route?.params?.name ?? "";
   if (name) {
     nav.setOptions({ title: route?.params?.name });
   }
-  const id = route?.params?.id ?? "";
+  const id = route?.params?.id ?? 0;
   const { width } = useWindowDimensions();
   const { isPending, error, data } = usePersona({ id });
 

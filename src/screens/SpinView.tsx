@@ -3,11 +3,12 @@ import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useSpin } from "../api/useSpin";
+import { SpinNav, SpinRoute } from "../nav/types";
 
 function SpinView() {
-  const route = useRoute();
-  const navigation = useNavigation();
-  const id = route?.params?.id ?? "";
+  const nav = useNavigation<SpinNav>();
+  const route = useRoute<SpinRoute>();
+  const id = route?.params?.id ?? 0;
 
   const { isPending, error, data } = useSpin({ id });
 
@@ -56,7 +57,7 @@ function SpinView() {
       <Text>{data?.iswc}</Text>
       <Button
         title="Playlist"
-        onPress={() => navigation.push("Playlist", { id: data?.playlist_id })}
+        onPress={() => nav.push("Playlist", { id: data?.playlist_id })}
       ></Button>
     </View>
   );

@@ -4,9 +4,10 @@ import * as React from "react";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { usePersonas } from "../api/usePersonas";
+import { PersonasNav } from "../nav/types";
 
 function PersonasView() {
-  const navigation = useNavigation();
+  const nav = useNavigation<PersonasNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     usePersonas();
@@ -24,7 +25,7 @@ function PersonasView() {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.push("Persona", { id: item?.id, name: item?.name })
+              nav.push("Persona", { id: item?.id, name: item?.name })
             }
           >
             <Text style={[{ height: 50 }]}>{item?.name}</Text>

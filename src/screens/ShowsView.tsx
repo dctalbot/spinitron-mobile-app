@@ -4,9 +4,10 @@ import * as React from "react";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useShows } from "../api/useShows";
+import { ShowsNav } from "../nav/types";
 
 function ShowsView() {
-  const navigation = useNavigation();
+  const nav = useNavigation<ShowsNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     useShows();
@@ -22,9 +23,7 @@ function ShowsView() {
       <FlashList
         data={listdata}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.push("Show", { id: item?.id })}
-          >
+          <TouchableOpacity onPress={() => nav.push("Show", { id: item?.id })}>
             <Text style={[{ height: 50 }]}>{item?.title}</Text>
           </TouchableOpacity>
         )}

@@ -3,13 +3,14 @@ import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useShow } from "../api/useShow";
+import { ShowNav, ShowRoute } from "../nav/types";
 
 const STUB = "http://x.io";
 
 function ShowView() {
-  const route = useRoute();
-  const navigation = useNavigation();
-  const id = route?.params?.id ?? "";
+  const nav = useNavigation<ShowNav>();
+  const route = useRoute<ShowRoute>();
+  const id = route?.params?.id ?? 0;
 
   const { isPending, error, data } = useShow({ id });
 
@@ -25,7 +26,7 @@ function ShowView() {
   const personaIDs = (data?._links?.personas ?? []).map((p) => {
     const url = new URL(p.href);
     const segments = url.pathname.split("/");
-    return segments[segments.length - 1];
+    return Number(segments[segments.length - 1]);
   });
 
   let playlistID = data?._links?.playlists?.href ?? "";
@@ -54,21 +55,13 @@ function ShowView() {
         <Button
           key={id}
           title={"Persona " + (i + 1)}
-          onPress={() =>
-            navigation.push("Persona", {
-              id,
-            })
-          }
+          onPress={() => nav.push("Persona", { id })}
         />
       ))}
 
       <Button
         title={"playlists for this show"}
-        onPress={() =>
-          navigation.push("Playlists", {
-            show_id: id,
-          })
-        }
+        onPress={() => nav.push("Playlists", { show_id: id })}
       />
     </View>
   );
