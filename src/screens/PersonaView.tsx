@@ -10,6 +10,7 @@ import { A } from "@expo/html-elements";
 import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
 import { PersonaRoute } from "../nav/types";
+import { spacing } from "../theme/theme";
 
 const AVATAR_SIZE = 80;
 
@@ -55,7 +56,7 @@ function PersonaView() {
             </Text>
             {data?.since && (
               <Text numberOfLines={1} style={styles.coverText}>
-                Joined {data.since}
+                Joined in {data.since}
               </Text>
             )}
             {data?.email && (
@@ -73,7 +74,9 @@ function PersonaView() {
 
         {/* <Text>shows info ...</Text> */}
         {data.bio && (
-          <RenderHtml contentWidth={width} source={{ html: data.bio }} />
+          <View style={styles.bio}>
+            <RenderHtml contentWidth={width} source={{ html: data.bio }} />
+          </View>
         )}
       </ScrollView>
     </View>
@@ -92,22 +95,25 @@ const styles = StyleSheet.create({
     width: AVATAR_SIZE,
     aspectRatio: 1,
     backgroundColor: "#0553",
-    borderRadius: 10,
+    borderRadius: spacing[10],
     flex: 1,
   },
   cover: {
     flexDirection: "row",
-    marginBottom: 10,
+    padding: spacing[12],
   },
   coverContact: {
     flexDirection: "column",
-    paddingLeft: 10,
+    paddingLeft: spacing[10],
     flex: 3.5,
   },
   coverText: {
-    lineHeight: 20,
+    lineHeight: spacing[20],
   },
   coverName: {
-    fontSize: 20,
+    fontSize: spacing[20],
+  },
+  bio: {
+    padding: spacing[12],
   },
 });
