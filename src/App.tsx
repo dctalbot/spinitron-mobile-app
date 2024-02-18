@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 
 const getIcon = (
   name: React.ComponentProps<typeof Ionicons>["name"],
-  color: string,
+  color: string
 ) => <Ionicons name={name} size={23} color={color} />;
 
 interface StackNavProps {
@@ -44,14 +44,25 @@ export default function App() {
   }, []);
 
   const StackNav = (props: StackNavProps) => (
-    <Stack.Navigator initialRouteName={props.initialRouteName}>
-      <Stack.Screen name="Personas" component={PersonasView} />
+    <Stack.Navigator
+      initialRouteName={props.initialRouteName}
+      screenOptions={{ headerShown: true }}
+    >
+      <Stack.Screen
+        name="Personas"
+        component={PersonasView}
+        options={{ headerTitle: "DJs" }}
+      />
       <Stack.Screen name="Persona" component={PersonaView} />
       <Stack.Screen name="Shows" component={ShowsView} />
       <Stack.Screen name="Show" component={ShowView} />
       <Stack.Screen name="Playlists" component={PlaylistsView} />
       <Stack.Screen name="Playlist" component={PlaylistView} />
-      <Stack.Screen name="Spins" component={SpinsView} />
+      <Stack.Screen
+        name="Spins"
+        component={SpinsView}
+        options={{ headerTitle: "Playlist" }}
+      />
       <Stack.Screen name="Spin" component={SpinView} />
     </Stack.Navigator>
   );
@@ -75,8 +86,8 @@ export default function App() {
           <Tab.Screen
             name="SpinsTab"
             options={{
-              tabBarLabel: "Spins",
-              tabBarIcon: ({ color }) => getIcon("radio-outline", color),
+              tabBarLabel: "Playlist",
+              tabBarIcon: ({ color }) => getIcon("musical-notes", color),
             }}
           >
             {() => <StackNav initialRouteName={"Spins"} />}
@@ -84,13 +95,13 @@ export default function App() {
           <Tab.Screen
             name="PersonasTab"
             options={{
-              tabBarLabel: "People",
-              tabBarIcon: ({ color }) => getIcon("musical-notes", color),
+              tabBarLabel: "DJs",
+              tabBarIcon: ({ color }) => getIcon("people-outline", color),
             }}
           >
             {() => <StackNav initialRouteName={"Personas"} />}
           </Tab.Screen>
-          <Tab.Screen
+          {/* <Tab.Screen
             name="PlaylistsTab"
             options={{
               tabBarLabel: "Playlists",
@@ -98,7 +109,7 @@ export default function App() {
             }}
           >
             {() => <StackNav initialRouteName={"Playlists"} />}
-          </Tab.Screen>
+          </Tab.Screen> */}
         </Tab.Navigator>
       </NavigationContainer>
     </ApiClientProvider>
