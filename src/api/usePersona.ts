@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import { paths } from "./openapi-types";
-import { useBaseURL } from "./ApiProvider";
+import { useQueryResource } from "./useQueryResource";
 
 export type PersonaQueryInput =
   paths["/personas/{id}"]["get"]["parameters"]["path"] &
@@ -10,11 +9,9 @@ export type PersonaQueryData =
   paths["/personas/{id}"]["get"]["responses"]["200"]["content"]["application/json"];
 
 function usePersona(input: PersonaQueryInput) {
-  const base = useBaseURL();
-  return useQuery<PersonaQueryData>({
-    queryKey: ["personas", input],
-    queryFn: () =>
-      fetch(base + "/personas/" + input.id).then((res) => res.json()),
+  return useQueryResource<PersonaQueryData>({
+    collectionName: "personas",
+    input: input,
   });
 }
 
