@@ -24,7 +24,9 @@ function SpinsView() {
       <FlashList
         data={listdata}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => nav.push("Spin", { id: item?.id })}>
+          <TouchableOpacity
+            onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}
+          >
             <Text style={[{ height: 50 }]}>{item?.song}</Text>
             <Text style={[{ height: 50 }]}>{item?.artist}</Text>
           </TouchableOpacity>

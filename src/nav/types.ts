@@ -9,7 +9,7 @@ export type StackParamList = {
   Playlists: { show_id?: number };
   Playlist: { id?: number };
   Spins: { playlist_id?: number };
-  Spin: { id?: number };
+  Spin: { id?: number; song?: string };
 };
 
 // all personas

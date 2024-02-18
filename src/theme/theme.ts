@@ -35,9 +35,9 @@ export const spacing = {
   288: 288,
   320: 320,
   384: 384,
-};
+} as const;
 
-export const fontSize: Record<string, { size: number; lineHeight: number }> = {
+export const fontSize = {
   xs: {
     size: 12,
     lineHeight: 16,
@@ -90,4 +90,4 @@ export const fontSize: Record<string, { size: number; lineHeight: number }> = {
     size: 128,
     lineHeight: 1,
   },
-};
+} as const satisfies Record<string, { size: number; lineHeight: number }>;

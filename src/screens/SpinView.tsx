@@ -1,14 +1,56 @@
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useSpin } from "../api/useSpin";
 import { SpinNav, SpinRoute } from "../nav/types";
+import { spacing } from "../theme/theme";
+
+import { Image, ImageProps } from "expo-image";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useWindowDimensions } from "react-native";
+import { SpinCitation } from "../SpinCitation";
+
+interface SongArtProps extends ImageProps {}
+
+export function SongArt(props: SongArtProps) {
+  const { width: _width } = useWindowDimensions();
+  const width = (_width * 2) / 3;
+  if (!props.source) {
+    return <Ionicons name={"disc-outline"} size={width} />;
+  }
+  return (
+    <Image
+      alt="Song cover art"
+      style={{
+        width: "100%",
+        aspectRatio: 1,
+      }}
+      source={props.source}
+      // placeholder={{ uri: "https://via.placeholder.com/AVATAR_SIZE" }}
+      contentFit="cover"
+      transition={500}
+    />
+  );
+}
 
 function SpinView() {
   const nav = useNavigation<SpinNav>();
   const route = useRoute<SpinRoute>();
   const id = route?.params?.id ?? 0;
+  const song = route?.params?.song ?? "";
+
+  React.useEffect(() => {
+    if (song) {
+      nav.setOptions({ title: song });
+    }
+  }, [song]);
 
   const { isPending, error, data } = useSpin({ id });
 
@@ -22,43 +64,30 @@ function SpinView() {
   if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
 
   return (
-    <View style={[{ flex: 1 }]}>
-      <Text>{data?.id}</Text>
-      <Text>{data?.playlist_id}</Text>
-      <Text>{data?.start}</Text>
-      <Text>{data?.end}</Text>
-      <Text>{data?.duration}</Text>
-      <Text>{data?.timezone}</Text>
-      <Text>{data?.image}</Text>
-      <Text>{data?.classical}</Text>
-      <Text>{data?.artist}</Text>
-      <Text>{data?.["artist-custom"]}</Text>
-      <Text>{data?.composer}</Text>
-      <Text>{data?.release}</Text>
-      <Text>{data?.["release-custom"]}</Text>
-      <Text>{data?.released}</Text>
-      <Text>{data?.medium}</Text>
-      <Text>{data?.va}</Text>
-      <Text>{data?.label}</Text>
-      <Text>{data?.["label-custom"]}</Text>
-      <Text>{data?.song}</Text>
-      <Text>{data?.note}</Text>
-      <Text>{data?.request}</Text>
-      <Text>{data?.local}</Text>
-      <Text>{data?.new}</Text>
-      <Text>{data?.genre}</Text>
-      <Text>{data?.work}</Text>
-      <Text>{data?.conductor}</Text>
-      <Text>{data?.performers}</Text>
-      <Text>{data?.ensemble}</Text>
-      <Text>{data?.["catalog-number"]}</Text>
-      <Text>{data?.isrc}</Text>
-      <Text>{data?.upc}</Text>
-      <Text>{data?.iswc}</Text>
-      <Button
-        title="Playlist"
-        onPress={() => nav.push("Playlist", { id: data?.playlist_id })}
-      ></Button>
+    <View style={[{ flex: 1, padding: spacing[12] }]}>
+      <ScrollView>
+        <View style={{ gap: spacing[12] }}>
+          {data?.image && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+              }}
+            >
+              <SongArt source={data?.image} />
+            </View>
+          )}
+
+          <SpinCitation id={id} />
+
+          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+            <Button
+              title="See Playlist →"
+              onPress={() => nav.push("Playlist", { id: data?.playlist_id })}
+            ></Button>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 }
