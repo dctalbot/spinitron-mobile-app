@@ -3,12 +3,9 @@
 start: 
 	npm run start
 
-.PHONY: fmt
-fmt: 
-	npm run fmt
-
 .PHONY: check
 check: 
+	npx prettier --log-level warn --write .
 	npx tsc
 	npx eslint . --fix
 	git diff --exit-code

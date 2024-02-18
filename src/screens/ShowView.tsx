@@ -4,8 +4,7 @@ import * as React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useShow } from "../api/useShow";
 import { ShowNav, ShowRoute } from "../nav/types";
-
-const STUB = "http://x.io";
+import { getPersonaIDs } from "../getPersonaIDs";
 
 function ShowView() {
   const nav = useNavigation<ShowNav>();
@@ -23,17 +22,7 @@ function ShowView() {
 
   if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
 
-  const personaIDs = (data?._links?.personas ?? []).map((p) => {
-    const url = new URL(p.href);
-    const segments = url.pathname.split("/");
-    return Number(segments[segments.length - 1]);
-  });
-
-  let playlistID = data?._links?.playlists?.href ?? "";
-  if (playlistID) {
-    const url = new URL(STUB + data?._links?.playlists?.href);
-    playlistID = url.searchParams.get("playlist_id") ?? "";
-  }
+  const personaIDs = getPersonaIDs(data?._links?.personas);
 
   return (
     <View style={[{ flex: 1 }]}>

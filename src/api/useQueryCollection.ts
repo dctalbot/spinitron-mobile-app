@@ -7,7 +7,7 @@ type BaseIndexResponse = components["schemas"]["BaseIndexResponse"];
 
 interface useQueryCollectionInput {
   collectionName: string;
-  input?: Record<string, any>;
+  input?: Record<string, unknown>;
 }
 
 export function useQueryCollection<TQueryFnData>({

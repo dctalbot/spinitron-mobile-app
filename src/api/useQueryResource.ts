@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useBaseURL } from "./ApiProvider";
 import { buildQueryString } from "./utils";
 
-type QueryResourceInput = Record<string, any> & { id: number | string };
+type QueryResourceInput = Record<string, unknown> & { id: number | string };
 
 interface useQueryResourceInput {
   collectionName: string;

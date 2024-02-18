@@ -1,4 +1,4 @@
-export function buildQueryString(input: Record<string, any> = {}): string {
+export function buildQueryString(input: Record<string, unknown> = {}): string {
   const result = new URLSearchParams();
 
   for (const [k, v] of Object.entries(input)) {
