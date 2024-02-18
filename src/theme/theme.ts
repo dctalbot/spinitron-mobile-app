@@ -36,3 +36,58 @@ export const spacing = {
   320: 320,
   384: 384,
 };
+
+export const fontSize: Record<string, { size: number; lineHeight: number }> = {
+  xs: {
+    size: 12,
+    lineHeight: 16,
+  },
+  sm: {
+    size: 14,
+    lineHeight: 20,
+  },
+  md: {
+    size: 16,
+    lineHeight: 24,
+  },
+  lg: {
+    size: 18,
+    lineHeight: 28,
+  },
+  xl: {
+    size: 20,
+    lineHeight: 28,
+  },
+  "2xl": {
+    size: 24,
+    lineHeight: 32,
+  },
+  "3xl": {
+    size: 30,
+    lineHeight: 36,
+  },
+  "4xl": {
+    size: 36,
+    lineHeight: 40,
+  },
+  "5xl": {
+    size: 48,
+    lineHeight: 1,
+  },
+  "6xl": {
+    size: 60,
+    lineHeight: 1,
+  },
+  "7xl": {
+    size: 72,
+    lineHeight: 1,
+  },
+  "8xl": {
+    size: 96,
+    lineHeight: 1,
+  },
+  "9xl": {
+    size: 128,
+    lineHeight: 1,
+  },
+};

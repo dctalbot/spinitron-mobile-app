@@ -5,6 +5,8 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { usePersonas } from "../api/usePersonas";
 import { PersonasNav } from "../nav/types";
+import { Avatar } from "../Avatar";
+import { fontSize, spacing } from "../theme/theme";
 
 function PersonasView() {
   const nav = useNavigation<PersonasNav>();
@@ -28,7 +30,24 @@ function PersonasView() {
               nav.push("Persona", { id: item?.id, name: item?.name })
             }
           >
-            <Text style={[{ height: 50 }]}>{item?.name}</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Avatar size={50} source={item?.image} />
+              <Text
+                style={[
+                  {
+                    marginLeft: spacing[12],
+                    fontSize: fontSize["md"]["size"],
+                  },
+                ]}
+              >
+                {item?.name}
+              </Text>
+            </View>
           </TouchableOpacity>
         )}
         estimatedItemSize={50}

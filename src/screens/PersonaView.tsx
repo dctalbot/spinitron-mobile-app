@@ -3,18 +3,17 @@ import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePersona } from "../api/usePersona";
-import { Image } from "expo-image";
 import { StyleSheet } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { A } from "@expo/html-elements";
 import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
 import { PersonaRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
+import { Avatar } from "../Avatar";
 
 const AVATAR_SIZE = 80;
 
-function PersonaView() {
+export function PersonaView() {
   const route = useRoute<PersonaRoute>();
   const nav = useNavigation();
   const name = route?.params?.name ?? "";
@@ -38,18 +37,8 @@ function PersonaView() {
     <View style={[{ flex: 1 }]}>
       <ScrollView>
         <View style={styles.cover}>
-          {data?.image ? (
-            <Image
-              alt="DJ Profile Picture"
-              style={styles.coverImage}
-              source={data.image}
-              // placeholder={{ uri: "https://via.placeholder.com/AVATAR_SIZE" }}
-              contentFit="cover"
-              transition={500}
-            />
-          ) : (
-            <Ionicons name={"person-outline"} size={AVATAR_SIZE} />
-          )}
+          <Avatar size={AVATAR_SIZE} source={data?.image} />
+
           <View style={styles.coverContact}>
             <Text style={styles.coverName} numberOfLines={1}>
               {data?.name}
@@ -83,21 +72,7 @@ function PersonaView() {
   );
 }
 
-export { PersonaView };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  coverImage: {
-    width: AVATAR_SIZE,
-    aspectRatio: 1,
-    backgroundColor: "#0553",
-    borderRadius: spacing[10],
-    flex: 1,
-  },
   cover: {
     flexDirection: "row",
     padding: spacing[12],

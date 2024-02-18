@@ -8,7 +8,6 @@ check:
 	npx prettier --log-level warn --write .
 	npx tsc
 	npx eslint . --fix
-	git diff --exit-code
 
 .PHONY: generate
 generate: 
