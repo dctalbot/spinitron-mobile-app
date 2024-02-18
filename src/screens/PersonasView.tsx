@@ -8,15 +8,8 @@ import { usePersonas } from "../api/usePersonas";
 function PersonasView() {
   const navigation = useNavigation();
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = usePersonas();
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
+    usePersonas();
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 

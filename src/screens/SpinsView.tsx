@@ -9,15 +9,8 @@ function SpinsView() {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useSpins({ playlist_id: route?.params?.playlist_id ?? "" });
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
+    useSpins({ playlist_id: route?.params?.playlist_id ?? "" });
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 

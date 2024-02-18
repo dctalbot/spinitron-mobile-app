@@ -11,15 +11,8 @@ function PlaylistsView() {
 
   const show_id = route?.params?.show_id ?? "";
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = usePlaylists({ show_id });
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
+    usePlaylists({ show_id });
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 

@@ -8,15 +8,8 @@ import { useShows } from "../api/useShows";
 function ShowsView() {
   const navigation = useNavigation();
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useShows();
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
+    useShows();
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
