@@ -7,6 +7,8 @@ import { Image } from "expo-image";
 import { StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { A } from "@expo/html-elements";
+import { useWindowDimensions } from "react-native";
+import RenderHtml from "react-native-render-html";
 
 const AVATAR_SIZE = 80;
 
@@ -18,7 +20,7 @@ function PersonaView() {
     nav.setOptions({ title: route?.params?.name });
   }
   const id = route?.params?.id ?? "";
-
+  const { width } = useWindowDimensions();
   const { isPending, error, data } = usePersona({ id });
 
   if (isPending)
@@ -32,24 +34,45 @@ function PersonaView() {
 
   return (
     <View style={[{ flex: 1 }]}>
-      <Text>{data?.name}</Text>
-      <Text>{data?.bio}</Text>
-      {data?.since && <Text>Joined {data.since}</Text>}
-      {data?.email && <A href={`mailto:${data.email}`}>{data.email}</A>}
-      {data?.website && <A href={`mailto:${data.website}`}>{data.website}</A>}
-      {data?.image ? (
-        <Image
-          alt="DJ Profile Picture"
-          style={styles.image}
-          source={data.image}
-          // placeholder={{ uri: "https://via.placeholder.com/AVATAR_SIZE" }}
-          contentFit="cover"
-          transition={500}
-        />
-      ) : (
-        <Ionicons name={"person-outline"} size={AVATAR_SIZE} />
+      <View style={styles.cover}>
+        {data?.image ? (
+          <Image
+            alt="DJ Profile Picture"
+            style={styles.coverImage}
+            source={data.image}
+            // placeholder={{ uri: "https://via.placeholder.com/AVATAR_SIZE" }}
+            contentFit="cover"
+            transition={500}
+          />
+        ) : (
+          <Ionicons name={"person-outline"} size={AVATAR_SIZE} />
+        )}
+        <View style={styles.coverContact}>
+          <Text style={styles.coverName} numberOfLines={1}>
+            {data?.name}
+          </Text>
+          {data?.since && (
+            <Text numberOfLines={1} style={styles.coverText}>
+              Joined {data.since}
+            </Text>
+          )}
+          {data?.email && (
+            <A href={`mailto:${data.email}`} style={styles.coverText}>
+              {data.email}
+            </A>
+          )}
+          {data?.website && (
+            <A href={data.website} style={styles.coverText}>
+              {data.website}
+            </A>
+          )}
+        </View>
+      </View>
+
+      {/* <Text>shows info ...</Text> */}
+      {data.bio && (
+        <RenderHtml contentWidth={width} source={{ html: data.bio }} />
       )}
-      <Text>shows info ...</Text>
     </View>
   );
 }
@@ -62,10 +85,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  image: {
+  coverImage: {
     width: AVATAR_SIZE,
     aspectRatio: 1,
     backgroundColor: "#0553",
-    borderRadius: 4,
+    borderRadius: 10,
+    flex: 1,
+  },
+  cover: {
+    flexDirection: "row",
+    marginBottom: 10,
+  },
+  coverContact: {
+    flexDirection: "column",
+    paddingLeft: 10,
+    flex: 3.5,
+  },
+  coverText: {
+    lineHeight: 20,
+  },
+  coverName: {
+    fontSize: 20,
   },
 });
