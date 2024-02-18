@@ -65,7 +65,7 @@ export function PersonaView() {
           </View>
         </View>
 
-        {/* <Text>shows info ...</Text> */}
+        {/* <Text>{data._links?.shows}</Text> */}
         {data.bio && (
           <View style={styles.bio}>
             <RenderHtml contentWidth={width} source={{ html: data.bio }} />
