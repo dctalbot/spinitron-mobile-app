@@ -17,9 +17,13 @@ export function PersonaView() {
   const route = useRoute<PersonaRoute>();
   const nav = useNavigation();
   const name = route?.params?.name ?? "";
-  if (name) {
-    nav.setOptions({ title: route?.params?.name });
-  }
+
+  React.useEffect(() => {
+    if (name) {
+      nav.setOptions({ title: route?.params?.name });
+    }
+  }, [name]);
+
   const id = route?.params?.id ?? 0;
   const { width } = useWindowDimensions();
   const { isPending, error, data } = usePersona({ id });
