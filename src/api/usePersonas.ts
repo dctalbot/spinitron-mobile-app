@@ -15,7 +15,7 @@ function usePersonas(_input?: PersonasQueryInput) {
     queryKey: ["personas"],
     queryFn: async ({ pageParam }) => {
       return fetch(base + "/personas?page=" + pageParam).then((res) =>
-        res.json()
+        res.json(),
       );
     },
     initialPageParam: 1,

@@ -13,6 +13,13 @@ import { PersonasView } from "./screens/PersonasView";
 import { ShowsView } from "./screens/ShowsView";
 import { ApiClientProvider } from "./api/ApiProvider";
 import { API_BASE_URL } from "../config";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+const Tab = createBottomTabNavigator();
+
+interface StackNavProps {
+  initialRouteName: string;
+}
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -31,19 +38,48 @@ export default function App() {
     doAsync();
   }, []);
 
+  const StackNav = (props: StackNavProps) => (
+    <Stack.Navigator initialRouteName={props.initialRouteName}>
+      <Stack.Screen name="Personas" component={PersonasView} />
+      <Stack.Screen name="Persona" component={PersonaView} />
+      <Stack.Screen name="Shows" component={ShowsView} />
+      <Stack.Screen name="Show" component={ShowView} />
+      <Stack.Screen name="Playlists" component={PlaylistsView} />
+      <Stack.Screen name="Playlist" component={PlaylistView} />
+      <Stack.Screen name="Spins" component={SpinsView} />
+      <Stack.Screen name="Spin" component={SpinView} />
+    </Stack.Navigator>
+  );
+
   return (
     <ApiClientProvider baseURL={API_BASE_URL}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Spins">
-          <Stack.Screen name="Personas" component={PersonasView} />
-          <Stack.Screen name="Persona" component={PersonaView} />
-          <Stack.Screen name="Shows" component={ShowsView} />
-          <Stack.Screen name="Show" component={ShowView} />
-          <Stack.Screen name="Playlists" component={PlaylistsView} />
-          <Stack.Screen name="Playlist" component={PlaylistView} />
-          <Stack.Screen name="Spins" component={SpinsView} />
-          <Stack.Screen name="Spin" component={SpinView} />
-        </Stack.Navigator>
+        <Tab.Navigator initialRouteName="Schedule">
+          <Tab.Screen
+            name="ScheduleTab"
+            options={{ headerShown: false, tabBarLabel: "Schedule" }}
+          >
+            {() => <StackNav initialRouteName={"Shows"} />}
+          </Tab.Screen>
+          <Tab.Screen
+            name="SpinsTab"
+            options={{ headerShown: false, tabBarLabel: "Spins" }}
+          >
+            {() => <StackNav initialRouteName={"Spins"} />}
+          </Tab.Screen>
+          <Tab.Screen
+            name="PersonasTab"
+            options={{ headerShown: false, tabBarLabel: "People" }}
+          >
+            {() => <StackNav initialRouteName={"Personas"} />}
+          </Tab.Screen>
+          <Tab.Screen
+            name="PlaylistsTab"
+            options={{ headerShown: false, tabBarLabel: "Playlists" }}
+          >
+            {() => <StackNav initialRouteName={"Playlists"} />}
+          </Tab.Screen>
+        </Tab.Navigator>
       </NavigationContainer>
     </ApiClientProvider>
   );

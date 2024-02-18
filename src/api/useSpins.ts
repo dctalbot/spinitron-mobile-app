@@ -19,7 +19,7 @@ function useSpins(input?: SpinsQueryInput) {
     queryFn: async ({ pageParam }) => {
       const suffix = playlist_id ? `&playlist_id=${playlist_id}` : "";
       return fetch(base + "/spins?page=" + pageParam + suffix).then((res) =>
-        res.json()
+        res.json(),
       );
     },
     initialPageParam: 1,

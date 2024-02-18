@@ -27,7 +27,7 @@ const ignore = {
 
 const defaults = tseslint.config(
   eslint.configs.recommended,
-  ...tseslint.configs.recommended
+  ...tseslint.configs.recommended,
 );
 
 export default defaults.concat(custom).concat(ignore);

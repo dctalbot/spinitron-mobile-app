@@ -19,7 +19,7 @@ function usePlaylists(input?: PlaylistsQueryInput) {
     queryFn: async ({ pageParam }) => {
       const suffix = show_id ? `&show_id=${show_id}` : "";
       return fetch(base + "/playlists?page=" + pageParam + suffix).then((res) =>
-        res.json()
+        res.json(),
       );
     },
     initialPageParam: 1,
