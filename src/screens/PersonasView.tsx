@@ -23,7 +23,9 @@ function PersonasView() {
         data={listdata}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.push("Persona", { id: item?.id })}
+            onPress={() =>
+              navigation.push("Persona", { id: item?.id, name: item?.name })
+            }
           >
             <Text style={[{ height: 50 }]}>{item?.name}</Text>
           </TouchableOpacity>
