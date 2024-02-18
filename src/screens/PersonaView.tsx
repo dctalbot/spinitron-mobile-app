@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -34,45 +34,47 @@ function PersonaView() {
 
   return (
     <View style={[{ flex: 1 }]}>
-      <View style={styles.cover}>
-        {data?.image ? (
-          <Image
-            alt="DJ Profile Picture"
-            style={styles.coverImage}
-            source={data.image}
-            // placeholder={{ uri: "https://via.placeholder.com/AVATAR_SIZE" }}
-            contentFit="cover"
-            transition={500}
-          />
-        ) : (
-          <Ionicons name={"person-outline"} size={AVATAR_SIZE} />
-        )}
-        <View style={styles.coverContact}>
-          <Text style={styles.coverName} numberOfLines={1}>
-            {data?.name}
-          </Text>
-          {data?.since && (
-            <Text numberOfLines={1} style={styles.coverText}>
-              Joined {data.since}
+      <ScrollView>
+        <View style={styles.cover}>
+          {data?.image ? (
+            <Image
+              alt="DJ Profile Picture"
+              style={styles.coverImage}
+              source={data.image}
+              // placeholder={{ uri: "https://via.placeholder.com/AVATAR_SIZE" }}
+              contentFit="cover"
+              transition={500}
+            />
+          ) : (
+            <Ionicons name={"person-outline"} size={AVATAR_SIZE} />
+          )}
+          <View style={styles.coverContact}>
+            <Text style={styles.coverName} numberOfLines={1}>
+              {data?.name}
             </Text>
-          )}
-          {data?.email && (
-            <A href={`mailto:${data.email}`} style={styles.coverText}>
-              {data.email}
-            </A>
-          )}
-          {data?.website && (
-            <A href={data.website} style={styles.coverText}>
-              {data.website}
-            </A>
-          )}
+            {data?.since && (
+              <Text numberOfLines={1} style={styles.coverText}>
+                Joined {data.since}
+              </Text>
+            )}
+            {data?.email && (
+              <A href={`mailto:${data.email}`} style={styles.coverText}>
+                {data.email}
+              </A>
+            )}
+            {data?.website && (
+              <A href={data.website} style={styles.coverText}>
+                {data.website}
+              </A>
+            )}
+          </View>
         </View>
-      </View>
 
-      {/* <Text>shows info ...</Text> */}
-      {data.bio && (
-        <RenderHtml contentWidth={width} source={{ html: data.bio }} />
-      )}
+        {/* <Text>shows info ...</Text> */}
+        {data.bio && (
+          <RenderHtml contentWidth={width} source={{ html: data.bio }} />
+        )}
+      </ScrollView>
     </View>
   );
 }
