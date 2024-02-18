@@ -28,6 +28,8 @@ export function useQueryCollection<TQueryFnData>({
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>
-      lastPage?._meta?.currentPage ? lastPage?._meta?.currentPage + 1 : null,
+      lastPage?._meta?.currentPage === lastPage._meta?.pageCount
+        ? null
+        : (lastPage?._meta?.currentPage ?? 0) + 1,
   });
 }
