@@ -31,6 +31,7 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.45",
     "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
     "openapi-typescript": "^6.7.4",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
