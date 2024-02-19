@@ -17,7 +17,6 @@
     "@react-navigation/native-stack": "^6.9.18",
     "@shopify/flash-list": "1.6.3",
     "@tanstack/react-query": "^5.20.5",
-    "@types/react": "~18.2.45",
     "expo": "~50.0.6",
     "expo-image": "~1.10.6",
     "expo-status-bar": "~1.11.1",
@@ -30,6 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@types/react": "~18.2.45",
     "eslint": "^8.56.0",
     "openapi-typescript": "^6.7.4",
     "prettier": "^3.2.5",
