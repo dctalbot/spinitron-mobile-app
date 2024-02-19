@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import * as React from "react";
 
-import { useSpin } from "./api/useSpin";
+import { SpinQueryData, useSpin } from "./api/useSpin";
 import { fontSize, spacing } from "./theme/theme";
 
 // APA e.g.: Coldplay. (2021). My universe [Song]. On Music of the spheres. Parlophone.
@@ -43,6 +43,10 @@ function AttrRow({ label, value }: AttrRowProps) {
   );
 }
 
+export function getArtist(data?: SpinQueryData): string | undefined {
+  return data?.va ? "Various Artists" : data?.["artist-custom"] ?? data?.artist;
+}
+
 interface SpinCitationProps {
   id: number;
 }
@@ -50,9 +54,7 @@ interface SpinCitationProps {
 export function SpinCitation(props: SpinCitationProps) {
   const { isPending, error, data } = useSpin({ id: props.id });
 
-  const artistValue = data?.va
-    ? "Various Artists"
-    : data?.["artist-custom"] ?? data?.artist;
+  const artistValue = getArtist(data);
 
   const genreValue = data?.genre || (data?.classical ? "Classical" : null);
 
