@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 
 const getIcon = (
   name: React.ComponentProps<typeof Ionicons>["name"],
-  color: string
+  color: string,
 ) => <Ionicons name={name} size={23} color={color} />;
 
 interface StackNavProps {
