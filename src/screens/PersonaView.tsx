@@ -9,7 +9,7 @@ import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
 import { PersonaRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../components/Avatar";
 
 const AVATAR_SIZE = 80;
 

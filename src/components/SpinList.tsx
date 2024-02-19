@@ -3,11 +3,11 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { useSpins } from "./api/useSpins";
-import { SpinsNav } from "./nav/types";
+import { useSpins } from "../api/useSpins";
+import { SpinsNav } from "../nav/types";
 import { Image, ImageProps } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { fontSize, spacing } from "./theme/theme";
+import { fontSize, spacing } from "../theme/theme";
 import { getArtist } from "./SpinCitation";
 
 const ITEM_SIZE = 80;

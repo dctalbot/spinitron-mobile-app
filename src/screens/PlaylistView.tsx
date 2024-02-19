@@ -12,7 +12,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylist } from "../api/usePlaylist";
 import { PlaylistNav, PlaylistRoute } from "../nav/types";
 import RenderHtml from "react-native-render-html";
-import { SpinList } from "../SpinList";
+import { SpinList } from "../components/SpinList";
 
 function PlaylistView() {
   const nav = useNavigation<PlaylistNav>();

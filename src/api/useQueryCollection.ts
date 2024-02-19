@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useBaseURL } from "./ApiProvider";
-import { buildQueryString } from "./utils";
+import { buildQueryString } from "./buildQueryString";
 import { components } from "./openapi-types";
 
 type BaseIndexResponse = components["schemas"]["BaseIndexResponse"];

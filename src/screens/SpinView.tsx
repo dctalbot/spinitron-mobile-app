@@ -15,7 +15,7 @@ import { spacing } from "../theme/theme";
 import { Image, ImageProps } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useWindowDimensions } from "react-native";
-import { SpinCitation } from "../SpinCitation";
+import { SpinCitation } from "../components/SpinCitation";
 
 interface SongArtProps extends ImageProps {}
 

@@ -5,7 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { usePersonas } from "../api/usePersonas";
 import { PersonasNav } from "../nav/types";
-import { Avatar } from "../Avatar";
+import { Avatar } from "../components/Avatar";
 import { fontSize, spacing } from "../theme/theme";
 
 function PersonasView() {

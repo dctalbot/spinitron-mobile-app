@@ -4,7 +4,7 @@ import * as React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useShow } from "../api/useShow";
 import { ShowNav, ShowRoute } from "../nav/types";
-import { getPersonaIDs } from "../getPersonaIDs";
+import { getPersonaIDs } from "../util/getPersonaIDs";
 
 function ShowView() {
   const nav = useNavigation<ShowNav>();
