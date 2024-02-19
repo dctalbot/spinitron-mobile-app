@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 
 const getIcon = (
   name: React.ComponentProps<typeof Ionicons>["name"],
-  color: string,
+  color: string
 ) => <Ionicons name={name} size={23} color={color} />;
 
 interface StackNavProps {
@@ -61,7 +61,7 @@ export default function App() {
       <Stack.Screen
         name="Spins"
         component={SpinsView}
-        options={{ headerTitle: "Playlist" }}
+        options={{ headerTitle: "On Air" }}
       />
       <Stack.Screen name="Spin" component={SpinView} />
     </Stack.Navigator>
@@ -86,7 +86,7 @@ export default function App() {
           <Tab.Screen
             name="SpinsTab"
             options={{
-              tabBarLabel: "Playlist",
+              tabBarLabel: "On Air",
               tabBarIcon: ({ color }) => getIcon("musical-notes", color),
             }}
           >
