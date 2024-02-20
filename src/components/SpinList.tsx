@@ -9,6 +9,7 @@ import { Image, ImageProps } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { fontSize, spacing } from "../theme/theme";
 import { getArtist } from "./SpinCitation";
+import { formatTime2 } from "../util/time";
 
 const ITEM_SIZE = 80;
 
@@ -87,6 +88,17 @@ function SpinList(props: SpinListProps) {
               >
                 {getArtist(item)}
               </Text>
+              {item?.start && (
+                <Text
+                  style={[
+                    {
+                      fontSize: fontSize["sm"]["size"],
+                    },
+                  ]}
+                >
+                  {formatTime2(item?.start)}
+                </Text>
+              )}
             </View>
           </View>
         </TouchableOpacity>

@@ -16,6 +16,7 @@
     "@react-navigation/native-stack": "^6.9.18",
     "@shopify/flash-list": "1.6.3",
     "@tanstack/react-query": "^5.20.5",
+    "dayjs": "^1.11.10",
     "expo": "~50.0.6",
     "expo-image": "~1.10.6",
     "expo-status-bar": "~1.11.1",
