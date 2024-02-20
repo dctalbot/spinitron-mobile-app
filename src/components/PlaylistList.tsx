@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../nav/types";
 import { fontSize, spacing } from "../theme/theme";
 import { usePlaylists } from "../api/usePlaylists";
+import { formatTime } from "../util/time";
 
 interface PlaylistListProps {
   queryInput: Parameters<typeof usePlaylists>[0];
@@ -16,7 +17,10 @@ function PlaylistList(props: PlaylistListProps) {
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     usePlaylists(props.queryInput);
 
-  const listdata = (data?.pages ?? []).map((page) => page.items).flat();
+  const listdata = (data?.pages ?? [])
+    .map((page) => page.items)
+    .flat()
+    .filter((i) => i?.start);
 
   if (isFetching && listdata.length === 0) return <Text>{"Loading..."}</Text>;
 
@@ -44,7 +48,7 @@ function PlaylistList(props: PlaylistListProps) {
                 },
               ]}
             >
-              {item?.start} {item?.timezone}
+              {formatTime(item?.start ?? "")}
             </Text>
           </View>
         </TouchableOpacity>

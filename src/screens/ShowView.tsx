@@ -50,7 +50,7 @@ function ShowView() {
         }
       />
 
-      <Text>Hosted by:</Text>
+      <Text>Host:</Text>
       {personaIDs.map((id) => (
         <PersonaPreview key={id} id={id} />
       ))}
