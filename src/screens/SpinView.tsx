@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  Button,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import { ActivityIndicator, Button, Text, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -16,6 +10,7 @@ import { Image, ImageProps } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useWindowDimensions } from "react-native";
 import { SpinCitation } from "../components/SpinCitation";
+import { AppScrollView } from "./AppScrollView";
 
 interface SongArtProps extends ImageProps {}
 
@@ -64,8 +59,8 @@ function SpinView() {
   if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
 
   return (
-    <View style={[{ flex: 1, padding: spacing[12] }]}>
-      <ScrollView>
+    <View style={[{ flex: 1 }]}>
+      <AppScrollView>
         <View style={{ gap: spacing[12] }}>
           {data?.image && (
             <View
@@ -87,7 +82,7 @@ function SpinView() {
             ></Button>
           </View>
         </View>
-      </ScrollView>
+      </AppScrollView>
     </View>
   );
 }

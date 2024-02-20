@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -9,9 +9,10 @@ import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
 import { PersonaRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
-import { Avatar } from "../components/Avatar";
-
-const AVATAR_SIZE = 80;
+import { Headline } from "../components/Headline";
+import { getResourceID } from "../api/getResourceID";
+import { ShowPreview } from "../components/ShowPreview";
+import { AppScrollView } from "./AppScrollView";
 
 export function PersonaView() {
   const route = useRoute<PersonaRoute>();
@@ -28,6 +29,11 @@ export function PersonaView() {
   const { width } = useWindowDimensions();
   const { isPending, error, data } = usePersona({ id });
 
+  const showIDs = (data?._links?.shows ?? [])
+    .map((p) => p.href as string) // typecast because next line has filter
+    .filter(Boolean)
+    .map(getResourceID);
+
   if (isPending)
     return (
       <View>
@@ -39,60 +45,52 @@ export function PersonaView() {
 
   return (
     <View style={[{ flex: 1 }]}>
-      <ScrollView>
-        <View style={styles.cover}>
-          <Avatar size={AVATAR_SIZE} source={data?.image} />
+      <AppScrollView>
+        <Headline
+          title={data.name ?? ""}
+          img={{
+            source: data.image,
+            else: "person-outline",
+          }}
+          subtitle={
+            <View>
+              {data?.since && (
+                <Text numberOfLines={1} style={styles.coverText}>
+                  Joined in {data.since}
+                </Text>
+              )}
+              {data?.email && (
+                <A href={`mailto:${data.email}`} style={styles.coverText}>
+                  {data.email}
+                </A>
+              )}
+              {data?.website && (
+                <A href={data.website} style={styles.coverText}>
+                  {data.website}
+                </A>
+              )}
+            </View>
+          }
+        />
 
-          <View style={styles.coverContact}>
-            <Text style={styles.coverName} numberOfLines={1}>
-              {data?.name}
-            </Text>
-            {data?.since && (
-              <Text numberOfLines={1} style={styles.coverText}>
-                Joined in {data.since}
-              </Text>
-            )}
-            {data?.email && (
-              <A href={`mailto:${data.email}`} style={styles.coverText}>
-                {data.email}
-              </A>
-            )}
-            {data?.website && (
-              <A href={data.website} style={styles.coverText}>
-                {data.website}
-              </A>
-            )}
-          </View>
-        </View>
-
-        {/* <Text>{data._links?.shows}</Text> */}
         {data.bio && (
           <View style={styles.bio}>
             <RenderHtml contentWidth={width} source={{ html: data.bio }} />
           </View>
         )}
-      </ScrollView>
+        <>
+          {showIDs.map((id) => (
+            <ShowPreview key={id} id={id} />
+          ))}
+        </>
+      </AppScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  cover: {
-    flexDirection: "row",
-    padding: spacing[12],
-  },
-  coverContact: {
-    flexDirection: "column",
-    paddingLeft: spacing[10],
-    flex: 3.5,
-  },
   coverText: {
     lineHeight: spacing[20],
   },
-  coverName: {
-    fontSize: spacing[20],
-  },
-  bio: {
-    padding: spacing[12],
-  },
+  bio: {},
 });

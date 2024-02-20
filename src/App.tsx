@@ -53,11 +53,15 @@ export default function App() {
         component={PersonasView}
         options={{ headerTitle: "DJs" }}
       />
-      <Stack.Screen name="Persona" component={PersonaView} />
+      <Stack.Screen
+        name="Persona"
+        component={PersonaView}
+        options={{ headerTitle: undefined }}
+      />
       <Stack.Screen name="Shows" component={ShowsView} />
       <Stack.Screen name="Show" component={ShowView} />
       <Stack.Screen name="Playlists" component={PlaylistsView} />
-      <Stack.Screen name="Playlist" component={PlaylistView} />
+      <Stack.Screen name="Playlist" component={PlaylistView} options={{}} />
       <Stack.Screen
         name="Spins"
         component={SpinsView}

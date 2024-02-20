@@ -1,16 +1,16 @@
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
-import { useShow } from "../api/useShow";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../nav/types";
+import { usePersona } from "../api/usePersona";
 
-interface ShowPreviewProps {
+interface PersonaPreviewProps {
   id: number;
 }
 
-export function ShowPreview(props: ShowPreviewProps) {
-  const show_id = props.id;
-  const { isPending, error, data } = useShow({ id: show_id });
+export function PersonaPreview(props: PersonaPreviewProps) {
+  const persona_id = props.id;
+  const { isPending, error, data } = usePersona({ id: persona_id });
   const nav = useNavigation<StackNav>();
 
   if (isPending)
@@ -22,8 +22,6 @@ export function ShowPreview(props: ShowPreviewProps) {
 
   if (error) return null;
 
-  if (!isPending && !data?.title) return null;
-
   return (
     <TouchableOpacity
       style={{
@@ -32,14 +30,14 @@ export function ShowPreview(props: ShowPreviewProps) {
         borderColor: "black",
       }}
       onPress={() =>
-        nav.push("Show", {
-          id: show_id,
-          title: data.title,
+        nav.push("Persona", {
+          id: persona_id,
+          name: data.name,
         })
       }
     >
       <View>
-        <Text>{data.title}</Text>
+        <Text>{data.name}</Text>
       </View>
     </TouchableOpacity>
   );

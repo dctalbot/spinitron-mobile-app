@@ -1,10 +1,13 @@
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useShow } from "../api/useShow";
 import { ShowNav, ShowRoute } from "../nav/types";
 import { getResourceID } from "../api/getResourceID";
+import { PersonaPreview } from "../components/PersonaPreview";
+import { PlaylistList } from "../components/PlaylistList";
+import { Headline } from "../components/Headline";
 
 function ShowView() {
   const nav = useNavigation<ShowNav>();
@@ -36,32 +39,24 @@ function ShowView() {
 
   return (
     <View style={[{ flex: 1 }]}>
-      <Text>{data?.id}</Text>
-      <Text>{data?.start}</Text>
-      <Text>{data?.end}</Text>
-      <Text>{data?.duration}</Text>
-      <Text>{data?.timezone}</Text>
-      <Text>{data?.one_off}</Text>
-      <Text>{data?.category}</Text>
-      <Text>{data?.title}</Text>
-      <Text>{data?.description}</Text>
-      <Text>{data?.since}</Text>
-      <Text>{data?.url}</Text>
-      <Text>{data?.hide_dj}</Text>
-      <Text>{data?.image}</Text>
+      <Headline
+        title={data.title ?? ""}
+        subtitle={
+          <View>
+            <Text>{data?.category}</Text>
+            <Text>{data?.description}</Text>
+            <Text>{data?.url}</Text>
+          </View>
+        }
+      />
 
-      {personaIDs.map((id, i) => (
-        <Button
-          key={id}
-          title={"Persona " + (i + 1)}
-          onPress={() => nav.push("Persona", { id })}
-        />
+      <Text>Hosted by:</Text>
+      {personaIDs.map((id) => (
+        <PersonaPreview key={id} id={id} />
       ))}
 
-      <Button
-        title={"playlists for this show"}
-        onPress={() => nav.push("Playlists", { show_id: id })}
-      />
+      <Text>Episodes:</Text>
+      <PlaylistList queryInput={{ show_id: id }} />
     </View>
   );
 }

@@ -10,7 +10,7 @@ function PlaylistsView() {
   const nav = useNavigation<PlaylistsNav>();
   const route = useRoute<PlaylistsRoute>();
 
-  const show_id = route?.params?.show_id;
+  const show_id = route?.params?.show_id ?? 0;
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     usePlaylists({ show_id });
