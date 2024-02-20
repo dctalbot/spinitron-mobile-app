@@ -4,7 +4,7 @@ import * as React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useShow } from "../api/useShow";
 import { ShowNav, ShowRoute } from "../nav/types";
-import { getPersonaIDs } from "../util/getPersonaIDs";
+import { getResourceID } from "../api/getResourceID";
 
 function ShowView() {
   const nav = useNavigation<ShowNav>();
@@ -22,7 +22,10 @@ function ShowView() {
 
   if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
 
-  const personaIDs = getPersonaIDs(data?._links?.personas);
+  const personaIDs = (data?._links?.personas ?? [])
+    .map((p) => p.href as string) // typecast because next line has filter
+    .filter(Boolean)
+    .map(getResourceID);
 
   return (
     <View style={[{ flex: 1 }]}>
