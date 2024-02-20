@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import * as React from "react";
 
 import { StyleSheet } from "react-native";
@@ -9,7 +9,7 @@ interface AppScrollViewProps {
 }
 
 export function AppScrollView(props: AppScrollViewProps) {
-  return <View style={styles.container}>{props.children}</View>;
+  return <ScrollView style={styles.container}>{props.children}</ScrollView>;
 }
 
 const styles = StyleSheet.create({
