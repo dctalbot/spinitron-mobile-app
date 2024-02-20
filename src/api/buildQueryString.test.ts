@@ -14,3 +14,7 @@ test.each([
 ])("%s => %s", (input, expected) => {
   expect(buildQueryString(input)).toBe(expected);
 });
+
+test("no input", () => {
+  expect(buildQueryString()).toBe("");
+});
