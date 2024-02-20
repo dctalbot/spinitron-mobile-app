@@ -13,6 +13,7 @@ import { usePlaylist } from "../api/usePlaylist";
 import { PlaylistNav, PlaylistRoute } from "../nav/types";
 import RenderHtml from "react-native-render-html";
 import { SpinList } from "../components/SpinList";
+import { ShowPreview } from "../components/ShowPreview";
 
 function PlaylistView() {
   const nav = useNavigation<PlaylistNav>();
@@ -21,6 +22,8 @@ function PlaylistView() {
   const id = route?.params?.id ?? 0;
 
   const { isPending, error, data } = usePlaylist({ id });
+
+  const show_id = data?.show_id ?? 0;
 
   React.useEffect(() => {
     if (data?.title) {
@@ -46,6 +49,8 @@ function PlaylistView() {
 
         <Text>{data?.start}</Text>
         <Text>{data?.timezone}</Text>
+
+        <ShowPreview id={show_id ?? 0} />
 
         {/* <Text>{data?.end}</Text> */}
         {/* <Text>{data?.category}</Text> */}
@@ -74,15 +79,6 @@ function PlaylistView() {
         )}
 
         <SpinList useSpinsInput={{ playlist_id: id }} />
-
-        {data?.show_id && (
-          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-            <Button
-              title="See Show →"
-              onPress={() => nav.push("Show", { id: data.show_id })}
-            ></Button>
-          </View>
-        )}
       </ScrollView>
     </View>
   );

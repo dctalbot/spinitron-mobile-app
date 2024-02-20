@@ -5,7 +5,7 @@ export type StackParamList = {
   Personas: undefined;
   Persona: { id?: number; name?: string };
   Shows: undefined;
-  Show: { id?: number };
+  Show: { id?: number; title?: string };
   Playlists: { show_id?: number };
   Playlist: { id?: number };
   Spins: { playlist_id?: number };
@@ -47,3 +47,6 @@ export type PlaylistsRoute = RouteProp<StackParamList, "Playlists">;
 export type PlaylistNav = NavProp<StackParamList, "Playlist">;
 
 export type PlaylistRoute = RouteProp<StackParamList, "Playlist">;
+
+// arbitrary page
+export type StackNav = NavProp<StackParamList, keyof StackParamList>;

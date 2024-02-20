@@ -10,8 +10,15 @@ function ShowView() {
   const nav = useNavigation<ShowNav>();
   const route = useRoute<ShowRoute>();
   const id = route?.params?.id ?? 0;
+  const title = route?.params?.title ?? "";
 
   const { isPending, error, data } = useShow({ id });
+
+  React.useEffect(() => {
+    if (title) {
+      nav.setOptions({ title });
+    }
+  }, [title]);
 
   if (isPending)
     return (
