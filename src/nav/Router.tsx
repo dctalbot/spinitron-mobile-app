@@ -13,18 +13,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const getIcon = (
   name: React.ComponentProps<typeof Ionicons>["name"],
-  color: string
+  color: string,
 ) => <Ionicons name={name} size={23} color={color} />;
 
 interface StackNavProps {
   initialRouteName: string;
 }
-export function Router() {
-  const Stack = createNativeStackNavigator();
 
+export function Router() {
   const StackNav = (props: StackNavProps) => (
     <Stack.Navigator
       initialRouteName={props.initialRouteName}
