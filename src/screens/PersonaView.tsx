@@ -7,7 +7,7 @@ import { StyleSheet } from "react-native";
 import { A } from "@expo/html-elements";
 import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
-import { PersonaRoute } from "../nav/types";
+import { StackRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
 import { Headline } from "../components/Headline";
 import { getResourceID } from "../api/getResourceID";
@@ -15,7 +15,7 @@ import { ShowPreview } from "../components/ShowPreview";
 import { AppScrollView } from "./AppScrollView";
 
 export function PersonaView() {
-  const route = useRoute<PersonaRoute>();
+  const route = useRoute<StackRoute<"Persona">>();
   const nav = useNavigation();
   const name = route?.params?.name ?? "";
 

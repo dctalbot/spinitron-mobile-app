@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { useRoute } from "@react-navigation/native";
 import { usePlaylist } from "../api/usePlaylist";
-import { PlaylistRoute } from "../nav/types";
+import { StackRoute } from "../nav/types";
 import { SpinList } from "../components/SpinList";
 import { ShowPreview } from "../components/ShowPreview";
 import { PersonaPreview } from "../components/PersonaPreview";
@@ -12,7 +12,7 @@ import { Headline } from "../components/Headline";
 import { spacing } from "../theme/theme";
 
 function PlaylistView() {
-  const route = useRoute<PlaylistRoute>();
+  const route = useRoute<StackRoute<"Playlist">>();
   const id = route?.params?.id ?? 0;
 
   const { isPending, error, data } = usePlaylist({ id });

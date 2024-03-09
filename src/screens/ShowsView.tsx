@@ -4,10 +4,10 @@ import * as React from "react";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useShows } from "../api/useShows";
-import { ShowsNav } from "../nav/types";
+import { StackNav } from "../nav/types";
 
 function ShowsView() {
-  const nav = useNavigation<ShowsNav>();
+  const nav = useNavigation<StackNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     useShows();

@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useSpin } from "../api/useSpin";
-import { SpinNav, SpinRoute } from "../nav/types";
+import { StackNav, StackRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
 
 import { Image, ImageProps } from "expo-image";
@@ -36,8 +36,8 @@ export function SongArt(props: SongArtProps) {
 }
 
 function SpinView() {
-  const nav = useNavigation<SpinNav>();
-  const route = useRoute<SpinRoute>();
+  const nav = useNavigation<StackNav>();
+  const route = useRoute<StackRoute<"Spin">>();
   const id = route?.params?.id ?? 0;
   const song = route?.params?.song ?? "";
 

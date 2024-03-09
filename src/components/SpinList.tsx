@@ -4,7 +4,7 @@ import * as React from "react";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useSpins } from "../api/useSpins";
-import { SpinsNav } from "../nav/types";
+import { StackNav } from "../nav/types";
 import { Image, ImageProps } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { fontSize, spacing } from "../theme/theme";
@@ -35,7 +35,7 @@ interface SpinListProps {
   useSpinsInput: Parameters<typeof useSpins>[0];
 }
 function SpinList(props: SpinListProps) {
-  const nav = useNavigation<SpinsNav>();
+  const nav = useNavigation<StackNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     useSpins(props.useSpinsInput);

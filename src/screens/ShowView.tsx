@@ -3,15 +3,15 @@ import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useShow } from "../api/useShow";
-import { ShowNav, ShowRoute } from "../nav/types";
+import { StackNav, StackRoute } from "../nav/types";
 import { getResourceID } from "../api/getResourceID";
 import { PersonaPreview } from "../components/PersonaPreview";
 import { PlaylistList } from "../components/PlaylistList";
 import { Headline } from "../components/Headline";
 
 function ShowView() {
-  const nav = useNavigation<ShowNav>();
-  const route = useRoute<ShowRoute>();
+  const nav = useNavigation<StackNav>();
+  const route = useRoute<StackRoute<"Show">>();
   const id = route?.params?.id ?? 0;
   const title = route?.params?.title ?? "";
 

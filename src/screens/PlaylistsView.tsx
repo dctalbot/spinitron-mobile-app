@@ -4,11 +4,11 @@ import * as React from "react";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylists } from "../api/usePlaylists";
-import { PlaylistsNav, PlaylistsRoute } from "../nav/types";
+import { StackNav, StackRoute } from "../nav/types";
 
 function PlaylistsView() {
-  const nav = useNavigation<PlaylistsNav>();
-  const route = useRoute<PlaylistsRoute>();
+  const nav = useNavigation<StackNav>();
+  const route = useRoute<StackRoute<"Playlists">>();
 
   const show_id = route?.params?.show_id ?? 0;
 
