@@ -20,6 +20,11 @@ const custom = {
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 };
 
 const ignore = {
