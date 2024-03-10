@@ -19,6 +19,18 @@ const custom = {
     // use tsc instead
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        paths: [
+          {
+            name: "react-native",
+            importNames: ["Text"],
+            message: "Use AppText instead.",
+          },
+        ],
+      },
+    ],
   },
   settings: {
     react: {
@@ -33,7 +45,7 @@ const ignore = {
 
 const defaults = tseslint.config(
   eslint.configs.recommended,
-  ...tseslint.configs.strict,
+  ...tseslint.configs.strict
 );
 
 export default defaults.concat(reactRecommended, custom, ignore);

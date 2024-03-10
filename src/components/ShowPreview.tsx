@@ -1,8 +1,9 @@
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import { useShow } from "../api/useShow";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../nav/types";
+import { AppText } from "../ui/AppText";
 
 interface ShowPreviewProps {
   id: number;
@@ -39,7 +40,7 @@ export function ShowPreview(props: ShowPreviewProps) {
       }
     >
       <View>
-        <Text>{data.title}</Text>
+        <AppText>{data.title}</AppText>
       </View>
     </TouchableOpacity>
   );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, TextProps } from "react-native";
+import { Text, TextProps } from "react-native"; // eslint-disable-line no-restricted-imports
 import { useTheme } from "../theme/useTheme";
 
 export function AppText(props: TextProps) {

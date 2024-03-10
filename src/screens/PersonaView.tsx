@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -13,6 +13,7 @@ import { Headline } from "../components/Headline";
 import { getResourceID } from "../api/getResourceID";
 import { ShowPreview } from "../components/ShowPreview";
 import { AppScrollView } from "./AppScrollView";
+import { AppText } from "../ui/AppText";
 
 export function PersonaView() {
   const route = useRoute<StackRoute<"Persona">>();
@@ -41,7 +42,8 @@ export function PersonaView() {
       </View>
     );
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={[{ flex: 1 }]}>
@@ -55,17 +57,17 @@ export function PersonaView() {
           subtitle={
             <View>
               {data?.since && (
-                <Text numberOfLines={1} style={styles.coverText}>
+                <AppText numberOfLines={1} style={styles.coverAppText}>
                   Joined in {data.since}
-                </Text>
+                </AppText>
               )}
               {data?.email && (
-                <A href={`mailto:${data.email}`} style={styles.coverText}>
+                <A href={`mailto:${data.email}`} style={styles.coverAppText}>
                   {data.email}
                 </A>
               )}
               {data?.website && (
-                <A href={data.website} style={styles.coverText}>
+                <A href={data.website} style={styles.coverAppText}>
                   {data.website}
                 </A>
               )}
@@ -89,7 +91,7 @@ export function PersonaView() {
 }
 
 const styles = StyleSheet.create({
-  coverText: {
+  coverAppText: {
     lineHeight: spacing[20],
   },
   bio: {},

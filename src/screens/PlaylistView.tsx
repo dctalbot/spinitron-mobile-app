@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
 import { useRoute } from "@react-navigation/native";
@@ -10,6 +10,7 @@ import { PersonaPreview } from "../components/PersonaPreview";
 import { formatTime } from "../util/time";
 import { Headline } from "../components/Headline";
 import { spacing } from "../theme/theme";
+import { AppText } from "../ui/AppText";
 
 function PlaylistView() {
   const route = useRoute<StackRoute<"Playlist">>();
@@ -27,7 +28,8 @@ function PlaylistView() {
       </View>
     );
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={[{ flex: 1 }]}>
@@ -47,7 +49,7 @@ function PlaylistView() {
 
         {data?.start && (
           <>
-            <Text>{formatTime(data?.start)}</Text>
+            <AppText>{formatTime(data?.start)}</AppText>
           </>
         )}
       </View>

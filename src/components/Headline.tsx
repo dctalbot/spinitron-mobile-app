@@ -1,10 +1,11 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import * as React from "react";
 
 import { StyleSheet } from "react-native";
 import { fontSize, spacing } from "../theme/theme";
 import { Image, ImageProps } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { AppText } from "../ui/AppText";
 
 interface HeadlineImageProps extends ImageProps {
   else?: keyof typeof Ionicons.glyphMap;
@@ -33,9 +34,9 @@ export function Headline(props: HeadlineProps) {
       )}
 
       <View style={styles.rhs}>
-        <Text style={styles.title} numberOfLines={1}>
+        <AppText style={styles.title} numberOfLines={1}>
           {props.title}
-        </Text>
+        </AppText>
         {props.subtitle}
       </View>
     </View>

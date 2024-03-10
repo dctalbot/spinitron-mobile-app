@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -8,6 +8,7 @@ import { getResourceID } from "../api/getResourceID";
 import { PersonaPreview } from "../components/PersonaPreview";
 import { PlaylistList } from "../components/PlaylistList";
 import { Headline } from "../components/Headline";
+import { AppText } from "../ui/AppText";
 
 function ShowView() {
   const nav = useNavigation<StackNav>();
@@ -30,7 +31,8 @@ function ShowView() {
       </View>
     );
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   const personaIDs = (data?._links?.personas ?? [])
     .map((p) => p.href as string) // typecast because next line has filter
@@ -43,19 +45,19 @@ function ShowView() {
         title={data.title ?? ""}
         subtitle={
           <View>
-            <Text>{data?.category}</Text>
-            <Text>{data?.description}</Text>
-            <Text>{data?.url}</Text>
+            <AppText>{data?.category}</AppText>
+            <AppText>{data?.description}</AppText>
+            <AppText>{data?.url}</AppText>
           </View>
         }
       />
 
-      <Text>Host:</Text>
+      <AppText>Host:</AppText>
       {personaIDs.map((id) => (
         <PersonaPreview key={id} id={id} />
       ))}
 
-      <Text>Episodes:</Text>
+      <AppText>Episodes:</AppText>
       <PlaylistList queryInput={{ show_id: id }} />
     </View>
   );

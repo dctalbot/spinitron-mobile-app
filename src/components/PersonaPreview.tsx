@@ -1,8 +1,9 @@
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../nav/types";
 import { usePersona } from "../api/usePersona";
+import { AppText } from "../ui/AppText";
 
 interface PersonaPreviewProps {
   id: number;
@@ -37,7 +38,7 @@ export function PersonaPreview(props: PersonaPreviewProps) {
       }
     >
       <View>
-        <Text>{data.name}</Text>
+        <AppText>{data.name}</AppText>
       </View>
     </TouchableOpacity>
   );

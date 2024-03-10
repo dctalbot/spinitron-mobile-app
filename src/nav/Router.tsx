@@ -10,17 +10,17 @@ import { PlaylistsView } from "../screens/PlaylistsView";
 import { PersonasView } from "../screens/PersonasView";
 import { ShowsView } from "../screens/ShowsView";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { SettingsView } from "../screens/Settings";
 import { useTheme } from "../theme/useTheme";
+import { AppIcon } from "../ui/AppIcon";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const getIcon = (
-  name: React.ComponentProps<typeof Ionicons>["name"],
-  color: string,
-) => <Ionicons name={name} size={23} color={color} />;
+  name: React.ComponentProps<typeof AppIcon>["name"],
+  color: string
+) => <AppIcon name={name} size={23} color={color} />;
 
 interface StackNavProps {
   initialRouteName: string;

@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -7,6 +7,7 @@ import { usePersonas } from "../api/usePersonas";
 import { StackNav } from "../nav/types";
 import { Avatar } from "../components/Avatar";
 import { fontSize, spacing } from "../theme/theme";
+import { AppText } from "../ui/AppText";
 
 function PersonasView() {
   const nav = useNavigation<StackNav>();
@@ -16,9 +17,11 @@ function PersonasView() {
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
-  if (isFetching && listdata.length === 0) return <Text>{"Loading..."}</Text>;
+  if (isFetching && listdata.length === 0)
+    return <AppText>{"Loading..."}</AppText>;
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={[{ flex: 1 }]}>
@@ -37,7 +40,7 @@ function PersonasView() {
               }}
             >
               <Avatar size={50} source={item?.image} />
-              <Text
+              <AppText
                 style={[
                   {
                     marginLeft: spacing[12],
@@ -46,7 +49,7 @@ function PersonasView() {
                 ]}
               >
                 {item?.name}
-              </Text>
+              </AppText>
             </View>
           </TouchableOpacity>
         )}

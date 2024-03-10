@@ -1,10 +1,11 @@
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylists } from "../api/usePlaylists";
 import { StackNav, StackRoute } from "../nav/types";
+import { AppText } from "../ui/AppText";
 
 function PlaylistsView() {
   const nav = useNavigation<StackNav>();
@@ -17,9 +18,11 @@ function PlaylistsView() {
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
-  if (isFetching && listdata.length === 0) return <Text>{"Loading..."}</Text>;
+  if (isFetching && listdata.length === 0)
+    return <AppText>{"Loading..."}</AppText>;
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={[{ flex: 1 }]}>
@@ -47,7 +50,7 @@ function PlaylistsView() {
                 episode_name: string;
                 episode_description: HTMLString;
                 spinsCount: string; */}
-            <Text style={[{ height: 50 }]}>{item?.start}</Text>
+            <AppText style={[{ height: 50 }]}>{item?.start}</AppText>
           </TouchableOpacity>
         )}
         estimatedItemSize={100}

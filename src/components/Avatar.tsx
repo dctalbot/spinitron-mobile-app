@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, ImageProps } from "expo-image";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { AppIcon } from "../ui/AppIcon";
 
 interface AvatarProps extends ImageProps {
   size: number;
@@ -8,7 +8,7 @@ interface AvatarProps extends ImageProps {
 
 export function Avatar(props: AvatarProps) {
   if (!props.source) {
-    return <Ionicons name={"person-outline"} size={props.size} />;
+    return <AppIcon name={"person-outline"} size={props.size} />;
   }
   return (
     <Image

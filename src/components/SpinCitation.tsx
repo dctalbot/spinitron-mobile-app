@@ -1,8 +1,9 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import * as React from "react";
 
 import { SpinQueryData, useSpin } from "../api/useSpin";
 import { fontSize, spacing } from "../theme/theme";
+import { AppText } from "../ui/AppText";
 
 // APA e.g.: Coldplay. (2021). My universe [Song]. On Music of the spheres. Parlophone.
 // MLA e.g.: Coldplay. My universe.” On Music of the spheres, Parlophone, 2021.
@@ -17,7 +18,7 @@ function AttrRow({ label, value }: AttrRowProps) {
   if (typeof value !== "number" && !label) return null;
   return (
     <View style={{ flexDirection: "row" }}>
-      <Text
+      <AppText
         style={{
           flex: 1,
           borderColor: "black",
@@ -27,8 +28,8 @@ function AttrRow({ label, value }: AttrRowProps) {
         }}
       >
         {label}
-      </Text>
-      <Text
+      </AppText>
+      <AppText
         style={{
           flex: 3,
           borderColor: "black",
@@ -38,7 +39,7 @@ function AttrRow({ label, value }: AttrRowProps) {
         }}
       >
         {value}
-      </Text>
+      </AppText>
     </View>
   );
 }
@@ -86,7 +87,7 @@ export function SpinCitation(props: SpinCitationProps) {
       <AttrRow label="Note" value={data?.note} />
       <AttrRow label="Genre" value={genreValue} />
 
-      {/* These fields are more useful in the context of an "on air" view */}
+      {/* These fields are more useful in the conAppText of an "on air" view */}
       {/* data.request */}
       {/* data.local */}
       {/* data.new */}

@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -7,6 +7,7 @@ import { StackNav } from "../nav/types";
 import { fontSize, spacing } from "../theme/theme";
 import { usePlaylists } from "../api/usePlaylists";
 import { formatTime } from "../util/time";
+import { AppText } from "../ui/AppText";
 
 interface PlaylistListProps {
   queryInput: Parameters<typeof usePlaylists>[0];
@@ -22,9 +23,11 @@ function PlaylistList(props: PlaylistListProps) {
     .flat()
     .filter((i) => i?.start);
 
-  if (isFetching && listdata.length === 0) return <Text>{"Loading..."}</Text>;
+  if (isFetching && listdata.length === 0)
+    return <AppText>{"Loading..."}</AppText>;
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <FlashList
@@ -40,7 +43,7 @@ function PlaylistList(props: PlaylistListProps) {
               alignItems: "center",
             }}
           >
-            <Text
+            <AppText
               style={[
                 {
                   fontSize: fontSize["md"]["size"],
@@ -49,7 +52,7 @@ function PlaylistList(props: PlaylistListProps) {
               ]}
             >
               {formatTime(item?.start ?? "")}
-            </Text>
+            </AppText>
           </View>
         </TouchableOpacity>
       )}

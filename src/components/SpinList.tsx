@@ -1,4 +1,4 @@
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -6,16 +6,17 @@ import { useNavigation } from "@react-navigation/native";
 import { useSpins } from "../api/useSpins";
 import { StackNav } from "../nav/types";
 import { Image, ImageProps } from "expo-image";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { fontSize, spacing } from "../theme/theme";
 import { getArtist } from "./SpinCitation";
 import { formatTime2 } from "../util/time";
+import { AppIcon } from "../ui/AppIcon";
+import { AppText } from "../ui/AppText";
 
 const ITEM_SIZE = 80;
 
 function Img(props: ImageProps) {
   if (!props.source) {
-    return <Ionicons name={"disc-outline"} size={ITEM_SIZE} />;
+    return <AppIcon name={"disc-outline"} size={ITEM_SIZE} />;
   }
   return (
     <Image
@@ -42,9 +43,11 @@ function SpinList(props: SpinListProps) {
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
-  if (isFetching && listdata.length === 0) return <Text>{"Loading..."}</Text>;
+  if (isFetching && listdata.length === 0)
+    return <AppText>{"Loading..."}</AppText>;
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <FlashList
@@ -69,7 +72,7 @@ function SpinList(props: SpinListProps) {
                 width: "100%",
               }}
             >
-              <Text
+              <AppText
                 style={[
                   {
                     fontSize: fontSize["md"]["size"],
@@ -78,8 +81,8 @@ function SpinList(props: SpinListProps) {
                 ]}
               >
                 {item?.song}
-              </Text>
-              <Text
+              </AppText>
+              <AppText
                 style={[
                   {
                     fontSize: fontSize["sm"]["size"],
@@ -87,9 +90,9 @@ function SpinList(props: SpinListProps) {
                 ]}
               >
                 {getArtist(item)}
-              </Text>
+              </AppText>
               {item?.start && (
-                <Text
+                <AppText
                   style={[
                     {
                       fontSize: fontSize["sm"]["size"],
@@ -97,7 +100,7 @@ function SpinList(props: SpinListProps) {
                   ]}
                 >
                   {formatTime2(item?.start)}
-                </Text>
+                </AppText>
               )}
             </View>
           </View>

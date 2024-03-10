@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useShows } from "../../api/useShows";
 import { StackNav } from "../../nav/types";
 import { Day, getScheduleDayRange, getTime } from "../../util/time";
-import { AppText } from "../../components/AppText";
+import { AppText } from "../../ui/AppText";
 import { AppSeparator } from "../../components/AppSeparator";
 import { fontSize, spacing } from "../../theme/theme";
 import dayjs from "dayjs";

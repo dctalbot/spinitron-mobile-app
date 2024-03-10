@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, Text, View } from "react-native";
+import { ActivityIndicator, Button, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -7,10 +7,11 @@ import { StackNav, StackRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
 
 import { Image, ImageProps } from "expo-image";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useWindowDimensions } from "react-native";
 import { SpinCitation } from "../components/SpinCitation";
 import { AppScrollView } from "./AppScrollView";
+import { AppIcon } from "../ui/AppIcon";
+import { AppText } from "../ui/AppText";
 
 interface SongArtProps extends ImageProps {}
 
@@ -18,7 +19,7 @@ export function SongArt(props: SongArtProps) {
   const { width: _width } = useWindowDimensions();
   const width = (_width * 2) / 3;
   if (!props.source) {
-    return <Ionicons name={"disc-outline"} size={width} />;
+    return <AppIcon name={"disc-outline"} size={width} />;
   }
   return (
     <Image
@@ -56,7 +57,8 @@ function SpinView() {
       </View>
     );
 
-  if (error) return <Text>{"An error has occurred: " + error.message}</Text>;
+  if (error)
+    return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={[{ flex: 1 }]}>

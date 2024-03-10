@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Linking, Share, Alert, Text } from "react-native";
+import { StyleSheet, View, Linking, Share, Alert } from "react-native";
 import * as StoreReview from "expo-store-review";
 import {
   GOOGLE_HANGOUTS_URL,
@@ -9,20 +9,21 @@ import {
 } from "../../../config";
 
 import { TouchableOpacity, GestureResponderEvent } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { AppText } from "../../ui/AppText";
+import { AppIcon } from "../../ui/AppIcon";
 
 interface LinkProps {
   onPress: (event: GestureResponderEvent) => void;
-  icon: React.ComponentProps<typeof Ionicons>["name"];
+  icon: React.ComponentProps<typeof AppIcon>["name"];
   text: string;
 }
 
 export function Link(props: LinkProps) {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <Ionicons name={props.icon} size={28} style={styles.icon} />
+      <AppIcon name={props.icon} size={28} style={styles.icon} />
       <View style={styles.textContainer}>
-        <Text>{props.text}</Text>
+        <AppText>{props.text}</AppText>
       </View>
     </TouchableOpacity>
   );
