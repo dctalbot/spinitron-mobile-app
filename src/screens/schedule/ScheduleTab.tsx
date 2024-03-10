@@ -1,4 +1,9 @@
-import { TouchableOpacity, View, useWindowDimensions } from "react-native";
+import {
+  ActivityIndicator,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -69,13 +74,18 @@ function ShowListItem(props: ShowListItemProps) {
           marginRight: spacing["4"],
         }}
       >
-        <AppText style={{ fontSize: fontSize["lg"].size, minHeight: 30 }}>
+        <AppText
+          style={{
+            fontSize: fontSize["lg"].size,
+            minHeight: fontSize["lg"].lineHeight,
+          }}
+        >
           {name}
         </AppText>
         <AppText
           style={{
             fontSize: fontSize["md"].size,
-            minHeight: 20,
+            minHeight: fontSize["md"].lineHeight,
             fontStyle: "italic",
           }}
         >
@@ -112,7 +122,13 @@ export function ScheduleTab(props: ScheduleTabProps) {
       (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start)
     );
 
-  if (isFetching && listdata.length === 0) return null;
+  if (isFetching && listdata.length === 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
   if (error)
     return <AppText>{"An error has occurred: " + error.message}</AppText>;
@@ -129,7 +145,7 @@ export function ScheduleTab(props: ScheduleTabProps) {
           </TouchableOpacity>
         );
       }}
-      estimatedItemSize={60}
+      estimatedItemSize={55}
       ItemSeparatorComponent={AppSeparator}
     />
   );

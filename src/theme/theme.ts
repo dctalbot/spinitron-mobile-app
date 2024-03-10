@@ -102,7 +102,8 @@ export const lightColors = {
 };
 
 export const darkColors = {
-  primary: "rgb(10, 132, 255)",
+  // primary: "rgb(10, 132, 255)",
+  primary: "#5ccfe6",
   background: "rgb(1, 1, 1)",
   card: "rgb(18, 18, 18)",
   text: "rgb(229, 229, 231)",

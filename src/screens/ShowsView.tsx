@@ -37,7 +37,7 @@ function ShowsView() {
             name={name}
             options={{
               tabBarLabel: name[0],
-              lazy: false, // ??
+              lazy: true, // ??
             }}
           >
             {() => <ScheduleTab day={name} />}
