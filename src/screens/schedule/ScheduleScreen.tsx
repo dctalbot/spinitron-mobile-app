@@ -1,14 +1,14 @@
 import { View } from "react-native";
 import * as React from "react";
 import * as _ from "lodash-es";
-import { DAYS, Day, getToday } from "../util/time";
+import { DAYS, Day, getToday } from "../../util/time";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { ScheduleTab } from "./schedule/ScheduleTab";
+import { ScheduleTab } from "./ScheduleTab";
 import { useNavigation } from "@react-navigation/native";
 
 const Tab = createMaterialTopTabNavigator();
 
-function ShowsView() {
+export function ScheduleScreen() {
   const nav = useNavigation();
   return (
     <View style={[{ flex: 1 }]}>
@@ -47,5 +47,3 @@ function ShowsView() {
     </View>
   );
 }
-
-export { ShowsView };

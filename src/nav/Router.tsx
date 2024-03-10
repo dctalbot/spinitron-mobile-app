@@ -8,7 +8,7 @@ import { PersonaView } from "../screens/PersonaView";
 import { ShowView } from "../screens/ShowView";
 import { PlaylistsView } from "../screens/PlaylistsView";
 import { PersonasView } from "../screens/PersonasView";
-import { ShowsView } from "../screens/ShowsView";
+import { ScheduleScreen } from "../screens/schedule/ScheduleScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SettingsView } from "../screens/Settings";
 import { useTheme } from "../theme/useTheme";
@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 
 const getIcon = (
   name: React.ComponentProps<typeof AppIcon>["name"],
-  color: string,
+  color: string
 ) => <AppIcon name={name} size={23} color={color} />;
 
 interface StackNavProps {
@@ -44,7 +44,7 @@ export function Router() {
         component={PersonaView}
         options={{ headerTitle: undefined }}
       />
-      <Stack.Screen name="Shows" component={ShowsView} />
+      <Stack.Screen name="Shows" component={ScheduleScreen} />
       <Stack.Screen name="Show" component={ShowView} />
       <Stack.Screen name="Playlists" component={PlaylistsView} />
       <Stack.Screen name="Playlist" component={PlaylistView} options={{}} />
