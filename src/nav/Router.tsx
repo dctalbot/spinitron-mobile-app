@@ -11,6 +11,7 @@ import { PersonasView } from "../screens/PersonasView";
 import { ShowsView } from "../screens/ShowsView";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { SettingsView } from "../screens/Settings";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -50,6 +51,7 @@ export function Router() {
         options={{ headerTitle: "On Air" }}
       />
       <Stack.Screen name="Spin" component={SpinView} />
+      <Stack.Screen name="Settings" component={SettingsView} />
     </Stack.Navigator>
   );
 
@@ -85,6 +87,15 @@ export function Router() {
           }}
         >
           {() => <StackNav initialRouteName={"Personas"} />}
+        </Tab.Screen>
+        <Tab.Screen
+          name="SettingsTab"
+          options={{
+            tabBarLabel: "Settings",
+            tabBarIcon: ({ color }) => getIcon("settings-sharp", color),
+          }}
+        >
+          {() => <StackNav initialRouteName={"Settings"} />}
         </Tab.Screen>
         {/* <Tab.Screen
             name="PlaylistsTab"

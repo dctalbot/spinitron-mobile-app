@@ -10,6 +10,7 @@ export type StackParamList = {
   Playlist: { id?: number };
   Spins: { playlist_id?: number };
   Spin: { id?: number; song?: string };
+  Settings: undefined;
 };
 
 export type StackNav = NavProp<StackParamList, keyof StackParamList>;
