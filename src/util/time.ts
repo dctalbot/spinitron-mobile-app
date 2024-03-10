@@ -48,6 +48,26 @@ export function getScheduleDayRange(day: Day): [string, string] {
     .startOf("week")
     .add(offset, "day")
     .add(6, "hour");
-  const end = start.add(1, "day");
+  const end = start.add(1, "day").subtract(1, "second");
   return [start.format(), end.format()];
+}
+
+// getTime returns 12-hour time and AM/PM.
+// If the input is invalid, an empty string is returned.
+export function getTime(input?: string): string {
+  let result = "";
+
+  if (!input) {
+    return "";
+  }
+
+  try {
+    result = dayjs(input).format("LT");
+  } catch (e) {
+    return "";
+  }
+  if (!result) {
+    return "";
+  }
+  return result;
 }

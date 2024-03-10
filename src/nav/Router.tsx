@@ -12,13 +12,14 @@ import { ShowsView } from "../screens/ShowsView";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SettingsView } from "../screens/Settings";
+import { useTheme } from "../theme/useTheme";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const getIcon = (
   name: React.ComponentProps<typeof Ionicons>["name"],
-  color: string
+  color: string,
 ) => <Ionicons name={name} size={23} color={color} />;
 
 interface StackNavProps {
@@ -26,6 +27,8 @@ interface StackNavProps {
 }
 
 export function Router() {
+  const theme = useTheme();
+
   const StackNav = (props: StackNavProps) => (
     <Stack.Navigator
       initialRouteName={props.initialRouteName}
@@ -56,7 +59,7 @@ export function Router() {
   );
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme.nav}>
       <Tab.Navigator
         initialRouteName="Schedule"
         screenOptions={{ headerShown: false }}
