@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 
 const getIcon = (
   name: React.ComponentProps<typeof AppIcon>["name"],
-  color: string
+  color: string,
 ) => <AppIcon name={name} size={23} color={color} />;
 
 interface StackNavProps {

@@ -4,15 +4,19 @@ import { buildQueryString } from "./buildQueryString";
 
 type QueryResourceInput = Record<string, unknown> & { id: number | string };
 
-interface useQueryResourceInput {
+type UseQueryOptions<T> = Parameters<typeof useQuery<T>>[0];
+
+type useQueryResourceInput = {
   collectionName: string;
   input: QueryResourceInput;
-}
+};
 
-export function useQueryResource<TQueryFnData>({
-  collectionName,
-  input,
-}: useQueryResourceInput) {
+export type UseQueryResourceOptions<T> = T & Partial<UseQueryOptions<T>>;
+
+export function useQueryResource<TQueryFnData>(
+  { collectionName, input }: useQueryResourceInput,
+  opts?: UseQueryResourceOptions<TQueryFnData>,
+) {
   const base = useBaseURL();
   const s = buildQueryString(input);
 
@@ -25,5 +29,6 @@ export function useQueryResource<TQueryFnData>({
       }
       return fetch(url).then((res) => res.json());
     },
+    ...opts,
   });
 }

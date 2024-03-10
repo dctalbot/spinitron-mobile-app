@@ -1,5 +1,5 @@
 import { paths } from "./openapi-types";
-import { useQueryResource } from "./useQueryResource";
+import { UseQueryResourceOptions, useQueryResource } from "./useQueryResource";
 
 type PlaylistQueryInput =
   paths["/playlists/{id}"]["get"]["parameters"]["path"] &
@@ -8,9 +8,15 @@ type PlaylistQueryInput =
 type PlaylistQueryData =
   paths["/playlists/{id}"]["get"]["responses"]["200"]["content"]["application/json"];
 
-export function usePlaylist(input: PlaylistQueryInput) {
-  return useQueryResource<PlaylistQueryData>({
-    collectionName: "playlists",
-    input: input,
-  });
+export function usePlaylist(
+  input: PlaylistQueryInput,
+  opts?: UseQueryResourceOptions<PlaylistQueryData>,
+) {
+  return useQueryResource<PlaylistQueryData>(
+    {
+      collectionName: "playlists",
+      input: input,
+    },
+    opts,
+  );
 }

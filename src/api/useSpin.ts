@@ -1,5 +1,5 @@
 import { paths } from "./openapi-types";
-import { useQueryResource } from "./useQueryResource";
+import { UseQueryResourceOptions, useQueryResource } from "./useQueryResource";
 
 type SpinQueryInput = paths["/spins/{id}"]["get"]["parameters"]["path"] &
   NonNullable<paths["/spins/{id}"]["get"]["parameters"]["query"]>;
@@ -7,9 +7,15 @@ type SpinQueryInput = paths["/spins/{id}"]["get"]["parameters"]["path"] &
 export type SpinQueryData =
   paths["/spins/{id}"]["get"]["responses"]["200"]["content"]["application/json"];
 
-export function useSpin(input: SpinQueryInput) {
-  return useQueryResource<SpinQueryData>({
-    collectionName: "spins",
-    input: input,
-  });
+export function useSpin(
+  input: SpinQueryInput,
+  opts?: UseQueryResourceOptions<SpinQueryData>,
+) {
+  return useQueryResource<SpinQueryData>(
+    {
+      collectionName: "spins",
+      input: input,
+    },
+    opts,
+  );
 }
