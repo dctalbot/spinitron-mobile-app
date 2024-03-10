@@ -5,12 +5,20 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useShows } from "../api/useShows";
 import { StackNav } from "../nav/types";
+import { getScheduleDayRange, getToday } from "../util/time";
 
 function ShowsView() {
   const nav = useNavigation<StackNav>();
+  const [start, end] = getScheduleDayRange(getToday());
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    useShows();
+    useShows({
+      start,
+      end,
+      count: 50,
+    });
+
+  console.log(start, end);
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
