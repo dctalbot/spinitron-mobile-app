@@ -33,6 +33,6 @@ test("getScheduleDayRange", () => {
   vi.setSystemTime(date);
   expect(getScheduleDayRange(getToday())).toStrictEqual([
     "2024-03-27T06:00:00-04:00",
-    "2024-03-28T06:00:00-04:00",
+    "2024-03-28T05:59:59-04:00",
   ]);
 });

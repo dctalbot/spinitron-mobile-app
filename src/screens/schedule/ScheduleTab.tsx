@@ -1,36 +1,60 @@
-import {
-  ActivityIndicator,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { TouchableOpacity, View, useWindowDimensions } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { useShows } from "../../api/useShows";
+import { ShowsQueryData, useShows } from "../../api/useShows";
 import { StackNav } from "../../nav/types";
 import { Day, getScheduleDayRange, getTime } from "../../util/time";
 import { AppText } from "../../ui/AppText";
 import { AppSeparator } from "../../components/AppSeparator";
 import { fontSize, spacing } from "../../theme/theme";
 import dayjs from "dayjs";
+import { getResourceID } from "../../api/getResourceID";
+import _ from "lodash";
+import { usePersona } from "../../api/usePersona";
 
 interface ShowListItemProps {
-  name?: string;
-  host?: string;
-  at?: string;
+  item: NonNullable<ShowsQueryData["items"]>[number];
 }
 
 function ShowListItem(props: ShowListItemProps) {
+  const name = props.item?.title;
+  const at = getTime(props.item?.start);
+  const personaIDs = _.get(props.item, "_links.personas", []).map(
+    (
+      x: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    ) => getResourceID(x.href)
+  );
+
   const { width } = useWindowDimensions();
 
-  if (!props.name) return null;
+  const { data } = usePersona(
+    {
+      id: personaIDs[0],
+    },
+    {
+      enabled: personaIDs.length === 1,
+    }
+  );
+
+  let host = " ";
+  if (personaIDs.length > 1) {
+    host = `rotating hosts`;
+  } else {
+    host = _.get(data, "name", " ");
+  }
+  if (host.toLowerCase() === "rotating hosts") {
+    host = "rotating hosts";
+  }
+  host = "with " + host;
+
+  if (!name) return null;
 
   return (
     <View
       style={{
-        padding: spacing["4"],
+        padding: spacing["8"],
         flexDirection: "row",
         justifyContent: "space-between",
         display: "flex",
@@ -45,15 +69,23 @@ function ShowListItem(props: ShowListItemProps) {
           marginRight: spacing["4"],
         }}
       >
-        <AppText style={{ height: 50, fontSize: fontSize["lg"].size }}>
-          {props.name}
+        <AppText style={{ fontSize: fontSize["lg"].size, minHeight: 30 }}>
+          {name}
         </AppText>
-        {props.host && <AppText>{props.host}</AppText>}
+        <AppText
+          style={{
+            fontSize: fontSize["md"].size,
+            minHeight: 20,
+            fontStyle: "italic",
+          }}
+        >
+          {host}
+        </AppText>
       </View>
 
       {/* right */}
       <View style={{ flexShrink: 0 }}>
-        <AppText style={{ fontSize: fontSize["sm"].size }}>{props.at}</AppText>
+        <AppText style={{ fontSize: fontSize["sm"].size }}>{at}</AppText>
       </View>
     </View>
   );
@@ -67,12 +99,11 @@ export function ScheduleTab(props: ScheduleTabProps) {
   const nav = useNavigation<StackNav>();
   const [start, end] = getScheduleDayRange(props.day);
 
-  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    useShows({
-      start,
-      end,
-      count: 50,
-    });
+  const { data, error, isFetching } = useShows({
+    start,
+    end,
+    count: 50,
+  });
 
   const listdata = (data?.pages ?? [])
     .map((page) => page.items)
@@ -90,19 +121,15 @@ export function ScheduleTab(props: ScheduleTabProps) {
     <FlashList
       data={listdata}
       renderItem={({ item }) => {
+        if (!item) return null;
+
         return (
           <TouchableOpacity onPress={() => nav.push("Show", { id: item?.id })}>
-            <ShowListItem name={item?.title} at={getTime(item?.start)} />
+            <ShowListItem item={item} />
           </TouchableOpacity>
         );
       }}
       estimatedItemSize={60}
-      onEndReached={() => fetchNextPage()}
-      ListFooterComponent={() => {
-        return (
-          <ActivityIndicator animating={isFetching || isFetchingNextPage} />
-        );
-      }}
       ItemSeparatorComponent={AppSeparator}
     />
   );

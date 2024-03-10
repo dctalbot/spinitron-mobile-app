@@ -5,7 +5,7 @@ type ShowsQueryInput = NonNullable<
   paths["/shows"]["get"]["parameters"]["query"]
 >;
 
-type ShowsQueryData =
+export type ShowsQueryData =
   paths["/shows"]["get"]["responses"]["200"]["content"]["application/json"];
 
 export function useShows(input: ShowsQueryInput = {}) {
