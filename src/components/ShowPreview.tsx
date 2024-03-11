@@ -1,9 +1,10 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useShow } from "../api/useShow";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../nav/types";
 import { AppText } from "../ui/AppText";
+import { spacing } from "../theme/theme";
 
 interface ShowPreviewProps {
   id: number;
@@ -14,12 +15,7 @@ export function ShowPreview(props: ShowPreviewProps) {
   const { isPending, error, data } = useShow({ id: show_id });
   const nav = useNavigation<StackNav>();
 
-  if (isPending)
-    return (
-      <View>
-        <ActivityIndicator />
-      </View>
-    );
+  if (isPending) return null;
 
   if (error) return null;
 
@@ -28,9 +24,7 @@ export function ShowPreview(props: ShowPreviewProps) {
   return (
     <TouchableOpacity
       style={{
-        padding: 10,
-        borderWidth: 1,
-        borderColor: "black",
+        padding: spacing["12"],
       }}
       onPress={() =>
         nav.push("Show", {

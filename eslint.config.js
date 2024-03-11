@@ -19,6 +19,7 @@ const custom = {
     // use tsc instead
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "no-console": "error",
     "no-restricted-imports": [
       "error",
       {
@@ -27,6 +28,11 @@ const custom = {
             name: "react-native",
             importNames: ["Text"],
             message: "Use AppText instead.",
+          },
+          {
+            name: "@expo/html-elements",
+            importNames: ["A"],
+            message: "Use AppLink instead.",
           },
         ],
       },

@@ -3,14 +3,18 @@ import { Text, TextProps } from "react-native"; // eslint-disable-line no-restri
 import { useTheme } from "../theme/useTheme";
 import { fontSize } from "../theme/theme";
 
-export function AppText(props: TextProps) {
-  const { style: _style, ...rest } = props;
+interface AppTextProps extends TextProps {
+  size?: keyof typeof fontSize;
+}
+
+export function AppText(props: AppTextProps) {
+  const { style: _style, size = "md", ...rest } = props;
   const theme = useTheme();
 
   const style: TextProps["style"] = [
     {
-      fontSize: fontSize["md"].size,
-      lineHeight: fontSize["md"].lineHeight,
+      fontSize: fontSize[size].size,
+      lineHeight: fontSize[size].lineHeight,
       color: theme.colors.text,
     },
     _style,
