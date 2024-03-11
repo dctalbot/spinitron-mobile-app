@@ -11,6 +11,7 @@ import {
 import { TouchableOpacity, GestureResponderEvent } from "react-native";
 import { AppText } from "../../ui/AppText";
 import { AppIcon } from "../../ui/AppIcon";
+import { spacing } from "../../theme/theme";
 
 interface LinkProps {
   onPress: (event: GestureResponderEvent) => void;
@@ -89,12 +90,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
-    marginTop: 10,
+    marginBottom: spacing[10],
+    marginTop: spacing[10],
   },
   textContainer: {
     flex: 1,
-    marginLeft: 20,
+    marginLeft: spacing[16],
     alignItems: "center",
     flexDirection: "row",
   },

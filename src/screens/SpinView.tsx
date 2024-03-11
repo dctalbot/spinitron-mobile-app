@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, View } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -9,9 +9,9 @@ import { spacing } from "../theme/theme";
 import { Image, ImageProps } from "expo-image";
 import { useWindowDimensions } from "react-native";
 import { SpinCitation } from "../components/SpinCitation";
-import { AppScrollView } from "./AppScrollView";
 import { AppIcon } from "../ui/AppIcon";
 import { AppText } from "../ui/AppText";
+import { AppButton } from "../ui/AppButton";
 
 interface SongArtProps extends ImageProps {}
 
@@ -38,8 +38,8 @@ export function SongArt(props: SongArtProps) {
 function SpinView() {
   const nav = useNavigation<StackNav>();
   const route = useRoute<StackRoute<"Spin">>();
-  const id = route?.params?.id ?? 0;
-  const song = route?.params?.song ?? "";
+  const id: number = route?.params?.id ?? 0;
+  const song: string = route?.params?.song ?? "";
 
   React.useEffect(() => {
     if (song) {
@@ -49,10 +49,12 @@ function SpinView() {
 
   const { isPending, error, data } = useSpin({ id });
 
+  const playlist_id: number = data?.playlist_id ?? 0;
+
   if (isPending)
     return (
-      <View>
-        <ActivityIndicator></ActivityIndicator>
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator />
       </View>
     );
 
@@ -60,31 +62,39 @@ function SpinView() {
     return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
-    <View style={[{ flex: 1 }]}>
-      <AppScrollView>
-        <View style={{ gap: spacing[12] }}>
-          {data?.image && (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-              }}
-            >
-              <SongArt source={data?.image} />
-            </View>
-          )}
-
-          <SpinCitation id={id} />
-
-          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-            <Button
-              title="See Playlist →"
-              onPress={() => nav.push("Playlist", { id: data?.playlist_id })}
-            ></Button>
+    <ScrollView style={{ padding: spacing[12], flex: 1 }}>
+      <View style={{ gap: spacing[12], flex: 1 }}>
+        {data?.image && (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <SongArt source={data?.image} />
           </View>
-        </View>
-      </AppScrollView>
-    </View>
+        )}
+
+        <SpinCitation id={id} />
+
+        {playlist_id && (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              paddingBottom: spacing[40],
+              marginBottom: spacing[12],
+            }}
+          >
+            <AppButton
+              title="See Playlist →"
+              onPress={() => nav.push("Playlist", { id: playlist_id })}
+              accessibilityLabel="View full Playlist"
+            />
+          </View>
+        )}
+      </View>
+    </ScrollView>
   );
 }
 

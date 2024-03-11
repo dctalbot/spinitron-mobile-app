@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { usePersonas } from "../api/usePersonas";
 import { StackNav } from "../nav/types";
 import { Avatar } from "../components/Avatar";
-import { fontSize, spacing } from "../theme/theme";
+import { spacing } from "../theme/theme";
 import { AppText } from "../ui/AppText";
 
 function PersonasView() {
@@ -18,7 +18,11 @@ function PersonasView() {
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
   if (isFetching && listdata.length === 0)
-    return <AppText>{"Loading..."}</AppText>;
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator></ActivityIndicator>
+      </View>
+    );
 
   if (error)
     return <AppText>{"An error has occurred: " + error.message}</AppText>;
@@ -44,7 +48,6 @@ function PersonasView() {
                 style={[
                   {
                     marginLeft: spacing[12],
-                    fontSize: fontSize["md"]["size"],
                   },
                 ]}
               >

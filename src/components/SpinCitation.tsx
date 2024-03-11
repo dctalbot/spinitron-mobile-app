@@ -2,8 +2,9 @@ import { View } from "react-native";
 import * as React from "react";
 
 import { SpinQueryData, useSpin } from "../api/useSpin";
-import { fontSize, spacing } from "../theme/theme";
+import { fontWeight, spacing } from "../theme/theme";
 import { AppText } from "../ui/AppText";
+import { AppPill } from "../ui/AppPill";
 
 // APA e.g.: Coldplay. (2021). My universe [Song]. On Music of the spheres. Parlophone.
 // MLA e.g.: Coldplay. My universe.” On Music of the spheres, Parlophone, 2021.
@@ -24,19 +25,20 @@ function AttrRow({ label, value }: AttrRowProps) {
           borderColor: "black",
           borderWidth: 1,
           padding: spacing[4],
-          fontSize: fontSize["lg"].size,
+          fontWeight: fontWeight.semibold,
         }}
+        size="lg"
       >
         {label}
       </AppText>
       <AppText
         style={{
-          flex: 3,
+          flex: 2,
           borderColor: "black",
           borderWidth: 1,
           padding: spacing[4],
-          fontSize: fontSize["lg"].size,
         }}
+        size="md"
       >
         {value}
       </AppText>
@@ -58,6 +60,8 @@ export function SpinCitation(props: SpinCitationProps) {
   const artistValue = getArtist(data);
 
   const genreValue = data?.genre || (data?.classical ? "Classical" : null);
+
+  const hasPillSection = Boolean(data?.request || data?.local || data?.new);
 
   if (isPending) {
     return null;
@@ -87,13 +91,17 @@ export function SpinCitation(props: SpinCitationProps) {
       <AttrRow label="Note" value={data?.note} />
       <AttrRow label="Genre" value={genreValue} />
 
-      {/* These fields are more useful in the conAppText of an "on air" view */}
-      {/* data.request */}
-      {/* data.local */}
-      {/* data.new */}
-      {/* data.start + data.timezone */}
+      {hasPillSection && (
+        <View
+          style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing[6] }}
+        >
+          {data?.request && <AppPill text="Requested"></AppPill>}
+          {data?.local && <AppPill text="Local"></AppPill>}
+          {data?.new && <AppPill text="New"></AppPill>}
+        </View>
+      )}
 
-      {/* These fields do not seem useful for most people.
+      {/* TODO add a "see more" option for these.
       <AttrRow label="catalog-number" value={data?.["catalog-number"]} />
       <AttrRow label="ISRC" value={data?.isrc} />
       <AttrRow label="UPC" value={data?.upc} />
