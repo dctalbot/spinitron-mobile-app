@@ -12,15 +12,19 @@ import { ScheduleScreen } from "../screens/schedule/ScheduleScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SettingsView } from "../screens/Settings";
 import { useTheme } from "../theme/useTheme";
-import { AppIcon } from "../ui/AppIcon";
+import { AppIcon, AppIconProps } from "../ui/AppIcon";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const getIcon = (
-  name: React.ComponentProps<typeof AppIcon>["name"],
-  color: string,
-) => <AppIcon name={name} size={23} color={color} />;
+function makeIcon(
+  name: AppIconProps["name"],
+  tabInfo: { color: string; focused: boolean; size: number },
+) {
+  const { color, focused, size } = tabInfo;
+  const name_ = focused ? name : ((name + "-outline") as AppIconProps["name"]);
+  return <AppIcon name={name_} size={size} color={color} />;
+}
 
 interface StackNavProps {
   initialRouteName: string;
@@ -68,7 +72,7 @@ export function Router() {
           name="ScheduleTab"
           options={{
             tabBarLabel: "Schedule",
-            tabBarIcon: ({ color }) => getIcon("calendar", color),
+            tabBarIcon: (x) => makeIcon("calendar", x),
           }}
         >
           {() => <StackNav initialRouteName={"Shows"} />}
@@ -77,7 +81,7 @@ export function Router() {
           name="SpinsTab"
           options={{
             tabBarLabel: "On Air",
-            tabBarIcon: ({ color }) => getIcon("musical-notes", color),
+            tabBarIcon: (x) => makeIcon("musical-notes", x),
           }}
         >
           {() => <StackNav initialRouteName={"Spins"} />}
@@ -86,7 +90,7 @@ export function Router() {
           name="PersonasTab"
           options={{
             tabBarLabel: "DJs",
-            tabBarIcon: ({ color }) => getIcon("people-outline", color),
+            tabBarIcon: (x) => makeIcon("people", x),
           }}
         >
           {() => <StackNav initialRouteName={"Personas"} />}
@@ -95,20 +99,11 @@ export function Router() {
           name="SettingsTab"
           options={{
             tabBarLabel: "Settings",
-            tabBarIcon: ({ color }) => getIcon("settings-sharp", color),
+            tabBarIcon: (x) => makeIcon("settings", x),
           }}
         >
           {() => <StackNav initialRouteName={"Settings"} />}
         </Tab.Screen>
-        {/* <Tab.Screen
-            name="PlaylistsTab"
-            options={{
-              tabBarLabel: "Playlists",
-              tabBarIcon: ({ color }) => getIcon("settings-sharp", color),
-            }}
-          >
-            {() => <StackNav initialRouteName={"Playlists"} />}
-          </Tab.Screen> */}
       </Tab.Navigator>
     </NavigationContainer>
   );
