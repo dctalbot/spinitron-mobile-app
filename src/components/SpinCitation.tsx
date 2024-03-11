@@ -22,8 +22,6 @@ function AttrRow({ label, value }: AttrRowProps) {
       <AppText
         style={{
           flex: 1,
-          borderColor: "black",
-          borderWidth: 1,
           padding: spacing[4],
           fontWeight: fontWeight.semibold,
         }}
@@ -34,8 +32,6 @@ function AttrRow({ label, value }: AttrRowProps) {
       <AppText
         style={{
           flex: 2,
-          borderColor: "black",
-          borderWidth: 1,
           padding: spacing[4],
         }}
         size="md"
@@ -70,7 +66,7 @@ export function SpinCitation(props: SpinCitationProps) {
     return null;
   }
   return (
-    <View style={{ borderColor: "black", borderWidth: 1 }}>
+    <View>
       <AttrRow label="Artist" value={artistValue} />
       <AttrRow label="Song" value={data?.song} />
 
