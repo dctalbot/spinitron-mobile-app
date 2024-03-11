@@ -48,31 +48,29 @@ function PlaylistView() {
 
   return (
     <View style={[{ flex: 1 }]}>
-      <View style={{ padding: spacing[12], rowGap: spacing[4] }}>
-        {showTitle && (
-          <>
-            <Headline
-              title={showTitle}
-              subtitle={
-                <>
-                  <View>
-                    <PersonaLink id={persona_id} text={personaName} />
+      {showTitle && (
+        <View style={{ padding: spacing[12] }}>
+          <Headline
+            title={showTitle}
+            subtitle={
+              <>
+                <View>
+                  <PersonaLink id={persona_id} text={personaName} />
 
-                    {at && <AppText>{at}</AppText>}
+                  {at && <AppText>{at}</AppText>}
 
-                    {/* {data.episode_description && (
+                  {/* {data.episode_description && (
                       <AppHTML
                         contentWidth={width}
                         source={{ html: data.episode_description }}
                       />
                     )} */}
-                  </View>
-                </>
-              }
-            />
-          </>
-        )}
-      </View>
+                </View>
+              </>
+            }
+          />
+        </View>
+      )}
 
       <SpinList useSpinsInput={{ playlist_id: id }} />
     </View>
