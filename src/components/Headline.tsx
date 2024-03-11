@@ -53,5 +53,6 @@ const styles = StyleSheet.create({
   rhs: {},
   title: {
     fontSize: fontSize["2xl"].size,
+    lineHeight: fontSize["2xl"].lineHeight,
   },
 });

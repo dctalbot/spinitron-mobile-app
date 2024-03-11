@@ -1,9 +1,10 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../nav/types";
 import { usePersona } from "../api/usePersona";
 import { AppText } from "../ui/AppText";
+import { spacing } from "../theme/theme";
 
 interface PersonaPreviewProps {
   id: number;
@@ -14,22 +15,12 @@ export function PersonaPreview(props: PersonaPreviewProps) {
   const { isPending, error, data } = usePersona({ id: persona_id });
   const nav = useNavigation<StackNav>();
 
-  if (isPending)
-    return (
-      <View>
-        <ActivityIndicator />
-      </View>
-    );
-
+  if (isPending) return null;
   if (error) return null;
+  if (!data?.name) return null;
 
   return (
     <TouchableOpacity
-      style={{
-        padding: 10,
-        borderWidth: 1,
-        borderColor: "black",
-      }}
       onPress={() =>
         nav.push("Persona", {
           id: persona_id,
@@ -37,7 +28,11 @@ export function PersonaPreview(props: PersonaPreviewProps) {
         })
       }
     >
-      <View>
+      <View
+        style={{
+          padding: spacing["12"],
+        }}
+      >
         <AppText>{data.name}</AppText>
       </View>
     </TouchableOpacity>

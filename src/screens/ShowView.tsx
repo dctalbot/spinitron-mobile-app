@@ -9,10 +9,11 @@ import { PersonaPreview } from "../components/PersonaPreview";
 import { PlaylistList } from "../components/PlaylistList";
 import { Headline } from "../components/Headline";
 import { AppText } from "../ui/AppText";
-import { darkColors, lightColors, spacing } from "../theme/theme";
+import { spacing } from "../theme/theme";
 import { useContentWidth } from "react-native-render-html";
 import { AppHTML } from "../ui/AppHTML";
 import { ListHeader } from "../components/ListHeader";
+import { AppPill } from "../ui/AppPill";
 
 function ShowView() {
   const nav = useNavigation<StackNav>();
@@ -23,9 +24,14 @@ function ShowView() {
 
   const { isPending, error, data } = useShow({ id });
 
+  const cat = React.useMemo(
+    () => (data?.category ?? "").trim(),
+    [data?.category],
+  );
+
   const desc = React.useMemo(
     () => (data?.description ?? "").trim(),
-    [data?.description]
+    [data?.description],
   );
 
   React.useEffect(() => {
@@ -56,7 +62,11 @@ function ShowView() {
           title={data.title ?? ""}
           subtitle={
             <View>
-              <AppText>{data?.category}</AppText>
+              {cat && (
+                <View style={{ marginTop: spacing["6"] }}>
+                  <AppPill text={cat} />
+                </View>
+              )}
 
               {desc && (
                 <ScrollView
@@ -72,12 +82,16 @@ function ShowView() {
         />
       </View>
 
-      <ListHeader text="Hosts"></ListHeader>
-      {personaIDs.map((id) => (
-        <PersonaPreview key={id} id={id} />
-      ))}
+      {personaIDs.length > 0 && (
+        <>
+          <ListHeader text="Hosts" />
+          {personaIDs.map((id) => (
+            <PersonaPreview key={id} id={id} />
+          ))}
+        </>
+      )}
 
-      <ListHeader text="Episodess"></ListHeader>
+      <ListHeader text="Episodes" />
       <PlaylistList queryInput={{ show_id: id, count: 50 }} />
     </View>
   );

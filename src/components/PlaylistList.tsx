@@ -23,11 +23,9 @@ function PlaylistList(props: PlaylistListProps) {
     .flat()
     .filter((i) => i?.start);
 
-  if (isFetching && listdata.length === 0)
-    return <AppText>{"Loading..."}</AppText>;
+  if (isFetching && listdata.length === 0) return null;
 
-  if (error)
-    return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  if (error) return null;
 
   return (
     <FlashList
