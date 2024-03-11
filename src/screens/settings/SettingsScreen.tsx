@@ -1,10 +1,10 @@
 import { ScrollView } from "react-native";
 import * as React from "react";
 
-import { LinksList } from "./settings/LinksList";
-import { spacing } from "../theme/theme";
+import { LinksList } from "./LinksList";
+import { spacing } from "../../theme/theme";
 
-function SettingsView() {
+function SettingsScreen() {
   return (
     <ScrollView style={{ flex: 1, padding: spacing[12] }}>
       <LinksList />
@@ -12,4 +12,4 @@ function SettingsView() {
   );
 }
 
-export { SettingsView };
+export { SettingsScreen };

@@ -10,7 +10,7 @@ import { PlaylistsView } from "../screens/PlaylistsView";
 import { PersonasView } from "../screens/PersonasView";
 import { ScheduleScreen } from "../screens/schedule/ScheduleScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SettingsView } from "../screens/Settings";
+import { SettingsScreen } from "../screens/settings/SettingsScreen";
 import { useTheme } from "../theme/useTheme";
 import { AppIcon, AppIconProps } from "../ui/AppIcon";
 
@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 
 function makeIcon(
   name: AppIconProps["name"],
-  tabInfo: { color: string; focused: boolean; size: number },
+  tabInfo: { color: string; focused: boolean; size: number }
 ) {
   const { color, focused, size } = tabInfo;
   const name_ = focused ? name : ((name + "-outline") as AppIconProps["name"]);
@@ -58,7 +58,7 @@ export function Router() {
         options={{ headerTitle: "On Air" }}
       />
       <Stack.Screen name="Spin" component={SpinView} />
-      <Stack.Screen name="Settings" component={SettingsView} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 
