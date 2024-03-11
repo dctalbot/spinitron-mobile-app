@@ -92,6 +92,19 @@ export const fontSize = {
   },
 } as const satisfies Record<string, { size: number; lineHeight: number }>;
 
+// https://tailwindcss.com/docs/font-weight
+export const fontWeight = {
+  thin: "100",
+  extralight: "200",
+  light: "300",
+  normal: "400",
+  medium: "500",
+  semibold: "600",
+  bold: "700",
+  extrabold: "800",
+  black: "900",
+} as const;
+
 export const lightColors = {
   primary: "rgb(0, 122, 255)",
   background: "rgb(242, 242, 242)",

@@ -1,5 +1,5 @@
 import { expect, test, vi } from "vitest";
-import { getScheduleDayRange, getToday } from "./time";
+import { fmtOnAt, getScheduleDayRange, getToday } from "./time";
 // import { startOfToday } from "./time";
 
 // test.each([
@@ -35,4 +35,16 @@ test("getScheduleDayRange", () => {
     "2024-03-27T06:00:00-04:00",
     "2024-03-28T05:59:59-04:00",
   ]);
+});
+
+test("fmtOnAt", () => {
+  const date = new Date(2024, 2, 20, 13, 5);
+  vi.setSystemTime(date);
+  expect(fmtOnAt("2024-03-20T13:05:00-04:00")).toBe(
+    "On March 20, 2024 at 1:05 PM",
+  );
+});
+
+test("fmtOnAt null", () => {
+  expect(fmtOnAt()).toBe("");
 });

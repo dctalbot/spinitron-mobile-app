@@ -27,6 +27,11 @@ export function formatTime2(input: string): string {
   return dayjs(input).format("LT");
 }
 
+export function fmtOnAt(input?: string): string {
+  if (!input) return "";
+  return dayjs(input).format("[On] LL [at] LT");
+}
+
 // export function startOfToday(): string {
 //   return dayjs()
 //     .tz(TIME_ZONE)

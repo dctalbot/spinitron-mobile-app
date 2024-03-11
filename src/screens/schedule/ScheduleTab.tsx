@@ -13,7 +13,7 @@ import { StackNav } from "../../nav/types";
 import { Day, getScheduleDayRange, getTime } from "../../util/time";
 import { AppText } from "../../ui/AppText";
 import { AppSeparator } from "../../components/AppSeparator";
-import { fontSize, spacing } from "../../theme/theme";
+import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import dayjs from "dayjs";
 import { getResourceID } from "../../api/getResourceID";
 import _ from "lodash";
@@ -78,14 +78,13 @@ function ShowListItem(props: ShowListItemProps) {
           style={{
             fontSize: fontSize["lg"].size,
             minHeight: fontSize["lg"].lineHeight,
+            fontWeight: fontWeight.semibold,
           }}
         >
           {name}
         </AppText>
         <AppText
           style={{
-            fontSize: fontSize["md"].size,
-            minHeight: fontSize["md"].lineHeight,
             fontStyle: "italic",
           }}
         >

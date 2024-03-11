@@ -2,7 +2,7 @@ import { View } from "react-native";
 import * as React from "react";
 
 import { StyleSheet } from "react-native";
-import { fontSize, spacing } from "../theme/theme";
+import { fontSize, fontWeight, spacing } from "../theme/theme";
 import { Image, ImageProps } from "expo-image";
 import { AppText } from "../ui/AppText";
 import { AppIcon, AppIconProps } from "../ui/AppIcon";
@@ -36,9 +36,7 @@ export function Headline(props: HeadlineProps) {
       )}
 
       <View style={styles.rhs}>
-        <AppText style={styles.title} numberOfLines={1}>
-          {props.title}
-        </AppText>
+        <AppText style={styles.title}>{props.title}</AppText>
         {props.subtitle}
       </View>
     </View>
@@ -54,5 +52,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize["2xl"].size,
     lineHeight: fontSize["2xl"].lineHeight,
+    fontWeight: fontWeight.semibold,
   },
 });

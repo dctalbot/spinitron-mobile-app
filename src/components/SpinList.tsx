@@ -43,8 +43,7 @@ function SpinList(props: SpinListProps) {
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
-  if (isFetching && listdata.length === 0)
-    return <AppText>{"Loading..."}</AppText>;
+  if (isFetching && listdata.length === 0) return null;
 
   if (error)
     return <AppText>{"An error has occurred: " + error.message}</AppText>;
