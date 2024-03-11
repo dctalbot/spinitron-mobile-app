@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import * as React from "react";
 
-import { SpinQueryData, useSpin } from "../api/useSpin";
+import { SpinQueryData, useSpin } from "../api/hooks/useSpin";
 import { fontWeight, spacing } from "../theme/theme";
 import { AppText } from "../ui/AppText";
 import { AppPill } from "../ui/AppPill";

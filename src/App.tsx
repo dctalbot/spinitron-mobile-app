@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ApiClientProvider } from "./api/ApiProvider";
+import { ApiClientProvider } from "./api/provider/ApiProvider";
 import { API_BASE_URL } from "../config";
 import { Router } from "./nav/Router";
 

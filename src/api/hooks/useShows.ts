@@ -1,4 +1,4 @@
-import { paths } from "./openapi-types";
+import { paths } from "../openapi-types";
 import { useQueryCollection } from "./useQueryCollection";
 
 type ShowsQueryInput = NonNullable<

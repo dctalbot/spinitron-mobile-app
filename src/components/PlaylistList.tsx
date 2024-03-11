@@ -5,7 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../nav/types";
 import { fontSize, spacing } from "../theme/theme";
-import { usePlaylists } from "../api/usePlaylists";
+import { usePlaylists } from "../api/hooks/usePlaylists";
 import { formatTime } from "../util/time";
 import { AppText } from "../ui/AppText";
 

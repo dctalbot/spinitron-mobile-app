@@ -8,16 +8,16 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { ShowsQueryData, useShows } from "../../api/useShows";
+import { ShowsQueryData, useShows } from "../../api/hooks/useShows";
 import { StackNav } from "../../nav/types";
 import { Day, getScheduleDayRange, getTime } from "../../util/time";
 import { AppText } from "../../ui/AppText";
 import { AppSeparator } from "../../components/AppSeparator";
 import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import dayjs from "dayjs";
-import { getResourceID } from "../../api/getResourceID";
+import { getResourceID } from "../../api/util/getResourceID";
 import _ from "lodash";
-import { usePersona } from "../../api/usePersona";
+import { usePersona } from "../../api/hooks/usePersona";
 
 interface ShowListItemProps {
   item: NonNullable<ShowsQueryData["items"]>[number];

@@ -12,6 +12,7 @@ import { TouchableOpacity, GestureResponderEvent } from "react-native";
 import { AppText } from "../../ui/AppText";
 import { AppIcon } from "../../ui/AppIcon";
 import { spacing } from "../../theme/theme";
+import { useTheme } from "../../theme/useTheme";
 
 interface LinkProps {
   onPress: (event: GestureResponderEvent) => void;
@@ -20,9 +21,15 @@ interface LinkProps {
 }
 
 export function Link(props: LinkProps) {
+  const theme = useTheme();
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <AppIcon name={props.icon} size={28} style={styles.icon} />
+      <AppIcon
+        name={props.icon}
+        size={28}
+        style={styles.icon}
+        color={theme.colors.primary}
+      />
       <View style={styles.textContainer}>
         <AppText>{props.text}</AppText>
       </View>
@@ -71,11 +78,6 @@ export const LinksList = () => {
         text={"Write a review!"}
         icon={"thumbs-up"}
       />
-      {/* <Link
-        onPress={() => toggleTheme()}
-        text={`Switch to ${theme.opposite} mode`}
-        icon={"bulb"}
-      /> */}
       <Link
         onPress={() => Linking.openURL(DONATION_URL)}
         text={"Give to WCBN"}

@@ -2,13 +2,13 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { usePersona } from "../api/usePersona";
+import { usePersona } from "../api/hooks/usePersona";
 import { StyleSheet } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { StackRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
 import { Headline } from "../components/Headline";
-import { getResourceID } from "../api/getResourceID";
+import { getResourceID } from "../api/util/getResourceID";
 import { ShowPreview } from "../components/ShowPreview";
 import { AppText } from "../ui/AppText";
 import { AppHTML } from "../ui/AppHTML";

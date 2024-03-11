@@ -2,9 +2,9 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useShow } from "../api/useShow";
+import { useShow } from "../api/hooks/useShow";
 import { StackNav, StackRoute } from "../nav/types";
-import { getResourceID } from "../api/getResourceID";
+import { getResourceID } from "../api/util/getResourceID";
 import { PersonaPreview } from "../components/PersonaPreview";
 import { PlaylistList } from "../components/PlaylistList";
 import { Headline } from "../components/Headline";

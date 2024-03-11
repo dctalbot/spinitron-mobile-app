@@ -2,7 +2,7 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useSpin } from "../api/useSpin";
+import { useSpin } from "../api/hooks/useSpin";
 import { StackNav, StackRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
 

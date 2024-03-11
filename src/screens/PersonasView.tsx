@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { usePersonas } from "../api/usePersonas";
+import { usePersonas } from "../api/hooks/usePersonas";
 import { StackNav } from "../nav/types";
 import { spacing } from "../theme/theme";
 import { AppText } from "../ui/AppText";
@@ -13,7 +13,7 @@ function PersonasView() {
   const nav = useNavigation<StackNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    usePersonas();
+    usePersonas({ count: 200 });
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 

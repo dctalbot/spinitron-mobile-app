@@ -1,4 +1,4 @@
-import { paths } from "./openapi-types";
+import { paths } from "../openapi-types";
 import { UseQueryResourceOptions, useQueryResource } from "./useQueryResource";
 
 type SpinQueryInput = paths["/spins/{id}"]["get"]["parameters"]["path"] &

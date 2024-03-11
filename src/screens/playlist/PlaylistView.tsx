@@ -2,15 +2,15 @@ import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
 import { useRoute } from "@react-navigation/native";
-import { usePlaylist } from "../../api/usePlaylist";
+import { usePlaylist } from "../../api/hooks/usePlaylist";
 import { StackRoute } from "../../nav/types";
 import { SpinList } from "../../components/SpinList";
 import { fmtOnAt } from "../../util/time";
 import { Headline } from "../../components/Headline";
 import { spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
-import { useShow } from "../../api/useShow";
-import { usePersona } from "../../api/usePersona";
+import { useShow } from "../../api/hooks/useShow";
+import { usePersona } from "../../api/hooks/usePersona";
 import { PersonaLink } from "./PersonaLink";
 
 function PlaylistView() {
