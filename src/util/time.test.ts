@@ -41,7 +41,7 @@ test("fmtOnAt", () => {
   const date = new Date(2024, 2, 20, 13, 5);
   vi.setSystemTime(date);
   expect(fmtOnAt("2024-03-20T13:05:00-04:00")).toBe(
-    "On March 20, 2024 at 1:05 PM",
+    "on March 20, 2024 at 1:05 PM",
   );
 });
 

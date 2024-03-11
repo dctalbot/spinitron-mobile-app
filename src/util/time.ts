@@ -29,7 +29,7 @@ export function formatTime2(input: string): string {
 
 export function fmtOnAt(input?: string): string {
   if (!input) return "";
-  return dayjs(input).format("[On] LL [at] LT");
+  return dayjs(input).format("[on] LL [at] LT");
 }
 
 // export function startOfToday(): string {

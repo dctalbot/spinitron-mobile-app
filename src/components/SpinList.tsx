@@ -5,7 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useSpins } from "../api/useSpins";
 import { StackNav } from "../nav/types";
-import { fontSize, spacing } from "../theme/theme";
+import { fontWeight, spacing } from "../theme/theme";
 import { getArtist } from "./SpinCitation";
 import { formatTime2 } from "../util/time";
 import { AppText } from "../ui/AppText";
@@ -32,64 +32,47 @@ function SpinList(props: SpinListProps) {
   return (
     <FlashList
       data={listdata}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}
-          style={{ width: "100%" }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
+      renderItem={({ item }) => {
+        const song: string = item?.song ?? "";
+        const artist: string = getArtist(item) ?? "";
+        const at: string = item?.start ? formatTime2(item?.start) : "";
+
+        return (
+          <TouchableOpacity
+            onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}
           >
-            <AppImage
-              source={item?.image}
-              size={ITEM_SIZE}
-              icon="disc-outline"
-            />
             <View
               style={{
-                flexDirection: "column",
-                display: "flex",
-                marginLeft: spacing[12],
-                width: "100%",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
-              <AppText
-                style={[
-                  {
-                    fontSize: fontSize["md"]["size"],
-                    fontWeight: "bold",
-                  },
-                ]}
+              <AppImage
+                source={item?.image}
+                size={ITEM_SIZE}
+                icon="disc-outline"
+              />
+              <View
+                style={{
+                  flexDirection: "column",
+                  paddingLeft: spacing[12],
+                  paddingRight: spacing[12],
+                  minHeight: "100%",
+                  flexShrink: 1,
+                }}
               >
-                {item?.song}
-              </AppText>
-              <AppText
-                style={[
-                  {
-                    fontSize: fontSize["sm"]["size"],
-                  },
-                ]}
-              >
-                {getArtist(item)}
-              </AppText>
-              {item?.start && (
-                <AppText
-                  style={[
-                    {
-                      fontSize: fontSize["sm"]["size"],
-                    },
-                  ]}
-                >
-                  {formatTime2(item?.start)}
-                </AppText>
-              )}
+                {song && (
+                  <AppText style={{ fontWeight: fontWeight.bold }}>
+                    {song}
+                  </AppText>
+                )}
+                {artist && <AppText size="sm">{artist}</AppText>}
+                {at && <AppText size="sm">{at}</AppText>}
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
-      )}
+          </TouchableOpacity>
+        );
+      }}
       estimatedItemSize={100}
       onEndReached={() => fetchNextPage()}
       ListFooterComponent={() => {
