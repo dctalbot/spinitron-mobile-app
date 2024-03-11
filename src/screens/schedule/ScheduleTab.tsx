@@ -12,7 +12,7 @@ import { ShowsQueryData, useShows } from "../../api/hooks/useShows";
 import { StackNav } from "../../nav/types";
 import { Day, getScheduleDayRange, getTime } from "../../util/time";
 import { AppText } from "../../ui/AppText";
-import { AppSeparator } from "../../components/AppSeparator";
+import { AppSeparator } from "../../ui/AppSeparator";
 import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import dayjs from "dayjs";
 import { getResourceID } from "../../api/util/getResourceID";
@@ -28,8 +28,8 @@ function ShowListItem(props: ShowListItemProps) {
   const at = getTime(props.item?.start);
   const personaIDs = _.get(props.item, "_links.personas", []).map(
     (
-      x: any, // eslint-disable-line @typescript-eslint/no-explicit-any
-    ) => getResourceID(x.href),
+      x: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    ) => getResourceID(x.href)
   );
 
   const { width } = useWindowDimensions();
@@ -40,7 +40,7 @@ function ShowListItem(props: ShowListItemProps) {
     },
     {
       enabled: personaIDs.length === 1,
-    },
+    }
   );
 
   let host = " ";
@@ -118,7 +118,7 @@ export function ScheduleTab(props: ScheduleTabProps) {
     .map((page) => page.items)
     .flat()
     .filter(
-      (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start),
+      (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start)
     );
 
   if (isFetching && listdata.length === 0) {
