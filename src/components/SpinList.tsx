@@ -25,7 +25,6 @@ function Img(props: ImageProps) {
         aspectRatio: 1,
       }}
       source={props.source}
-      // placeholder={{ uri: "https://via.placeholder.com/AVATAR_SIZE" }}
       contentFit="cover"
       transition={500}
     />

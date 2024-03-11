@@ -14,6 +14,7 @@ import { AppText } from "../ui/AppText";
 import { AppHTML } from "../ui/AppHTML";
 import { ListHeader } from "../components/ListHeader";
 import { AppLink } from "../ui/AppLink";
+import _ from "lodash-es";
 
 export function PersonaView() {
   const route = useRoute<StackRoute<"Persona">>();

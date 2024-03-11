@@ -18,7 +18,8 @@ interface HeadlineProps {
 }
 
 export function Headline(props: HeadlineProps) {
-  const showImage: boolean = Boolean(props.img?.source);
+  const [imgFailure, setImgFailure] = React.useState(false);
+  const showImage: boolean = Boolean(props.img?.source && !imgFailure);
   const showIcon: boolean = !showImage && Boolean(props.img?.else);
 
   return (
@@ -31,6 +32,7 @@ export function Headline(props: HeadlineProps) {
           style={[{ width: 80, aspectRatio: 1 }]}
           contentFit="cover"
           transition={500}
+          onError={() => setImgFailure(true)}
           {...props.img}
         />
       )}
