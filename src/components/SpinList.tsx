@@ -5,31 +5,13 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useSpins } from "../api/useSpins";
 import { StackNav } from "../nav/types";
-import { Image, ImageProps } from "expo-image";
 import { fontSize, spacing } from "../theme/theme";
 import { getArtist } from "./SpinCitation";
 import { formatTime2 } from "../util/time";
-import { AppIcon } from "../ui/AppIcon";
 import { AppText } from "../ui/AppText";
+import { AppImage } from "../ui/AppImage";
 
 const ITEM_SIZE = 80;
-
-function Img(props: ImageProps) {
-  if (!props.source) {
-    return <AppIcon name={"disc-outline"} size={ITEM_SIZE} />;
-  }
-  return (
-    <Image
-      style={{
-        width: ITEM_SIZE,
-        aspectRatio: 1,
-      }}
-      source={props.source}
-      contentFit="cover"
-      transition={500}
-    />
-  );
-}
 
 interface SpinListProps {
   useSpinsInput: Parameters<typeof useSpins>[0];
@@ -61,7 +43,11 @@ function SpinList(props: SpinListProps) {
               alignItems: "center",
             }}
           >
-            <Img source={item?.image} />
+            <AppImage
+              source={item?.image}
+              size={ITEM_SIZE}
+              icon="disc-outline"
+            />
             <View
               style={{
                 flexDirection: "column",

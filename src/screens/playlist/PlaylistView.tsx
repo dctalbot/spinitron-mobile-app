@@ -32,8 +32,8 @@ function PlaylistView() {
     { enabled: Boolean(persona_id) },
   );
 
-  const showTitle = showData?.title ?? "";
-  const personaName = personaData?.name ?? "";
+  const showName = showData?.title ?? "";
+  const dj = personaData?.name ?? "";
   const at = fmtOnAt(playlistData?.start);
 
   if (isPending)
@@ -48,25 +48,22 @@ function PlaylistView() {
 
   return (
     <View style={[{ flex: 1 }]}>
-      {showTitle && (
+      {showName && (
         <View style={{ padding: spacing[12] }}>
           <Headline
-            title={showTitle}
+            title={showName}
             subtitle={
-              <>
-                <View>
-                  <PersonaLink id={persona_id} text={personaName} />
+              <View>
+                {dj && <PersonaLink id={persona_id} text={dj} />}
+                {at && <AppText>{at}</AppText>}
 
-                  {at && <AppText>{at}</AppText>}
-
-                  {/* {data.episode_description && (
+                {/* {data.episode_description && (
                       <AppHTML
                         contentWidth={width}
                         source={{ html: data.episode_description }}
                       />
                     )} */}
-                </View>
-              </>
+              </View>
             }
           />
         </View>

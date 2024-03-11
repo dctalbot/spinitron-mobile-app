@@ -34,6 +34,11 @@ const custom = {
             importNames: ["A"],
             message: "Use AppLink instead.",
           },
+          {
+            name: "expo-image",
+            importNames: ["Image"],
+            message: "Use AppImage instead.",
+          },
         ],
       },
     ],

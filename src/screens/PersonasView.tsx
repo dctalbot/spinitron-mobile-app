@@ -5,9 +5,9 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { usePersonas } from "../api/usePersonas";
 import { StackNav } from "../nav/types";
-import { Avatar } from "../components/Avatar";
 import { spacing } from "../theme/theme";
 import { AppText } from "../ui/AppText";
+import { AppImage } from "../ui/AppImage";
 
 function PersonasView() {
   const nav = useNavigation<StackNav>();
@@ -43,7 +43,7 @@ function PersonasView() {
                 alignItems: "center",
               }}
             >
-              <Avatar size={50} source={item?.image} />
+              <AppImage size={50} source={item?.image} icon="person-outline" />
               <AppText
                 style={[
                   {

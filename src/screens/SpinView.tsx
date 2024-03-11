@@ -6,31 +6,26 @@ import { useSpin } from "../api/useSpin";
 import { StackNav, StackRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
 
-import { Image, ImageProps } from "expo-image";
 import { useWindowDimensions } from "react-native";
 import { SpinCitation } from "../components/SpinCitation";
-import { AppIcon } from "../ui/AppIcon";
 import { AppText } from "../ui/AppText";
 import { AppButton } from "../ui/AppButton";
+import { AppImage, AppImageProps } from "../ui/AppImage";
 
-interface SongArtProps extends ImageProps {}
-
-export function SongArt(props: SongArtProps) {
+export function SongArt(props: Partial<AppImageProps>) {
   const { width: _width } = useWindowDimensions();
   const width = (_width * 2) / 3;
-  if (!props.source) {
-    return <AppIcon name={"disc-outline"} size={width} />;
-  }
+
   return (
-    <Image
+    <AppImage
       alt="Song cover art"
       style={{
         width: "100%",
         aspectRatio: 1,
       }}
       source={props.source}
-      contentFit="cover"
-      transition={500}
+      icon="disc-outline"
+      size={width}
     />
   );
 }
