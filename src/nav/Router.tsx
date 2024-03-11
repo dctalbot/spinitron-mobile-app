@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SpinsView } from "../screens/SpinsView";
 import { SpinView } from "../screens/SpinView";
-import { PlaylistView } from "../screens/PlaylistView";
+import { PlaylistView } from "../screens/playlist/PlaylistView";
 import { PersonaView } from "../screens/PersonaView";
 import { ShowView } from "../screens/ShowView";
 import { PlaylistsView } from "../screens/PlaylistsView";

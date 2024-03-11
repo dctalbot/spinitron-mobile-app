@@ -1,45 +1,17 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { usePlaylist } from "../api/usePlaylist";
-import { StackNav, StackRoute } from "../nav/types";
-import { SpinList } from "../components/SpinList";
-import { fmtOnAt } from "../util/time";
-import { Headline } from "../components/Headline";
-import { spacing } from "../theme/theme";
-import { AppText } from "../ui/AppText";
-import { useShow } from "../api/useShow";
-import { usePersona } from "../api/usePersona";
-import { useTheme } from "../theme/useTheme";
-
-interface PersonaLinkProps {
-  id: number;
-  text: string;
-}
-
-function PersonaLink(props: PersonaLinkProps) {
-  const theme = useTheme();
-  const nav = useNavigation<StackNav>();
-
-  return (
-    <TouchableOpacity
-      onPress={() =>
-        nav.push("Persona", {
-          id: props.id,
-          name: props.text,
-        })
-      }
-    >
-      <AppText style={{ fontStyle: "italic" }}>
-        <AppText>with </AppText>
-        <AppText style={{ color: theme.nav.colors.primary }}>
-          {props.text}
-        </AppText>
-      </AppText>
-    </TouchableOpacity>
-  );
-}
+import { useRoute } from "@react-navigation/native";
+import { usePlaylist } from "../../api/usePlaylist";
+import { StackRoute } from "../../nav/types";
+import { SpinList } from "../../components/SpinList";
+import { fmtOnAt } from "../../util/time";
+import { Headline } from "../../components/Headline";
+import { spacing } from "../../theme/theme";
+import { AppText } from "../../ui/AppText";
+import { useShow } from "../../api/useShow";
+import { usePersona } from "../../api/usePersona";
+import { PersonaLink } from "./PersonaLink";
 
 function PlaylistView() {
   const route = useRoute<StackRoute<"Playlist">>();
