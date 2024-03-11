@@ -36,7 +36,7 @@ const custom = {
           },
           {
             name: "expo-image",
-            importNames: ["Image"],
+            importNames: ["Image", "ImageProps"],
             message: "Use AppImage instead.",
           },
         ],

@@ -3,25 +3,19 @@ import * as React from "react";
 
 import { StyleSheet } from "react-native";
 import { fontSize, fontWeight, spacing } from "../theme/theme";
-import { ImageProps } from "expo-image";
 import { AppText } from "../ui/AppText";
-import { AppIconProps } from "../ui/AppIcon";
-import { AppImage } from "../ui/AppImage";
-
-interface HeadlineImageProps extends ImageProps {
-  else?: AppIconProps["name"];
-}
+import { AppImage, AppImageProps } from "../ui/AppImage";
 
 interface HeadlineProps {
   title: string;
   subtitle?: React.ReactNode;
-  img?: HeadlineImageProps;
+  img?: AppImageProps;
 }
 
 export function Headline(props: HeadlineProps) {
   return (
     <View style={styles.container}>
-      <AppImage size={80} icon="person-outline" {...props.img} />
+      {props.img && <AppImage size={80} {...props.img} />}
 
       <View style={styles.rhs}>
         <AppText style={styles.title}>{props.title}</AppText>

@@ -56,7 +56,7 @@ export function PersonaView() {
           title={data.name ?? ""}
           img={{
             source: data.image,
-            else: "person-outline",
+            icon: "person-outline",
           }}
           subtitle={
             <View>
