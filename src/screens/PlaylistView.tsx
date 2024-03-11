@@ -55,7 +55,7 @@ function PlaylistView() {
       </View>
 
       {/* {data.episode_description && (
-        <RenderHtml
+        <AppHTML
           contentWidth={width}
           source={{ html: data.episode_description }}
         />

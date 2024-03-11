@@ -4,11 +4,11 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 import { fontSize, spacing } from "../theme/theme";
 import { Image, ImageProps } from "expo-image";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { AppText } from "../ui/AppText";
+import { AppIcon, AppIconProps } from "../ui/AppIcon";
 
 interface HeadlineImageProps extends ImageProps {
-  else?: keyof typeof Ionicons.glyphMap;
+  else?: AppIconProps["name"];
 }
 
 interface HeadlineProps {
@@ -23,7 +23,9 @@ export function Headline(props: HeadlineProps) {
 
   return (
     <View style={styles.container}>
-      {showIcon && <Ionicons name={props.img?.else} size={80} />}
+      {showIcon && (
+        <AppIcon name={props.img?.else as AppIconProps["name"]} size={80} />
+      )}
       {showImage && (
         <Image
           style={[{ width: 80, aspectRatio: 1 }]}

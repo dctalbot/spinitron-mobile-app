@@ -28,8 +28,8 @@ function ShowListItem(props: ShowListItemProps) {
   const at = getTime(props.item?.start);
   const personaIDs = _.get(props.item, "_links.personas", []).map(
     (
-      x: any // eslint-disable-line @typescript-eslint/no-explicit-any
-    ) => getResourceID(x.href)
+      x: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+    ) => getResourceID(x.href),
   );
 
   const { width } = useWindowDimensions();
@@ -40,7 +40,7 @@ function ShowListItem(props: ShowListItemProps) {
     },
     {
       enabled: personaIDs.length === 1,
-    }
+    },
   );
 
   let host = " ";
@@ -119,7 +119,7 @@ export function ScheduleTab(props: ScheduleTabProps) {
     .map((page) => page.items)
     .flat()
     .filter(
-      (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start)
+      (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start),
     );
 
   if (isFetching && listdata.length === 0) {
@@ -140,7 +140,11 @@ export function ScheduleTab(props: ScheduleTabProps) {
         if (!item) return null;
 
         return (
-          <TouchableOpacity onPress={() => nav.push("Show", { id: item?.id })}>
+          <TouchableOpacity
+            onPress={() =>
+              nav.push("Show", { id: item?.id, title: item.title })
+            }
+          >
             <ShowListItem item={item} />
           </TouchableOpacity>
         );

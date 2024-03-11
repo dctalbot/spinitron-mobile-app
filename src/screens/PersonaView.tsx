@@ -6,7 +6,6 @@ import { usePersona } from "../api/usePersona";
 import { StyleSheet } from "react-native";
 import { A } from "@expo/html-elements";
 import { useWindowDimensions } from "react-native";
-import RenderHtml from "react-native-render-html";
 import { StackRoute } from "../nav/types";
 import { spacing } from "../theme/theme";
 import { Headline } from "../components/Headline";
@@ -14,6 +13,7 @@ import { getResourceID } from "../api/getResourceID";
 import { ShowPreview } from "../components/ShowPreview";
 import { AppScrollView } from "./AppScrollView";
 import { AppText } from "../ui/AppText";
+import { AppHTML } from "../ui/AppHTML";
 
 export function PersonaView() {
   const route = useRoute<StackRoute<"Persona">>();
@@ -77,7 +77,7 @@ export function PersonaView() {
 
         {data.bio && (
           <View style={styles.bio}>
-            <RenderHtml contentWidth={width} source={{ html: data.bio }} />
+            <AppHTML contentWidth={width} source={{ html: data.bio }} />
           </View>
         )}
         <>
