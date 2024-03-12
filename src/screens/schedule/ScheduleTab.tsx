@@ -18,12 +18,14 @@ import dayjs from "dayjs";
 import { getResourceID } from "../../api/util/getResourceID";
 import _ from "lodash";
 import { usePersona } from "../../api/hooks/usePersona";
+import { useTheme } from "../../theme/useTheme";
 
 interface ShowListItemProps {
   item: NonNullable<ShowsQueryData["items"]>[number];
 }
 
 function ShowListItem(props: ShowListItemProps) {
+  const theme = useTheme();
   const name = props.item?.title;
   const at = getTime(props.item?.start);
   const personaIDs = _.get(props.item, "_links.personas", []).map(
@@ -43,16 +45,15 @@ function ShowListItem(props: ShowListItemProps) {
     },
   );
 
-  let host = " ";
+  let host = "";
   if (personaIDs.length > 1) {
     host = `rotating hosts`;
   } else {
-    host = _.get(data, "name", " ");
+    host = _.get(data, "name", "");
   }
   if (host.toLowerCase() === "rotating hosts") {
     host = "rotating hosts";
   }
-  host = "with " + host;
 
   if (!name) return null;
 
@@ -88,7 +89,14 @@ function ShowListItem(props: ShowListItemProps) {
             fontStyle: "italic",
           }}
         >
-          {host}
+          {host ? (
+            <>
+              <AppText>{"with "}</AppText>
+              <AppText style={{ color: theme.colors.primary }}>{host}</AppText>
+            </>
+          ) : (
+            <AppText> </AppText>
+          )}
         </AppText>
       </View>
 
