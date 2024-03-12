@@ -6,11 +6,11 @@ import { usePlaylist } from "../../api/hooks/usePlaylist";
 import { StackRoute } from "../../nav/types";
 import { SpinList } from "../../components/SpinList";
 import { fmtOnAt } from "../../util/time";
-import { fontSize, fontWeight, spacing } from "../../theme/theme";
+import { spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
-import { useShow } from "../../api/hooks/useShow";
-import { usePersona } from "../../api/hooks/usePersona";
 import { PersonaLink } from "./PersonaLink";
+import { ShowLink } from "./ShowLink";
+import { MAX_COUNT } from "../../api/util/constants";
 
 function PlaylistView() {
   const route = useRoute<StackRoute<"Playlist">>();
@@ -21,18 +21,6 @@ function PlaylistView() {
   const show_id: number = playlistData?.show_id ?? 0;
   const persona_id: number = playlistData?.persona_id ?? 0;
 
-  const { data: showData } = useShow(
-    { id: show_id },
-    { enabled: Boolean(show_id) }
-  );
-
-  const { data: personaData } = usePersona(
-    { id: persona_id },
-    { enabled: Boolean(persona_id) }
-  );
-
-  const showName = showData?.title ?? "";
-  const dj = personaData?.name ?? "";
   const at = fmtOnAt(playlistData?.start);
 
   if (isPending) {
@@ -50,22 +38,12 @@ function PlaylistView() {
   return (
     <View style={[{ flex: 1 }]}>
       <View style={{ padding: spacing[12] }}>
-        {showName && (
-          <AppText
-            style={{
-              fontSize: fontSize["2xl"].size,
-              lineHeight: fontSize["2xl"].lineHeight,
-              fontWeight: fontWeight.semibold,
-            }}
-          >
-            {showName}
-          </AppText>
-        )}
-        {dj && <PersonaLink id={persona_id} text={dj} />}
+        <ShowLink id={show_id} />
+        <PersonaLink id={persona_id} />
         {at && <AppText>{at}</AppText>}
       </View>
 
-      <SpinList useSpinsInput={{ playlist_id: id }} />
+      <SpinList useSpinsInput={{ playlist_id: id, count: MAX_COUNT }} />
     </View>
   );
 }

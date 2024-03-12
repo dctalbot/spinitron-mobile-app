@@ -5,15 +5,23 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../../nav/types";
 import { AppText } from "../../ui/AppText";
 import { useTheme } from "../../theme/useTheme";
+import { usePersona } from "../../api/hooks/usePersona";
 
 interface PersonaLinkProps {
   id: number;
-  text: string;
 }
 
-export function PersonaLink(props: PersonaLinkProps) {
+export function PersonaLink({ id }: PersonaLinkProps) {
   const theme = useTheme();
   const nav = useNavigation<StackNav>();
+
+  const { data } = usePersona({ id }, { enabled: Boolean(id) });
+
+  const name = data?.name ?? "";
+
+  if (!name) {
+    return null;
+  }
 
   return (
     <View style={{ flexDirection: "row" }}>
@@ -24,15 +32,15 @@ export function PersonaLink(props: PersonaLinkProps) {
       <TouchableOpacity
         onPress={() =>
           nav.push("Persona", {
-            id: props.id,
-            name: props.text,
+            id,
+            name,
           })
         }
       >
         <AppText
           style={{ fontStyle: "italic", color: theme.nav.colors.primary }}
         >
-          {props.text}
+          {name}
         </AppText>
       </TouchableOpacity>
     </View>
