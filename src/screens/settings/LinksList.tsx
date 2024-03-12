@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Linking, Share, Alert } from "react-native";
+import { StyleSheet, View, Linking, Share } from "react-native";
 import * as StoreReview from "expo-store-review";
-import {
-  GOOGLE_HANGOUTS_URL,
-  DONATION_URL,
-  STUDIO_PHONE_FORMATTED,
-  STUDIO_PHONE_RAW,
-} from "../../../config";
+import { config } from "../../config";
 
 import { TouchableOpacity, GestureResponderEvent } from "react-native";
 import { AppText } from "../../ui/AppText";
@@ -50,39 +45,45 @@ export const LinksList = () => {
 
   return (
     <View style={styles.linksView}>
-      <Link
-        onPress={() => Linking.openURL(`tel:${STUDIO_PHONE_RAW}`)}
-        text={`Studio request line${"\n"}${STUDIO_PHONE_FORMATTED}`}
-        icon={"call"}
-      />
-      <Link
-        onPress={() => Linking.openURL(GOOGLE_HANGOUTS_URL)}
-        text={"Message the DJ"}
-        icon={"chatbubble"}
-      />
-      <Link
-        onPress={() =>
-          Share.share({
-            message: "I'm listening to WCBN-FM Ann Arbor!",
-          })
-        }
-        text={"Share on social media"}
-        icon={"share-outline"}
-      />
-      <Link
-        onPress={() =>
-          canRequestReview
-            ? StoreReview.requestReview()
-            : Alert.alert("Store review not available on this device.")
-        }
-        text={"Write a review!"}
-        icon={"thumbs-up"}
-      />
-      <Link
-        onPress={() => Linking.openURL(DONATION_URL)}
-        text={"Give to WCBN"}
-        icon={"cash"}
-      />
+      {config.call && (
+        <Link
+          onPress={() => Linking.openURL(`tel:${config.call?.phoneRaw}`)}
+          text={`${config.call.text}${"\n"}${config.call?.phoneFormatted}`}
+          icon={"call"}
+        />
+      )}
+      {config.chat && (
+        <Link
+          onPress={() => Linking.openURL(config.chat?.url ?? "")}
+          text={config.chat.text}
+          icon={"chatbubble"}
+        />
+      )}
+      {config.share && (
+        <Link
+          onPress={() =>
+            Share.share({
+              message: config.share?.message ?? "",
+            })
+          }
+          text={config.share.text}
+          icon={"share-outline"}
+        />
+      )}
+      {config.review && canRequestReview && (
+        <Link
+          onPress={() => StoreReview.requestReview()}
+          text={config.review.text}
+          icon={"thumbs-up"}
+        />
+      )}
+      {config.donate && (
+        <Link
+          onPress={() => Linking.openURL(config.donate?.url ?? "")}
+          text={config.donate.text}
+          icon={"cash"}
+        />
+      )}
     </View>
   );
 };

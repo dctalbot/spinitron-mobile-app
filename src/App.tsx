@@ -1,11 +1,11 @@
 import * as React from "react";
 import { ApiClientProvider } from "./api/provider/ApiProvider";
-import { API_BASE_URL } from "../config";
+import { config } from "./config";
 import { Router } from "./nav/Router";
 
 export default function App() {
   return (
-    <ApiClientProvider baseURL={API_BASE_URL}>
+    <ApiClientProvider baseURL={config.api.url}>
       <Router />
     </ApiClientProvider>
   );

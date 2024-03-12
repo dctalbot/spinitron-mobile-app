@@ -26,12 +26,12 @@ function ShowScreen() {
 
   const cat = React.useMemo(
     () => (data?.category ?? "").trim(),
-    [data?.category]
+    [data?.category],
   );
 
   const desc = React.useMemo(
     () => (data?.description ?? "").trim(),
-    [data?.description]
+    [data?.description],
   );
 
   React.useEffect(() => {
