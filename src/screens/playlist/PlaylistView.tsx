@@ -35,39 +35,35 @@ function PlaylistView() {
   const dj = personaData?.name ?? "";
   const at = fmtOnAt(playlistData?.start);
 
-  if (isPending)
+  if (isPending) {
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
         <ActivityIndicator />
       </View>
     );
+  }
 
-  if (error)
+  if (error) {
     return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  }
 
   return (
     <View style={[{ flex: 1 }]}>
-      {showName && (
-        <View style={{ padding: spacing[12] }}>
-          <View style={{ flexDirection: "row", columnGap: spacing[12] }}>
-            <View>
-              <AppText
-                style={{
-                  fontSize: fontSize["2xl"].size,
-                  lineHeight: fontSize["2xl"].lineHeight,
-                  fontWeight: fontWeight.semibold,
-                }}
-              >
-                {showName}
-              </AppText>
-              <View>
-                {dj && <PersonaLink id={persona_id} text={dj} />}
-                {at && <AppText>{at}</AppText>}
-              </View>
-            </View>
-          </View>
-        </View>
-      )}
+      <View style={{ padding: spacing[12] }}>
+        {showName && (
+          <AppText
+            style={{
+              fontSize: fontSize["2xl"].size,
+              lineHeight: fontSize["2xl"].lineHeight,
+              fontWeight: fontWeight.semibold,
+            }}
+          >
+            {showName}
+          </AppText>
+        )}
+        {dj && <PersonaLink id={persona_id} text={dj} />}
+        {at && <AppText>{at}</AppText>}
+      </View>
 
       <SpinList useSpinsInput={{ playlist_id: id }} />
     </View>
