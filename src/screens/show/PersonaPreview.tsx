@@ -1,10 +1,10 @@
 import { TouchableOpacity, View } from "react-native";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StackNav } from "../nav/types";
-import { usePersona } from "../api/hooks/usePersona";
-import { AppText } from "../ui/AppText";
-import { spacing } from "../theme/theme";
+import { StackNav } from "../../nav/types";
+import { usePersona } from "../../api/hooks/usePersona";
+import { AppText } from "../../ui/AppText";
+import { spacing } from "../../theme/theme";
 
 interface PersonaPreviewProps {
   id: number;

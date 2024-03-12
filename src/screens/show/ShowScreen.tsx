@@ -2,20 +2,20 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useShow } from "../api/hooks/useShow";
-import { StackNav, StackRoute } from "../nav/types";
-import { getResourceID } from "../api/util/getResourceID";
-import { PersonaPreview } from "../components/PersonaPreview";
-import { PlaylistList } from "../components/PlaylistList";
-import { AppText } from "../ui/AppText";
-import { fontSize, fontWeight, spacing } from "../theme/theme";
+import { useShow } from "../../api/hooks/useShow";
+import { StackNav, StackRoute } from "../../nav/types";
+import { getResourceID } from "../../api/util/getResourceID";
+import { PersonaPreview } from "./PersonaPreview";
+import { PlaylistList } from "./PlaylistList";
+import { AppText } from "../../ui/AppText";
+import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import { useContentWidth } from "react-native-render-html";
-import { AppHTML } from "../ui/AppHTML";
-import { ListHeader } from "../components/ListHeader";
-import { AppPill } from "../ui/AppPill";
-import { MAX_COUNT } from "../api/util/constants";
+import { AppHTML } from "../../ui/AppHTML";
+import { AppListHeader } from "../../ui/AppListHeader";
+import { AppPill } from "../../ui/AppPill";
+import { MAX_COUNT } from "../../api/util/constants";
 
-function ShowView() {
+function ShowScreen() {
   const nav = useNavigation<StackNav>();
   const route = useRoute<StackRoute<"Show">>();
   const id = route?.params?.id ?? 0;
@@ -92,17 +92,17 @@ function ShowView() {
 
       {personaIDs.length > 0 && (
         <>
-          <ListHeader text="Hosts" />
+          <AppListHeader text="Hosts" />
           {personaIDs.map((id) => (
             <PersonaPreview key={id} id={id} />
           ))}
         </>
       )}
 
-      <ListHeader text="Episodes" />
+      <AppListHeader text="Episodes" />
       <PlaylistList queryInput={{ show_id: id, count: MAX_COUNT }} />
     </View>
   );
 }
 
-export { ShowView };
+export { ShowScreen };

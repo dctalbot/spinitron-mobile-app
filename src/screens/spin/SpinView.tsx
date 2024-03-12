@@ -2,15 +2,15 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useSpin } from "../api/hooks/useSpin";
-import { StackNav, StackRoute } from "../nav/types";
-import { spacing } from "../theme/theme";
+import { useSpin } from "../../api/hooks/useSpin";
+import { StackNav, StackRoute } from "../../nav/types";
+import { spacing } from "../../theme/theme";
 
 import { useWindowDimensions } from "react-native";
-import { SpinCitation } from "../components/SpinCitation";
-import { AppText } from "../ui/AppText";
-import { AppButton } from "../ui/AppButton";
-import { AppImage, AppImageProps } from "../ui/AppImage";
+import { SpinCitation } from "./SpinCitation";
+import { AppText } from "../../ui/AppText";
+import { AppButton } from "../../ui/AppButton";
+import { AppImage, AppImageProps } from "../../ui/AppImage";
 
 export function SongArt(props: Partial<AppImageProps>) {
   const { width: _width } = useWindowDimensions();

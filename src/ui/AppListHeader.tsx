@@ -1,14 +1,14 @@
 import * as React from "react";
-import { AppText } from "../ui/AppText";
+import { AppText } from "./AppText";
 import { View } from "react-native";
 import { useTheme } from "../theme/useTheme";
 import { fontWeight, spacing } from "../theme/theme";
 
-interface ListHeaderProps {
+interface AppListHeaderProps {
   text: string;
 }
 
-export function ListHeader(props: ListHeaderProps) {
+export function AppListHeader(props: AppListHeaderProps) {
   const theme = useTheme();
   return (
     <View

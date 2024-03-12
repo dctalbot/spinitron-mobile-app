@@ -1,10 +1,10 @@
 import { View } from "react-native";
 import * as React from "react";
 
-import { SpinQueryData, useSpin } from "../api/hooks/useSpin";
-import { fontWeight, spacing } from "../theme/theme";
-import { AppText } from "../ui/AppText";
-import { AppPill } from "../ui/AppPill";
+import { SpinQueryData, useSpin } from "../../api/hooks/useSpin";
+import { fontWeight, spacing } from "../../theme/theme";
+import { AppText } from "../../ui/AppText";
+import { AppPill } from "../../ui/AppPill";
 
 // APA e.g.: Coldplay. (2021). My universe [Song]. On Music of the spheres. Parlophone.
 // MLA e.g.: Coldplay. My universe.” On Music of the spheres, Parlophone, 2021.

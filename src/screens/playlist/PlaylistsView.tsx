@@ -3,10 +3,10 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { usePlaylists } from "../api/hooks/usePlaylists";
-import { StackNav, StackRoute } from "../nav/types";
-import { AppText } from "../ui/AppText";
-import { MAX_COUNT } from "../api/util/constants";
+import { usePlaylists } from "../../api/hooks/usePlaylists";
+import { StackNav, StackRoute } from "../../nav/types";
+import { AppText } from "../../ui/AppText";
+import { MAX_COUNT } from "../../api/util/constants";
 
 function PlaylistsView() {
   const nav = useNavigation<StackNav>();

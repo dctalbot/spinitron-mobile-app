@@ -2,19 +2,19 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { usePersona } from "../api/hooks/usePersona";
+import { usePersona } from "../../api/hooks/usePersona";
 import { StyleSheet } from "react-native";
 import { useWindowDimensions } from "react-native";
-import { StackRoute } from "../nav/types";
-import { fontSize, fontWeight, spacing } from "../theme/theme";
-import { getResourceID } from "../api/util/getResourceID";
-import { ShowPreview } from "../components/ShowPreview";
-import { AppText } from "../ui/AppText";
-import { AppHTML } from "../ui/AppHTML";
-import { ListHeader } from "../components/ListHeader";
-import { AppLink } from "../ui/AppLink";
+import { StackRoute } from "../../nav/types";
+import { fontSize, fontWeight, spacing } from "../../theme/theme";
+import { getResourceID } from "../../api/util/getResourceID";
+import { ShowPreview } from "./ShowPreview";
+import { AppText } from "../../ui/AppText";
+import { AppHTML } from "../../ui/AppHTML";
+import { AppListHeader } from "../../ui/AppListHeader";
+import { AppLink } from "../../ui/AppLink";
 import _ from "lodash-es";
-import { AppImage } from "../ui/AppImage";
+import { AppImage } from "../../ui/AppImage";
 
 export function PersonaView() {
   const route = useRoute<StackRoute<"Persona">>();
@@ -97,7 +97,7 @@ export function PersonaView() {
       <>
         {showIDs.length > 0 && (
           <>
-            <ListHeader text="Shows" />
+            <AppListHeader text="Shows" />
             <ScrollView>
               {showIDs.map((id) => (
                 <ShowPreview key={id} id={id} />

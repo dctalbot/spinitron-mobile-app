@@ -3,13 +3,13 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { useSpins } from "../api/hooks/useSpins";
-import { StackNav } from "../nav/types";
-import { fontWeight, spacing } from "../theme/theme";
+import { useSpins } from "../../api/hooks/useSpins";
+import { StackNav } from "../../nav/types";
+import { fontWeight, spacing } from "../../theme/theme";
 import { getArtist } from "./SpinCitation";
-import { formatTime2 } from "../util/time";
-import { AppText } from "../ui/AppText";
-import { AppImage } from "../ui/AppImage";
+import { formatTime2 } from "../../util/time";
+import { AppText } from "../../ui/AppText";
+import { AppImage } from "../../ui/AppImage";
 
 const ITEM_SIZE = 80;
 

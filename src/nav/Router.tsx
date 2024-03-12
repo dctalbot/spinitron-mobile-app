@@ -1,13 +1,13 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { SpinsView } from "../screens/SpinsView";
-import { SpinView } from "../screens/SpinView";
+import { SpinsScreen } from "../screens/spin/SpinsScreen";
+import { SpinView } from "../screens/spin/SpinView";
 import { PlaylistView } from "../screens/playlist/PlaylistView";
-import { PersonaView } from "../screens/PersonaView";
-import { ShowView } from "../screens/ShowView";
-import { PlaylistsView } from "../screens/PlaylistsView";
-import { PersonasView } from "../screens/PersonasView";
+import { PersonaView } from "../screens/persona/PersonaView";
+import { ShowScreen } from "../screens/show/ShowScreen";
+import { PlaylistsView } from "../screens/playlist/PlaylistsView";
+import { PersonasView } from "../screens/persona/PersonasView";
 import { ScheduleScreen } from "../screens/schedule/ScheduleScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SettingsScreen } from "../screens/settings/SettingsScreen";
@@ -49,12 +49,12 @@ export function Router() {
         options={{ headerTitle: undefined }}
       />
       <Stack.Screen name="Shows" component={ScheduleScreen} />
-      <Stack.Screen name="Show" component={ShowView} />
+      <Stack.Screen name="Show" component={ShowScreen} />
       <Stack.Screen name="Playlists" component={PlaylistsView} />
       <Stack.Screen name="Playlist" component={PlaylistView} options={{}} />
       <Stack.Screen
         name="Spins"
-        component={SpinsView}
+        component={SpinsScreen}
         options={{ headerTitle: "On Air Playlist" }}
       />
       <Stack.Screen name="Spin" component={SpinView} />
