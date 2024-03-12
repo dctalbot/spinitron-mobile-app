@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation } from "@react-navigation/native";
@@ -16,20 +16,25 @@ export function PersonaLink(props: PersonaLinkProps) {
   const nav = useNavigation<StackNav>();
 
   return (
-    <TouchableOpacity
-      onPress={() =>
-        nav.push("Persona", {
-          id: props.id,
-          name: props.text,
-        })
-      }
-    >
+    <View style={{ flexDirection: "row" }}>
       <AppText style={{ fontStyle: "italic" }}>
         <AppText>with </AppText>
-        <AppText style={{ color: theme.nav.colors.primary }}>
+      </AppText>
+
+      <TouchableOpacity
+        onPress={() =>
+          nav.push("Persona", {
+            id: props.id,
+            name: props.text,
+          })
+        }
+      >
+        <AppText
+          style={{ fontStyle: "italic", color: theme.nav.colors.primary }}
+        >
           {props.text}
         </AppText>
-      </AppText>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 }

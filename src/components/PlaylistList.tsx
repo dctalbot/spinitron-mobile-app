@@ -12,7 +12,8 @@ import { AppText } from "../ui/AppText";
 interface PlaylistListProps {
   queryInput: Parameters<typeof usePlaylists>[0];
 }
-function PlaylistList(props: PlaylistListProps) {
+
+export function PlaylistList(props: PlaylistListProps) {
   const nav = useNavigation<StackNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
@@ -64,5 +65,3 @@ function PlaylistList(props: PlaylistListProps) {
     />
   );
 }
-
-export { PlaylistList };

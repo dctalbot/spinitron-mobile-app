@@ -6,8 +6,7 @@ import { usePersona } from "../api/hooks/usePersona";
 import { StyleSheet } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { StackRoute } from "../nav/types";
-import { spacing } from "../theme/theme";
-import { Headline } from "../components/Headline";
+import { fontSize, fontWeight, spacing } from "../theme/theme";
 import { getResourceID } from "../api/util/getResourceID";
 import { ShowPreview } from "../components/ShowPreview";
 import { AppText } from "../ui/AppText";
@@ -15,6 +14,7 @@ import { AppHTML } from "../ui/AppHTML";
 import { ListHeader } from "../components/ListHeader";
 import { AppLink } from "../ui/AppLink";
 import _ from "lodash-es";
+import { AppImage } from "../ui/AppImage";
 
 export function PersonaView() {
   const route = useRoute<StackRoute<"Persona">>();
@@ -52,20 +52,21 @@ export function PersonaView() {
   return (
     <View style={[{ flex: 1 }]}>
       <View style={{ padding: spacing[12] }}>
-        <Headline
-          title={data.name ?? ""}
-          img={{
-            source: data.image,
-            icon: "person-outline",
-          }}
-          subtitle={
+        <View style={{ flexDirection: "row", columnGap: spacing[12] }}>
+          <AppImage size={80} source={data.image} icon="person-outline" />
+
+          <View>
+            <AppText
+              style={{
+                fontSize: fontSize["2xl"].size,
+                fontWeight: fontWeight.semibold,
+              }}
+            >
+              {data.name ?? ""}
+            </AppText>
             <View>
               {data?.since && (
-                <AppText
-                  size="sm"
-                  numberOfLines={1}
-                  style={styles.coverAppText}
-                >
+                <AppText size="sm" numberOfLines={1}>
                   Joined in {data.since}
                 </AppText>
               )}
@@ -84,8 +85,8 @@ export function PersonaView() {
                 </AppText>
               )}
             </View>
-          }
-        />
+          </View>
+        </View>
       </View>
 
       {bio && (
@@ -110,9 +111,6 @@ export function PersonaView() {
 }
 
 const styles = StyleSheet.create({
-  coverAppText: {
-    lineHeight: spacing[20],
-  },
   bio: {
     padding: spacing[12],
     maxHeight: 150,

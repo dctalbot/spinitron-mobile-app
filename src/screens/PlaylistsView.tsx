@@ -6,6 +6,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePlaylists } from "../api/hooks/usePlaylists";
 import { StackNav, StackRoute } from "../nav/types";
 import { AppText } from "../ui/AppText";
+import { MAX_COUNT } from "../api/util/constants";
 
 function PlaylistsView() {
   const nav = useNavigation<StackNav>();
@@ -14,7 +15,7 @@ function PlaylistsView() {
   const show_id = route?.params?.show_id ?? 0;
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    usePlaylists({ show_id });
+    usePlaylists({ show_id, count: MAX_COUNT });
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 

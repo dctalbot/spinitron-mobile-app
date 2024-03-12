@@ -7,13 +7,13 @@ import { StackNav, StackRoute } from "../nav/types";
 import { getResourceID } from "../api/util/getResourceID";
 import { PersonaPreview } from "../components/PersonaPreview";
 import { PlaylistList } from "../components/PlaylistList";
-import { Headline } from "../components/Headline";
 import { AppText } from "../ui/AppText";
-import { spacing } from "../theme/theme";
+import { fontSize, fontWeight, spacing } from "../theme/theme";
 import { useContentWidth } from "react-native-render-html";
 import { AppHTML } from "../ui/AppHTML";
 import { ListHeader } from "../components/ListHeader";
 import { AppPill } from "../ui/AppPill";
+import { MAX_COUNT } from "../api/util/constants";
 
 function ShowView() {
   const nav = useNavigation<StackNav>();
@@ -26,12 +26,12 @@ function ShowView() {
 
   const cat = React.useMemo(
     () => (data?.category ?? "").trim(),
-    [data?.category],
+    [data?.category]
   );
 
   const desc = React.useMemo(
     () => (data?.description ?? "").trim(),
-    [data?.description],
+    [data?.description]
   );
 
   React.useEffect(() => {
@@ -58,9 +58,17 @@ function ShowView() {
   return (
     <View style={[{ flex: 1 }]}>
       <View style={{ padding: spacing["12"] }}>
-        <Headline
-          title={data.title ?? ""}
-          subtitle={
+        <View style={{ flexDirection: "row", columnGap: spacing[12] }}>
+          <View>
+            <AppText
+              style={{
+                fontSize: fontSize["2xl"].size,
+                lineHeight: fontSize["2xl"].lineHeight,
+                fontWeight: fontWeight.semibold,
+              }}
+            >
+              {data.title ?? ""}
+            </AppText>
             <View>
               {cat && (
                 <View style={{ marginTop: spacing["6"] }}>
@@ -78,8 +86,8 @@ function ShowView() {
 
               <AppText>{data?.url}</AppText>
             </View>
-          }
-        />
+          </View>
+        </View>
       </View>
 
       {personaIDs.length > 0 && (
@@ -92,7 +100,7 @@ function ShowView() {
       )}
 
       <ListHeader text="Episodes" />
-      <PlaylistList queryInput={{ show_id: id, count: 50 }} />
+      <PlaylistList queryInput={{ show_id: id, count: MAX_COUNT }} />
     </View>
   );
 }

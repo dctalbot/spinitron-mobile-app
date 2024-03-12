@@ -55,7 +55,7 @@ export function Router() {
       <Stack.Screen
         name="Spins"
         component={SpinsView}
-        options={{ headerTitle: "On Air" }}
+        options={{ headerTitle: "On Air Playlist" }}
       />
       <Stack.Screen name="Spin" component={SpinView} />
       <Stack.Screen name="Settings" component={SettingsScreen} />

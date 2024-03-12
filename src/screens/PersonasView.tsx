@@ -8,12 +8,13 @@ import { StackNav } from "../nav/types";
 import { spacing } from "../theme/theme";
 import { AppText } from "../ui/AppText";
 import { AppImage } from "../ui/AppImage";
+import { MAX_COUNT } from "../api/util/constants";
 
 function PersonasView() {
   const nav = useNavigation<StackNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    usePersonas({ count: 200 });
+    usePersonas({ count: MAX_COUNT });
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 

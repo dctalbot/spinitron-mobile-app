@@ -6,8 +6,7 @@ import { usePlaylist } from "../../api/hooks/usePlaylist";
 import { StackRoute } from "../../nav/types";
 import { SpinList } from "../../components/SpinList";
 import { fmtOnAt } from "../../util/time";
-import { Headline } from "../../components/Headline";
-import { spacing } from "../../theme/theme";
+import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
 import { useShow } from "../../api/hooks/useShow";
 import { usePersona } from "../../api/hooks/usePersona";
@@ -24,12 +23,12 @@ function PlaylistView() {
 
   const { data: showData } = useShow(
     { id: show_id },
-    { enabled: Boolean(show_id) },
+    { enabled: Boolean(show_id) }
   );
 
   const { data: personaData } = usePersona(
     { id: persona_id },
-    { enabled: Boolean(persona_id) },
+    { enabled: Boolean(persona_id) }
   );
 
   const showName = showData?.title ?? "";
@@ -39,7 +38,7 @@ function PlaylistView() {
   if (isPending)
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
-        <ActivityIndicator></ActivityIndicator>
+        <ActivityIndicator />
       </View>
     );
 
@@ -50,22 +49,23 @@ function PlaylistView() {
     <View style={[{ flex: 1 }]}>
       {showName && (
         <View style={{ padding: spacing[12] }}>
-          <Headline
-            title={showName}
-            subtitle={
+          <View style={{ flexDirection: "row", columnGap: spacing[12] }}>
+            <View>
+              <AppText
+                style={{
+                  fontSize: fontSize["2xl"].size,
+                  lineHeight: fontSize["2xl"].lineHeight,
+                  fontWeight: fontWeight.semibold,
+                }}
+              >
+                {showName}
+              </AppText>
               <View>
                 {dj && <PersonaLink id={persona_id} text={dj} />}
                 {at && <AppText>{at}</AppText>}
-
-                {/* {data.episode_description && (
-                      <AppHTML
-                        contentWidth={width}
-                        source={{ html: data.episode_description }}
-                      />
-                    )} */}
               </View>
-            }
-          />
+            </View>
+          </View>
         </View>
       )}
 
