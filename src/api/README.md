@@ -7,7 +7,8 @@ This folder contains the Spinitron REST API client. It is designed as a standalo
 `App.tsx`
 
 ```tsx
-const API_BASE_URL = "https://my-spinitron-proxy.com"; // spinitron terms of service require a proxy
+// use a proxy like https://github.com/wcbn/spinitron-proxy/
+const API_BASE_URL = "https://my-spinitron-proxy.com/api";
 
 function App() {
   return (
@@ -26,9 +27,9 @@ function MyComponent() {
   return (
     <div>
       {spins.map((spin) => (
-        <div key={spin.id}>
+        <p key={spin.id}>
           {spin.song} - {spin.artist}
-        </div>
+        </p>
       ))}
     </div>
   );
