@@ -1,4 +1,5 @@
 interface AppConfig {
+  name: string;
   api: {
     url: string;
   };
@@ -22,6 +23,7 @@ interface AppConfig {
   streams: {
     text: string;
     url: string;
+    default: boolean;
   }[];
   review?: {
     text: string;
@@ -29,6 +31,7 @@ interface AppConfig {
 }
 
 export const config: AppConfig = {
+  name: "WCBN-FM Ann Arbor",
   api: {
     url: "https://spinitron-proxy.d08jp15rftr3s.us-east-2.cs.amazonlightsail.com/api",
   },
@@ -49,14 +52,17 @@ export const config: AppConfig = {
     {
       text: "Mid quality",
       url: "http://floyd.wcbn.org:8000/wcbn-mid.mp3",
+      default: false,
     },
     {
       text: "High quality",
       url: "http://floyd.wcbn.org:8000/wcbn-hi.mp3",
+      default: false,
     },
     {
       text: "HD quality",
       url: "http://floyd.wcbn.org:8000/wcbn-hd.mp3",
+      default: true,
     },
   ],
   share: {

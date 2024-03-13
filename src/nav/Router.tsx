@@ -13,6 +13,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SettingsScreen } from "../screens/settings/SettingsScreen";
 import { useTheme } from "../theme/useTheme";
 import { AppIcon, AppIconProps } from "../ui/AppIcon";
+import { RadioScreen } from "../screens/radio/RadioScreen";
+import { config } from "../config";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -51,6 +53,11 @@ export function Router() {
       <Stack.Screen name="Shows" component={ScheduleScreen} />
       <Stack.Screen name="Show" component={ShowScreen} />
       <Stack.Screen name="Playlists" component={PlaylistsView} />
+      <Stack.Screen
+        name="Radio"
+        component={RadioScreen}
+        options={{ headerTitle: config.name }}
+      />
       <Stack.Screen name="Playlist" component={PlaylistView} options={{}} />
       <Stack.Screen
         name="Spins"
@@ -65,7 +72,7 @@ export function Router() {
   return (
     <NavigationContainer theme={theme.nav}>
       <Tab.Navigator
-        initialRouteName="Schedule"
+        initialRouteName="RadioTab"
         screenOptions={{ headerShown: false }}
       >
         <Tab.Screen
@@ -85,6 +92,15 @@ export function Router() {
           }}
         >
           {() => <StackNav initialRouteName={"Spins"} />}
+        </Tab.Screen>
+        <Tab.Screen
+          name="RadioTab"
+          options={{
+            tabBarLabel: "Radio",
+            tabBarIcon: (x) => makeIcon("radio", x),
+          }}
+        >
+          {() => <StackNav initialRouteName={"Radio"} />}
         </Tab.Screen>
         <Tab.Screen
           name="PersonasTab"

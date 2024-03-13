@@ -5,15 +5,20 @@ import { components } from "../openapi-types";
 
 type BaseIndexResponse = components["schemas"]["BaseIndexResponse"];
 
+type UseInfiniteQueryOptions<T> = Parameters<typeof useInfiniteQuery<T>>[0];
+
 interface useQueryCollectionInput {
   collectionName: string;
   input?: Record<string, unknown>;
 }
 
-export function useQueryCollection<TQueryFnData>({
-  collectionName,
-  input = {},
-}: useQueryCollectionInput) {
+export type UseQueryCollectionOptions<T> = T &
+  Partial<UseInfiniteQueryOptions<T>>;
+
+export function useQueryCollection<TQueryFnData>(
+  { collectionName, input = {} }: useQueryCollectionInput,
+  opts?: UseQueryCollectionOptions<TQueryFnData & BaseIndexResponse>,
+) {
   const base = useBaseURL();
   const s = buildQueryString(input);
 
@@ -31,5 +36,6 @@ export function useQueryCollection<TQueryFnData>({
       lastPage?._meta?.currentPage === lastPage._meta?.pageCount
         ? null
         : (lastPage?._meta?.currentPage ?? 0) + 1,
+    ...opts,
   });
 }

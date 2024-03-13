@@ -1,5 +1,8 @@
 import { paths } from "../openapi-types";
-import { useQueryCollection } from "./useQueryCollection";
+import {
+  UseQueryCollectionOptions,
+  useQueryCollection,
+} from "./useQueryCollection";
 
 type PersonasQueryInput = NonNullable<
   paths["/personas"]["get"]["parameters"]["query"]
@@ -8,9 +11,15 @@ type PersonasQueryInput = NonNullable<
 type PersonasQueryData =
   paths["/personas"]["get"]["responses"]["200"]["content"]["application/json"];
 
-export function usePersonas(input?: PersonasQueryInput) {
-  return useQueryCollection<PersonasQueryData>({
-    collectionName: "personas",
-    input: input,
-  });
+export function usePersonas(
+  input?: PersonasQueryInput,
+  opts?: UseQueryCollectionOptions<PersonasQueryData>,
+) {
+  return useQueryCollection<PersonasQueryData>(
+    {
+      collectionName: "personas",
+      input: input,
+    },
+    opts,
+  );
 }
