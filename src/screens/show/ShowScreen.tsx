@@ -14,6 +14,7 @@ import { AppHTML } from "../../ui/AppHTML";
 import { AppListHeader } from "../../ui/AppListHeader";
 import { AppPill } from "../../ui/AppPill";
 import { MAX_COUNT } from "../../api/util/constants";
+import { AppLink } from "../../ui/AppLink";
 
 function ShowScreen() {
   const nav = useNavigation<StackNav>();
@@ -71,20 +72,21 @@ function ShowScreen() {
             </AppText>
             <View>
               {cat && (
-                <View style={{ marginTop: spacing["6"] }}>
+                <View style={{ marginTop: spacing[6] }}>
                   <AppPill text={cat} />
+                </View>
+              )}
+              {data?.url && (
+                <View style={{ marginTop: spacing[12] }}>
+                  <AppLink href={data?.url}>{data?.url}</AppLink>
                 </View>
               )}
 
               {desc && (
-                <ScrollView
-                  style={{ maxHeight: 160, marginTop: spacing["12"] }}
-                >
+                <ScrollView style={{ maxHeight: 160, marginTop: spacing[12] }}>
                   <AppHTML contentWidth={width} source={{ html: desc }} />
                 </ScrollView>
               )}
-
-              <AppText>{data?.url}</AppText>
             </View>
           </View>
         </View>
