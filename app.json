@@ -1,32 +1,47 @@
 {
   "expo": {
     "name": "spinitron-mobile-app",
+    "description": "Discover new music from the student-run radio station of the University of Michigan.",
     "slug": "spinitron-mobile-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash/default.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#212733"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "org.wcbn",
       "infoPlist": {
         "UIBackgroundModes": ["audio"]
       }
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+      "package": "org.wcbn",
+      "versionCode": 16,
+      "splash": {
+        "backgroundColor": "#212733",
+        "resizeMode": "contain",
+        "mdpi": "./assets/splash/mdpi.png",
+        "hdpi": "./assets/splash/hdpi.png",
+        "xhdpi": "./assets/splash/xhdpi.png",
+        "xxhdpi": "./assets/splash/xxhdpi.png",
+        "xxxhdpi": "./assets/splash/xxxhdpi.png"
+      },
+      "permissions": []
+    },
+    "platforms": ["android", "ios"],
+    "extra": {
+      "eas": {
+        "projectId": "f8dd9750-164f-11e9-8b84-313f96953860"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [["expo-av", {}]]
+    }
   }
 }
