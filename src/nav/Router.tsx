@@ -6,7 +6,6 @@ import { SpinView } from "../screens/spin/SpinView";
 import { PlaylistView } from "../screens/playlist/PlaylistView";
 import { PersonaView } from "../screens/persona/PersonaView";
 import { ShowScreen } from "../screens/show/ShowScreen";
-import { PlaylistsView } from "../screens/playlist/PlaylistsView";
 import { PersonasView } from "../screens/persona/PersonasView";
 import { ScheduleScreen } from "../screens/schedule/ScheduleScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -21,7 +20,7 @@ const Stack = createNativeStackNavigator();
 
 function makeIcon(
   name: AppIconProps["name"],
-  tabInfo: { color: string; focused: boolean; size: number },
+  tabInfo: { color: string; focused: boolean; size: number }
 ) {
   const { color, focused, size } = tabInfo;
   const name_ = focused ? name : ((name + "-outline") as AppIconProps["name"]);
@@ -52,7 +51,6 @@ export function Router() {
       />
       <Stack.Screen name="Shows" component={ScheduleScreen} />
       <Stack.Screen name="Show" component={ShowScreen} />
-      <Stack.Screen name="Playlists" component={PlaylistsView} />
       <Stack.Screen
         name="Radio"
         component={RadioScreen}
