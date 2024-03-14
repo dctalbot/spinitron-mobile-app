@@ -6,7 +6,7 @@ import { useRadio } from "./useRadio";
 import { useSpins } from "../../api/hooks/useSpins";
 import { SpinCitation } from "../spin/SpinCitation";
 import { spacing } from "../../theme/theme";
-import { SongArt } from "../spin/SpinView";
+import { SongArt } from "../spin/SongArt";
 
 const POLL_INTERVAL = 10000; // 10 seconds
 

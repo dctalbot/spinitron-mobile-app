@@ -37,9 +37,22 @@ export function useStreams() {
     setSelectedIndex(index);
   };
 
+  const getStreamAsync = async () => {
+    let newIndex = defaultIndex;
+
+    const res = await AsyncStorage.getItem(STREAM_INDEX_KEY);
+    if (typeof res === "string") {
+      newIndex = parseInt(res, 10);
+    }
+
+    setSelectedIndex(newIndex);
+    return newIndex;
+  };
+
   return {
     streams: all,
     selectedIndex,
     setStreamAsync,
+    getStreamAsync,
   };
 }

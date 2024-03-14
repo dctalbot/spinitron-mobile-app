@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Image, ImageProps } from "expo-image"; // eslint-disable-line no-restricted-imports
 import { AppIcon, AppIconProps } from "./AppIcon";
+import { mzstaticUpgrade } from "../util/mzstatic";
 
 export interface AppImageProps extends ImageProps {
   icon: AppIconProps["name"];
@@ -10,18 +11,15 @@ export interface AppImageProps extends ImageProps {
 export function AppImage(props: AppImageProps) {
   const { size = 80, source, ...rest } = props;
   const [imgFailure, setImgFailure] = React.useState(false);
+  let newSource = source;
 
   if (!source || imgFailure) {
     return <AppIcon name={props.icon} size={size} />;
   }
 
-  if (
-    typeof source === "object" &&
-    !Array.isArray(source) &&
-    source?.uri?.includes("255x255") &&
-    source?.uri?.includes("mzstatic")
-  ) {
-    source.uri = source.uri.replace("255x255", `${size}x${size}`);
+  if (typeof source === "string") {
+    newSource = mzstaticUpgrade(source, size);
+    console.log("hit!", newSource);
   }
 
   return (
@@ -30,7 +28,7 @@ export function AppImage(props: AppImageProps) {
       contentFit="cover"
       transition={500}
       onError={() => setImgFailure(true)}
-      source={source}
+      source={newSource}
       {...rest}
     />
   );

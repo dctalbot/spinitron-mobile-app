@@ -20,11 +20,7 @@ export interface Radio {
 }
 
 export function useRadio(): Radio {
-  const { streams } = useStreams();
-  const streamURI =
-    streams.find((s) => s.selected)?.uri ??
-    streams.find((s) => s.default)?.uri ??
-    streams[0].uri;
+  const { streams, getStreamAsync } = useStreams();
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [isBuffering, setIsBuffering] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -78,16 +74,19 @@ export function useRadio(): Radio {
 
     setIsLoading(true);
 
+    const index = await getStreamAsync();
+    const uri = streams[index].uri;
+
     sound.current = await Audio.Sound.createAsync(
       {
         headers: {
           "X-client-type": "mobile-app",
         },
-        uri: streamURI,
+        uri,
       },
       { shouldPlay: true },
       onPlaybackStatusUpdate,
-      false
+      false,
     );
 
     setIsLoading(false);

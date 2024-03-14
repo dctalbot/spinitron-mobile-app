@@ -6,25 +6,10 @@ import { useSpin } from "../../api/hooks/useSpin";
 import { StackNav, StackRoute } from "../../nav/types";
 import { spacing } from "../../theme/theme";
 
-import { useWindowDimensions } from "react-native";
 import { SpinCitation } from "./SpinCitation";
 import { AppText } from "../../ui/AppText";
 import { AppButton } from "../../ui/AppButton";
-import { AppImage, AppImageProps } from "../../ui/AppImage";
-
-export function SongArt(props: Partial<AppImageProps>) {
-  const { width: _width } = useWindowDimensions();
-  const width = _width - 24;
-
-  return (
-    <AppImage
-      alt="Song cover art"
-      source={props.source}
-      icon="disc-outline"
-      size={width}
-    />
-  );
-}
+import { SongArt } from "./SongArt";
 
 function SpinView() {
   const nav = useNavigation<StackNav>();
