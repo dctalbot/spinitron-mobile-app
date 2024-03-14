@@ -6,8 +6,8 @@ import { fontWeight, spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
 import { AppPill } from "../../ui/AppPill";
 
-// APA e.g.: Coldplay. (2021). My universe [Song]. On Music of the spheres. Parlophone.
-// MLA e.g.: Coldplay. My universe.” On Music of the spheres, Parlophone, 2021.
+// APA e.g.: Coldplay. (2021). My universe. On Music of the spheres. Parlophone.
+// MLA e.g.: Coldplay. My universe. On Music of the spheres, Parlophone, 2021.
 
 interface AttrRowProps {
   label?: string;
