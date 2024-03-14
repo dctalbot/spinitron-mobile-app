@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Linking, Share } from "react-native";
+import { View, Linking, Share } from "react-native";
 import * as StoreReview from "expo-store-review";
 import { config } from "../../config";
 
@@ -18,14 +18,23 @@ interface LinkProps {
 export function Link(props: LinkProps) {
   const theme = useTheme();
   return (
-    <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <AppIcon
-        name={props.icon}
-        size={28}
-        style={styles.icon}
-        color={theme.colors.primary}
-      />
-      <View style={styles.textContainer}>
+    <TouchableOpacity
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: spacing[12],
+      }}
+      onPress={props.onPress}
+    >
+      <AppIcon name={props.icon} size={28} color={theme.colors.primary} />
+      <View
+        style={{
+          flex: 1,
+          marginLeft: spacing[16],
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
         <AppText>{props.text}</AppText>
       </View>
     </TouchableOpacity>
@@ -44,11 +53,11 @@ export const LinksList = () => {
   }, []);
 
   return (
-    <View style={styles.linksView}>
-      {config.call && (
+    <View>
+      {config.phone && (
         <Link
-          onPress={() => Linking.openURL(`tel:${config.call?.phoneRaw}`)}
-          text={`${config.call.text}${"\n"}${config.call?.phoneFormatted}`}
+          onPress={() => Linking.openURL(`tel:${config.phone?.numberRaw}`)}
+          text={`${config.phone.text}${"\n"}${config.phone?.numberFormatted}`}
           icon={"call"}
         />
       )}
@@ -87,22 +96,3 @@ export const LinksList = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  linksView: {},
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: spacing[10],
-    marginTop: spacing[10],
-  },
-  textContainer: {
-    flex: 1,
-    marginLeft: spacing[16],
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  icon: {
-    minWidth: 25,
-  },
-});
