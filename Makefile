@@ -13,6 +13,7 @@ check:
 	npx tsc
 	npx eslint . --fix
 	npx vitest --run
+	npx expo-doctor
 
 .PHONY: generate
 generate: 
