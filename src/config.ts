@@ -7,10 +7,10 @@ interface AppConfig {
     text: string;
     url: string;
   };
-  call?: {
+  phone?: {
     text: string;
-    phoneFormatted: string;
-    phoneRaw: string;
+    numberFormatted: string;
+    numberRaw: string;
   };
   chat?: {
     text: string;
@@ -39,10 +39,10 @@ export const config: AppConfig = {
     text: "Give to WCBN",
     url: "https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991",
   },
-  call: {
+  phone: {
     text: "Studio request line",
-    phoneFormatted: "(734) 763-3500",
-    phoneRaw: "17347633500",
+    numberFormatted: "(734) 763-3500",
+    numberRaw: "17347633500",
   },
   chat: {
     text: "Message the DJ",
