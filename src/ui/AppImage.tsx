@@ -19,7 +19,6 @@ export function AppImage(props: AppImageProps) {
 
   if (typeof source === "string") {
     newSource = mzstaticUpgrade(source, size);
-    console.log("hit!", newSource);
   }
 
   return (
