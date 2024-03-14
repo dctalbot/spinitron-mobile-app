@@ -3,7 +3,7 @@
     "name": "spinitron-mobile-app",
     "description": "Discover new music from the student-run radio station of the University of Michigan.",
     "slug": "spinitron-mobile-app",
-    "version": "1.0.0",
+    "version": "10.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
