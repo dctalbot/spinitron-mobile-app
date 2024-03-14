@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator();
 
 function makeIcon(
   name: AppIconProps["name"],
-  tabInfo: { color: string; focused: boolean; size: number }
+  tabInfo: { color: string; focused: boolean; size: number },
 ) {
   const { color, focused, size } = tabInfo;
   const name_ = focused ? name : ((name + "-outline") as AppIconProps["name"]);

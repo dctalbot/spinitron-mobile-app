@@ -22,7 +22,6 @@ function AttrRow({ label, value }: AttrRowProps) {
       <AppText
         style={{
           flex: 1,
-          padding: spacing[4],
           fontWeight: fontWeight.semibold,
         }}
         size="lg"
@@ -32,7 +31,6 @@ function AttrRow({ label, value }: AttrRowProps) {
       <AppText
         style={{
           flex: 2,
-          padding: spacing[4],
         }}
         size="md"
       >
@@ -89,7 +87,12 @@ export function SpinCitation(props: SpinCitationProps) {
 
       {hasPillSection && (
         <View
-          style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing[6] }}
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: spacing[6],
+            marginTop: spacing[6],
+          }}
         >
           {data?.request && <AppPill text="Requested"></AppPill>}
           {data?.local && <AppPill text="Local"></AppPill>}

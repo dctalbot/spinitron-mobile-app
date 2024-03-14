@@ -14,15 +14,11 @@ import { AppImage, AppImageProps } from "../../ui/AppImage";
 
 export function SongArt(props: Partial<AppImageProps>) {
   const { width: _width } = useWindowDimensions();
-  const width = (_width * 2) / 3;
+  const width = _width - 24;
 
   return (
     <AppImage
       alt="Song cover art"
-      style={{
-        width: "100%",
-        aspectRatio: 1,
-      }}
       source={props.source}
       icon="disc-outline"
       size={width}
@@ -57,28 +53,36 @@ function SpinView() {
     return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
-    <ScrollView style={{ padding: spacing[12], flex: 1 }}>
-      <View style={{ gap: spacing[12], flex: 1 }}>
-        {data?.image && (
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-            }}
-          >
-            <SongArt source={data?.image} />
-          </View>
-        )}
+    <View
+      style={{
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: spacing[12],
+        rowGap: spacing[12],
+      }}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          flexGrow: 1,
+        }}
+      >
+        <SongArt source={data?.image} />
+      </View>
 
-        <SpinCitation id={id} />
+      <View style={{ flexShrink: 1 }}>
+        <ScrollView>
+          <SpinCitation id={id} />
+        </ScrollView>
 
         {playlist_id && (
           <View
             style={{
               flexDirection: "row",
               justifyContent: "flex-end",
-              paddingBottom: spacing[40],
-              marginBottom: spacing[12],
             }}
           >
             <AppButton
@@ -89,7 +93,7 @@ function SpinView() {
           </View>
         )}
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

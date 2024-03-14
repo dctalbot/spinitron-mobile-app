@@ -12,6 +12,7 @@ import { AppText } from "../../ui/AppText";
 import { AppImage } from "../../ui/AppImage";
 
 const ITEM_SIZE = 80;
+const POLL_INTERVAL = 30000; // 30 seconds
 
 interface SpinListProps {
   useSpinsInput: Parameters<typeof useSpins>[0];
@@ -20,7 +21,7 @@ function SpinList(props: SpinListProps) {
   const nav = useNavigation<StackNav>();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    useSpins(props.useSpinsInput);
+    useSpins(props.useSpinsInput, { refetchInterval: POLL_INTERVAL });
 
   const listdata = (data?.pages ?? []).map((page) => page.items).flat();
 
