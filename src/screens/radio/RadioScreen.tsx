@@ -15,11 +15,13 @@ import { SongArt } from "../spin/SongArt";
 import { PersonaLink } from "../playlist/PersonaLink";
 import { usePlaylist } from "../../api/hooks/usePlaylist";
 import { ShowLink } from "../playlist/ShowLink";
+import { useTheme } from "../../theme/useTheme";
 
 const POLL_INTERVAL = 10000; // 10 seconds
 const PLAY_SIZE = 60;
 
 export function RadioScreen() {
+  const theme = useTheme();
   const { data: qData } = useSpins(
     { count: 1, page: 1 },
     { refetchInterval: POLL_INTERVAL },
@@ -43,7 +45,11 @@ export function RadioScreen() {
       onPress={() => (r.isPlaying ? r.stop() : r.play())}
       disabled={r.isUnloading || r.isLoading}
     >
-      <AppIcon name={r.isPlaying ? "stop" : "play"} size={PLAY_SIZE} />
+      <AppIcon
+        name={r.isPlaying ? "stop" : "play"}
+        size={PLAY_SIZE}
+        color={theme.colors.primary}
+      />
     </TouchableOpacity>
   );
 
@@ -71,14 +77,13 @@ export function RadioScreen() {
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
-            flexGrow: 1,
           }}
         >
           <SongArt source={song?.image} />
         </View>
       </View>
 
-      <View style={{ flexShrink: 1 }}>
+      <View style={{ flexShrink: 1, flexGrow: 1 }}>
         <ScrollView
           style={{
             marginVertical: spacing[12],
