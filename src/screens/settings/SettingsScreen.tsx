@@ -1,14 +1,16 @@
-import { ScrollView } from "react-native";
+import { View } from "react-native";
 import * as React from "react";
 
 import { LinksList } from "./LinksList";
 import { spacing } from "../../theme/theme";
+import { StreamPicker } from "./StreamPicker";
 
 function SettingsScreen() {
   return (
-    <ScrollView style={{ flex: 1, padding: spacing[12] }}>
+    <View style={{ flex: 1, padding: spacing[12] }}>
+      <StreamPicker />
       <LinksList />
-    </ScrollView>
+    </View>
   );
 }
 
