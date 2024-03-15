@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../../nav/types";
 import { AppText } from "../../ui/AppText";
 import { useTheme } from "../../theme/useTheme";
-import { usePersona } from "../../api/hooks/usePersona";
+import { usePersona } from "@dctalbot/react-spinitron";
 
 interface PersonaLinkProps {
   id: number;

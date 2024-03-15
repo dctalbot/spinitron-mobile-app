@@ -4,7 +4,7 @@ import * as React from "react";
 import { useRoute } from "@react-navigation/native";
 import { StackRoute } from "../../nav/types";
 import { SpinList } from "./SpinList";
-import { MAX_COUNT } from "../../api/util/constants";
+import { MAX_COUNT } from "@dctalbot/react-spinitron";
 
 function SpinsScreen() {
   const route = useRoute<StackRoute<"Spins">>();

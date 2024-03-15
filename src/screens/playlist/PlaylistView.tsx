@@ -2,7 +2,7 @@ import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
 import { useRoute } from "@react-navigation/native";
-import { usePlaylist } from "../../api/hooks/usePlaylist";
+import { usePlaylist } from "@dctalbot/react-spinitron";
 import { StackRoute } from "../../nav/types";
 import { SpinList } from "../spin/SpinList";
 import { fmtOnAt } from "../../util/time";
@@ -10,7 +10,7 @@ import { spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
 import { PersonaLink } from "./PersonaLink";
 import { ShowLink } from "./ShowLink";
-import { MAX_COUNT } from "../../api/util/constants";
+import { MAX_COUNT } from "@dctalbot/react-spinitron";
 
 function PlaylistView() {
   const route = useRoute<StackRoute<"Playlist">>();

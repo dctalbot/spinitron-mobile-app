@@ -3,12 +3,12 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { usePersonas } from "../../api/hooks/usePersonas";
+import { usePersonas } from "@dctalbot/react-spinitron";
 import { StackNav } from "../../nav/types";
 import { spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
 import { AppImage } from "../../ui/AppImage";
-import { MAX_COUNT } from "../../api/util/constants";
+import { MAX_COUNT } from "@dctalbot/react-spinitron";
 
 function PersonasView() {
   const nav = useNavigation<StackNav>();

@@ -2,12 +2,12 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { usePersona } from "../../api/hooks/usePersona";
+import { usePersona } from "@dctalbot/react-spinitron";
 import { StyleSheet } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { StackRoute } from "../../nav/types";
 import { fontSize, fontWeight, spacing } from "../../theme/theme";
-import { getResourceID } from "../../api/util/getResourceID";
+import { getResourceID } from "@dctalbot/react-spinitron";
 import { ShowPreview } from "./ShowPreview";
 import { AppText } from "../../ui/AppText";
 import { AppHTML } from "../../ui/AppHTML";

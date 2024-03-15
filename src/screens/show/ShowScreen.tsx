@@ -2,9 +2,9 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useShow } from "../../api/hooks/useShow";
+import { useShow } from "@dctalbot/react-spinitron";
 import { StackNav, StackRoute } from "../../nav/types";
-import { getResourceID } from "../../api/util/getResourceID";
+import { getResourceID } from "@dctalbot/react-spinitron";
 import { PersonaPreview } from "./PersonaPreview";
 import { PlaylistList } from "./PlaylistList";
 import { AppText } from "../../ui/AppText";
@@ -13,7 +13,7 @@ import { useContentWidth } from "react-native-render-html";
 import { AppHTML } from "../../ui/AppHTML";
 import { AppListHeader } from "../../ui/AppListHeader";
 import { AppPill } from "../../ui/AppPill";
-import { MAX_COUNT } from "../../api/util/constants";
+import { MAX_COUNT } from "@dctalbot/react-spinitron";
 import { AppLink } from "../../ui/AppLink";
 
 function ShowScreen() {

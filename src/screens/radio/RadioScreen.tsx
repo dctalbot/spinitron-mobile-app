@@ -8,12 +8,12 @@ import {
 } from "react-native";
 import { AppIcon } from "../../ui/AppIcon";
 import { useRadio } from "./useRadio";
-import { useSpins } from "../../api/hooks/useSpins";
+import { useSpins } from "@dctalbot/react-spinitron";
 import { SpinCitation } from "../spin/SpinCitation";
 import { spacing } from "../../theme/theme";
 import { SongArt } from "../spin/SongArt";
 import { PersonaLink } from "../playlist/PersonaLink";
-import { usePlaylist } from "../../api/hooks/usePlaylist";
+import { usePlaylist } from "@dctalbot/react-spinitron";
 import { ShowLink } from "../playlist/ShowLink";
 import { useTheme } from "../../theme/useTheme";
 

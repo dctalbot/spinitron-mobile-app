@@ -1,5 +1,5 @@
 import { TouchableOpacity, View } from "react-native";
-import { useShow } from "../../api/hooks/useShow";
+import { useShow } from "@dctalbot/react-spinitron";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../../nav/types";

@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../../nav/types";
 import { AppText } from "../../ui/AppText";
 import { fontSize, fontWeight } from "../../theme/theme";
-import { useShow } from "../../api/hooks/useShow";
+import { useShow } from "@dctalbot/react-spinitron";
 
 interface ShowLinkProps {
   id: number;

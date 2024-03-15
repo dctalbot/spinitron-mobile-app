@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { useSpins } from "../../api/hooks/useSpins";
+import { useSpins } from "@dctalbot/react-spinitron";
 import { StackNav } from "../../nav/types";
 import { fontWeight, spacing } from "../../theme/theme";
 import { getArtist } from "./SpinCitation";

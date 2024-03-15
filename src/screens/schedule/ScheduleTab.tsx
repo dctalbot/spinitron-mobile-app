@@ -8,16 +8,16 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { ShowsQueryData, useShows } from "../../api/hooks/useShows";
+import { ShowsQueryData, useShows } from "@dctalbot/react-spinitron";
 import { StackNav } from "../../nav/types";
 import { Day, getScheduleDayRange, getTime } from "../../util/time";
 import { AppText } from "../../ui/AppText";
 import { AppSeparator } from "../../ui/AppSeparator";
 import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import dayjs from "dayjs";
-import { getResourceID } from "../../api/util/getResourceID";
+import { getResourceID } from "@dctalbot/react-spinitron";
 import _ from "lodash";
-import { usePersona } from "../../api/hooks/usePersona";
+import { usePersona } from "@dctalbot/react-spinitron";
 import { useTheme } from "../../theme/useTheme";
 
 interface ShowListItemProps {
