@@ -37,6 +37,12 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 
 The maintenance burden mostly consists of keeping your fork up to date with any bug fixes that I commit to this repository. The expected release cadence is about once every 6 months.
 
+## Related Projects
+
+- https://github.com/wcbn/spinitron-proxy/
+- https://github.com/dctalbot/react-spinitron
+- https://github.com/spinitron/v2api
+
 ## Contributing
 
 Download the Expo development app https://expo.dev/client
