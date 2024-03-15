@@ -4,6 +4,14 @@
   <img alt="Get it on Google Play" title="Google Play" src="docs/play-store.png" height="40">
 </a>
 
+<br />
+
+
+
+https://github.com/dctalbot/spinitron-mobile-app/assets/17692467/a8edec13-9b7c-41f4-a914-29441b305c64
+
+
+
 This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN, the college station where I used to DJ, but any station backed by [Spinitron](https://spinitron.com/) can take it "off the shelf" and have it deployed with minimal effort.
 
 ## How to get it off-the-shelf and into production
