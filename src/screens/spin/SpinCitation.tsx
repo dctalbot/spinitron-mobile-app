@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import * as React from "react";
 
-import { SpinQueryData, useSpin } from "@dctalbot/react-spinitron";
+import { SpinData, useSpin } from "@dctalbot/react-spinitron";
 import { fontWeight, spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
 import { AppPill } from "../../ui/AppPill";
@@ -40,7 +40,7 @@ function AttrRow({ label, value }: AttrRowProps) {
   );
 }
 
-export function getArtist(data?: SpinQueryData): string | undefined {
+export function getArtist(data?: SpinData): string | undefined {
   return data?.va ? "Various Artists" : data?.["artist-custom"] ?? data?.artist;
 }
 

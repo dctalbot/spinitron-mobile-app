@@ -27,7 +27,7 @@ export function RadioScreen() {
     { refetchInterval: POLL_INTERVAL },
   );
 
-  const listdata = (qData?.pages ?? []).map((page) => page.items).flat();
+  const listdata = qData ?? [];
   const song = listdata.length > 0 ? listdata[0] : null;
 
   const { data: playlistData } = usePlaylist(

@@ -16,7 +16,7 @@ function PersonasView() {
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     usePersonas({ count: MAX_COUNT });
 
-  const listdata = (data?.pages ?? []).map((page) => page.items).flat();
+  const listdata = data ?? [];
 
   if (isFetching && listdata.length === 0)
     return (

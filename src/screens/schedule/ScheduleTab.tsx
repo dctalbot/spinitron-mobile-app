@@ -8,7 +8,7 @@ import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
-import { ShowsQueryData, useShows } from "@dctalbot/react-spinitron";
+import { ShowsData, useShows } from "@dctalbot/react-spinitron";
 import { StackNav } from "../../nav/types";
 import { Day, getScheduleDayRange, getTime } from "../../util/time";
 import { AppText } from "../../ui/AppText";
@@ -21,7 +21,7 @@ import { usePersona } from "@dctalbot/react-spinitron";
 import { useTheme } from "../../theme/useTheme";
 
 interface ShowListItemProps {
-  item: NonNullable<ShowsQueryData["items"]>[number];
+  item: NonNullable<ShowsData["items"]>[number];
 }
 
 function ShowListItem(props: ShowListItemProps) {
@@ -122,12 +122,9 @@ export function ScheduleTab(props: ScheduleTabProps) {
     count: 50,
   });
 
-  const listdata = (data?.pages ?? [])
-    .map((page) => page.items)
-    .flat()
-    .filter(
-      (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start),
-    );
+  const listdata = (data ?? []).filter(
+    (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start),
+  );
 
   if (isFetching && listdata.length === 0) {
     return (

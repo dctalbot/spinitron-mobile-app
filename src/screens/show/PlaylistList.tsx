@@ -19,10 +19,7 @@ export function PlaylistList(props: PlaylistListProps) {
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     usePlaylists(props.queryInput);
 
-  const listdata = (data?.pages ?? [])
-    .map((page) => page.items)
-    .flat()
-    .filter((i) => i?.start);
+  const listdata = (data ?? []).filter((i) => i?.start);
 
   if (isFetching && listdata.length === 0) return null;
 

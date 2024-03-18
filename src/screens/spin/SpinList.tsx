@@ -23,7 +23,7 @@ function SpinList(props: SpinListProps) {
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
     useSpins(props.useSpinsInput, { refetchInterval: POLL_INTERVAL });
 
-  const listdata = (data?.pages ?? []).map((page) => page.items).flat();
+  const listdata = data ?? [];
 
   if (isFetching && listdata.length === 0) return null;
 
