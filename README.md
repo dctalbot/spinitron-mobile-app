@@ -35,7 +35,7 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 
 ### It's deployed... what now?
 
-The maintenance burden mostly consists of keeping your fork up to date with any bug fixes that I commit to this repository. The expected release cadence is about once every 6 months.
+The maintenance burden mostly consists of [keeping your fork up to date](https://gist.github.com/CristinaSolana/1885435) with any bug fixes that I commit to this repository. The expected release cadence is about once every 6 months.
 
 ## Related Projects
 
