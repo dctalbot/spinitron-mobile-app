@@ -9,11 +9,11 @@
 
 https://github.com/dctalbot/spinitron-mobile-app/assets/17692467/a8edec13-9b7c-41f4-a914-29441b305c64
 
-This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN, the college station where I used to DJ, but any station backed by [Spinitron](https://spinitron.com/) can take it "off the shelf" and have it deployed with minimal effort. (For example, the WCBN fork is [here](https://github.com/wcbn/spinitron-mobile-app)).
+This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN, the college station where I used to DJ, but any station backed by [Spinitron](https://spinitron.com/) can take it "off the shelf" and have it deployed with minimal effort. For example, the WCBN fork is [here](https://github.com/wcbn/spinitron-mobile-app).
 
-## How to get it off-the-shelf and into production
+## Getting Started
 
-1. You need a relay server to proxy requests to the Spinitron API. This is required as per the [Spinitron ToS](https://forum.spinitron.com/t/web-integration/146). You can use the one that I authored: https://github.com/wcbn/spinitron-proxy/ or your own. Mine is like $7 per month on AWS.
+1. You will need to have a relay server deployed in order to proxy requests to the Spinitron API. You can use [this one](https://github.com/wcbn/spinitron-proxy/) or your own.
 2. Create an [Expo](https://expo.dev/) account. They will build the app for you. They seem like generally nice people.
 3. Fork this repository.
 4. On the fork, update the following files to have the app match your brand:
