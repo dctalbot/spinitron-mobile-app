@@ -6,6 +6,13 @@ import RenderHTML, { RenderHTMLProps } from "react-native-render-html";
 export function AppHTML(props: RenderHTMLProps) {
   const theme = useTheme();
 
+  const tagsStyles: RenderHTMLProps["tagsStyles"] = {
+    a: {
+      color: theme.colors.primary,
+      textDecorationLine: "none",
+    },
+  };
+
   return (
     <RenderHTML
       baseStyle={{
@@ -13,6 +20,7 @@ export function AppHTML(props: RenderHTMLProps) {
         fontSize: fontSize["md"].size,
         lineHeight: fontSize["md"].lineHeight,
       }}
+      tagsStyles={tagsStyles}
       {...props}
     />
   );
