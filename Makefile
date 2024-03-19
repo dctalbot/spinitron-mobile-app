@@ -14,7 +14,3 @@ check:
 	npx eslint . --fix
 	npx vitest --run
 	npx expo-doctor
-
-.PHONY: generate
-generate: 
-	npx openapi-typescript ./src/api/openapi.yaml -o ./src/api/openapi-types.ts
