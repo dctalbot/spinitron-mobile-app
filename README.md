@@ -28,7 +28,7 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 ### Android
 
 1. Create a Google Play Developer account and create a new android project.
-1. Increment the `app.json` `version` and `expo.android.versionCode`
+1. Increment the `app.json` `version`
 1. Run `eas build -p android`
 1. Download the build from Expo
 1. Upload the build to Google Play
