@@ -48,6 +48,7 @@ The maintenance burden mostly consists of [keeping your fork up to date](https:/
 Download the Expo development app https://expo.dev/client
 
 ```
+brew install watchman
 npm install
 make start
 ```

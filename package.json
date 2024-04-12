@@ -3,10 +3,9 @@
   "main": "node_modules/expo/AppEntry.js",
   "type": "module",
   "scripts": {
-    "start": "expo start --tunnel",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "start": "expo start --tunnel --dev-client",
+    "build": "eas build --platform all",
+    "build:dev": "eas build --profile development --platform all"
   },
   "dependencies": {
     "@dctalbot/react-spinitron": "^2.0.0",
@@ -21,6 +20,7 @@
     "dayjs": "^1.11.10",
     "expo": "~50.0.13",
     "expo-av": "~13.10.5",
+    "expo-dev-client": "~3.3.10",
     "expo-image": "~1.10.6",
     "expo-status-bar": "~1.11.1",
     "expo-store-review": "~6.8.3",
