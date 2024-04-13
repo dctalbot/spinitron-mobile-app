@@ -3,6 +3,7 @@ import { ApiClientProvider } from "@dctalbot/react-spinitron";
 import NetInfo from "@react-native-community/netinfo";
 import { config } from "./config";
 import { Router } from "./nav/Router";
+import "expo-dev-client";
 
 export default function App() {
   return (
