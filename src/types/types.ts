@@ -1,5 +1,4 @@
-interface AppConfig {
-  name: string;
+interface AppExtra extends Record<string, unknown> {
   api: {
     url: string;
   };

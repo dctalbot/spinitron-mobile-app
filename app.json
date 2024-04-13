@@ -1,11 +1,7 @@
 {
   "expo": {
-    "name": "WXYZ-FM",
-    "description": "Discover new music from WXYZ.",
-    "slug": "wxyz-app",
     "githubUrl": "https://github.com/dctalbot/spinitron-mobile-app",
     "privacy": "public",
-    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -20,14 +16,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "org.wxyz",
       "infoPlist": {
         "UIBackgroundModes": ["audio"]
       }
     },
     "android": {
-      "package": "org.wxyz",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=org.wxyz",
       "splash": {
         "backgroundColor": "#212733",
         "resizeMode": "contain",
@@ -40,9 +33,6 @@
       "permissions": []
     },
     "platforms": ["android", "ios"],
-    "extra": {
-      "eas": {}
-    },
     "runtimeVersion": {
       "policy": "appVersion"
     }

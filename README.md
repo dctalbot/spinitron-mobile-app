@@ -18,9 +18,8 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 3. Fork this repository.
 4. On the fork, update the following files to have the app match your brand:
 
-- `src/config.ts` (settings and options)
+- `app.config.ts` (settings and options)
 - `src/theme/theme.ts` (look and feel)
-- `app.json` (Expo stuff)
 - `assets/*` (brand images)
 
 5. Install the Expo CLI: `npm install -g expo-cli`
