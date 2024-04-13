@@ -13,15 +13,10 @@ import { SettingsScreen } from "../screens/settings/SettingsScreen";
 import { useTheme } from "../theme/useTheme";
 import { AppIcon, AppIconProps } from "../ui/AppIcon";
 import { RadioScreen } from "../screens/radio/RadioScreen";
-import { config } from "../config";
 import { spacing } from "../theme/theme";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-
-const tabBarItemStyle = {
-  padding: spacing[2],
-};
 
 function makeIcon(
   name: AppIconProps["name"],
@@ -59,7 +54,7 @@ export function Router() {
       <Stack.Screen
         name="Radio"
         component={RadioScreen}
-        options={{ headerTitle: config.name }}
+        options={{ headerTitle: "Radio" }}
       />
       <Stack.Screen name="Playlist" component={PlaylistView} options={{}} />
       <Stack.Screen
@@ -76,12 +71,14 @@ export function Router() {
     <NavigationContainer theme={theme.nav}>
       <Tab.Navigator
         initialRouteName="RadioTab"
-        screenOptions={{ headerShown: false, tabBarItemStyle }}
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+        }}
       >
         <Tab.Screen
           name="ScheduleTab"
           options={{
-            tabBarLabel: "Schedule",
             tabBarIcon: (x) => makeIcon("calendar", x),
           }}
         >
@@ -90,7 +87,6 @@ export function Router() {
         <Tab.Screen
           name="SpinsTab"
           options={{
-            tabBarLabel: "Playlist",
             tabBarIcon: (x) => makeIcon("musical-notes", x),
           }}
         >
@@ -99,7 +95,6 @@ export function Router() {
         <Tab.Screen
           name="RadioTab"
           options={{
-            tabBarLabel: "Radio",
             tabBarIcon: (x) => makeIcon("radio", x),
           }}
         >
@@ -108,7 +103,6 @@ export function Router() {
         <Tab.Screen
           name="PersonasTab"
           options={{
-            tabBarLabel: "DJs",
             tabBarIcon: (x) => makeIcon("people", x),
           }}
         >
@@ -117,7 +111,6 @@ export function Router() {
         <Tab.Screen
           name="SettingsTab"
           options={{
-            tabBarLabel: "Settings",
             tabBarIcon: (x) => makeIcon("settings", x),
           }}
         >
