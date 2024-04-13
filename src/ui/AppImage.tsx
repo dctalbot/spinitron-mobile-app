@@ -9,16 +9,16 @@ export interface AppImageProps extends ImageProps {
 }
 
 export function AppImage(props: AppImageProps) {
-  const { size = 80, source, ...rest } = props;
+  const { size = 80, source: _src, ...rest } = props;
   const [imgFailure, setImgFailure] = React.useState(false);
-  let newSource = source;
+  let source = _src;
 
   if (!source || imgFailure) {
     return <AppIcon name={props.icon} size={size} />;
   }
 
   if (typeof source === "string") {
-    newSource = mzstaticUpgrade(source, size);
+    source = mzstaticUpgrade(source, size);
   }
 
   return (
@@ -27,7 +27,7 @@ export function AppImage(props: AppImageProps) {
       contentFit="cover"
       transition={500}
       onError={() => setImgFailure(true)}
-      source={newSource}
+      source={source}
       {...rest}
     />
   );

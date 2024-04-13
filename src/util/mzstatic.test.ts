@@ -14,4 +14,5 @@ test.each([
   ],
 ])("%s => %s", (input, expected) => {
   expect(mzstaticUpgrade(input, 555)).toBe(expected);
+  expect(mzstaticUpgrade(input, 555.123)).toBe(expected);
 });
