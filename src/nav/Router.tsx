@@ -14,9 +14,14 @@ import { useTheme } from "../theme/useTheme";
 import { AppIcon, AppIconProps } from "../ui/AppIcon";
 import { RadioScreen } from "../screens/radio/RadioScreen";
 import { config } from "../config";
+import { spacing } from "../theme/theme";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+const tabBarItemStyle = {
+  padding: spacing[2],
+};
 
 function makeIcon(
   name: AppIconProps["name"],
@@ -24,7 +29,7 @@ function makeIcon(
 ) {
   const { color, focused, size } = tabInfo;
   const name_ = focused ? name : ((name + "-outline") as AppIconProps["name"]);
-  return <AppIcon name={name_} size={size} color={color} />;
+  return <AppIcon name={name_} size={size - spacing[2]} color={color} />;
 }
 
 interface StackNavProps {
@@ -60,7 +65,7 @@ export function Router() {
       <Stack.Screen
         name="Spins"
         component={SpinsScreen}
-        options={{ headerTitle: "On Air Playlist" }}
+        options={{ headerTitle: "Playlist" }}
       />
       <Stack.Screen name="Spin" component={SpinView} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
@@ -71,7 +76,7 @@ export function Router() {
     <NavigationContainer theme={theme.nav}>
       <Tab.Navigator
         initialRouteName="RadioTab"
-        screenOptions={{ headerShown: false }}
+        screenOptions={{ headerShown: false, tabBarItemStyle }}
       >
         <Tab.Screen
           name="ScheduleTab"
@@ -85,7 +90,7 @@ export function Router() {
         <Tab.Screen
           name="SpinsTab"
           options={{
-            tabBarLabel: "On Air",
+            tabBarLabel: "Playlist",
             tabBarIcon: (x) => makeIcon("musical-notes", x),
           }}
         >
