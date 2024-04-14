@@ -5,8 +5,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const STREAM_INDEX_KEY = "STREAM_INDEX";
 
 export function useStreams() {
-  let defaultIndex = config.streams.findIndex((x) => x.default);
-  defaultIndex = Math.max(defaultIndex, 0);
+  const defaultIndex = Math.max(
+    config.streams.findIndex((x) => x.default),
+    0,
+  );
 
   const [selectedIndex, setSelectedIndex] = useState<number>(defaultIndex);
 
@@ -37,22 +39,9 @@ export function useStreams() {
     setSelectedIndex(index);
   };
 
-  const getStreamAsync = async () => {
-    let newIndex = defaultIndex;
-
-    const res = await AsyncStorage.getItem(STREAM_INDEX_KEY);
-    if (typeof res === "string") {
-      newIndex = parseInt(res, 10);
-    }
-
-    setSelectedIndex(newIndex);
-    return newIndex;
-  };
-
   return {
     streams: all,
     selectedIndex,
     setStreamAsync,
-    getStreamAsync,
   };
 }

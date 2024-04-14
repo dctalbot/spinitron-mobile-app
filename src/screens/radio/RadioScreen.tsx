@@ -37,16 +37,14 @@ export function RadioScreen() {
 
   const r = useRadio();
 
-  const disabled = r.isUnloading || r.isLoading;
-
   const playPause = (
     <TouchableOpacity
       style={{ width: "auto" }}
-      onPress={() => (r.isPlaying ? r.stop() : r.play())}
-      disabled={r.isUnloading || r.isLoading}
+      onPress={() => (r.ui === "stop" ? r.stop() : r.play())}
+      disabled={r.ui === "spin"}
     >
       <AppIcon
-        name={r.isPlaying ? "stop" : "play"}
+        name={r.ui === "stop" ? "stop" : "play"}
         size={PLAY_SIZE}
         color={theme.colors.primary}
       />
@@ -98,7 +96,7 @@ export function RadioScreen() {
             justifyContent: "center",
           }}
         >
-          {disabled ? loader : playPause}
+          {r.ui === "spin" ? loader : playPause}
         </View>
       </View>
     </View>
