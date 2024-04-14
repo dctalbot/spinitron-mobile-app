@@ -20,7 +20,7 @@ build:
 	eas build --platform all
 
 .PHONY: build-staging
-build-beta: 
+build-staging: 
 	eas build --profile preview --platform all
 
 .PHONY: build-dev
