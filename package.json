@@ -2,11 +2,7 @@
   "name": "spinitron-mobile-app",
   "main": "node_modules/expo/AppEntry.js",
   "type": "module",
-  "scripts": {
-    "start": "expo start --tunnel --dev-client",
-    "build": "eas build --platform all",
-    "build:dev": "eas build --profile development --platform all"
-  },
+  "private": true,
   "dependencies": {
     "@dctalbot/react-spinitron": "^2.0.0",
     "@expo/html-elements": "^0.9.1",
@@ -48,6 +44,5 @@
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.0.1",
     "vitest": "^1.3.0"
-  },
-  "private": true
+  }
 }
