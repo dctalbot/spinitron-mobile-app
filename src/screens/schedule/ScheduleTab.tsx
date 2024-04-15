@@ -16,7 +16,7 @@ import { AppSeparator } from "../../ui/AppSeparator";
 import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import dayjs from "dayjs";
 import { getResourceID } from "@dctalbot/react-spinitron";
-import _ from "lodash";
+import { get } from "lodash-es";
 import { usePersona } from "@dctalbot/react-spinitron";
 import { useTheme } from "../../theme/useTheme";
 
@@ -28,7 +28,7 @@ function ShowListItem(props: ShowListItemProps) {
   const theme = useTheme();
   const name = props.item?.title;
   const at = getTime(props.item?.start);
-  const personaIDs = _.get(props.item, "_links.personas", []).map(
+  const personaIDs = get(props.item, "_links.personas", []).map(
     (
       x: any, // eslint-disable-line @typescript-eslint/no-explicit-any
     ) => getResourceID(x.href),
@@ -49,7 +49,7 @@ function ShowListItem(props: ShowListItemProps) {
   if (personaIDs.length > 1) {
     host = `rotating hosts`;
   } else {
-    host = _.get(data, "name", "");
+    host = get(data, "name", "");
   }
   if (host.toLowerCase() === "rotating hosts") {
     host = "rotating hosts";
