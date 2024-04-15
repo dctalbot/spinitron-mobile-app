@@ -9,10 +9,6 @@ export interface Radio {
   ui: "play" | "stop" | "spin";
 }
 
-const stop = async () => {
-  await TrackPlayer.reset();
-};
-
 export function useRadio(): Radio {
   const { streams, selectedIndex } = useStreams();
   const isPlaying = useIsPlaying();
@@ -32,6 +28,10 @@ export function useRadio(): Radio {
     };
   }, []);
 
+  const stop = async () => {
+    await TrackPlayer.reset();
+  };
+
   const play = async () => {
     await stop();
 
@@ -40,7 +40,7 @@ export function useRadio(): Radio {
         id: selectedIndex,
         url: streams[selectedIndex].uri,
         title: Constants.expoConfig?.name,
-        artwork: require("../../../assets/icon.png"),
+        isLiveStream: true,
       },
     ]);
 

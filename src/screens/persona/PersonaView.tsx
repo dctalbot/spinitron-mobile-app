@@ -13,7 +13,6 @@ import { AppText } from "../../ui/AppText";
 import { AppHTML } from "../../ui/AppHTML";
 import { AppListHeader } from "../../ui/AppListHeader";
 import { AppLink } from "../../ui/AppLink";
-import _ from "lodash-es";
 import { AppImage } from "../../ui/AppImage";
 
 export function PersonaView() {

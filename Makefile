@@ -1,7 +1,7 @@
 
 .PHONY: start
 start: 
-	npx expo start --tunnel --dev-client
+	npx expo start --tunnel --dev-client --no-dev --minify
 
 .PHONY: test
 test: 

@@ -1,6 +1,6 @@
 {
   "name": "spinitron-mobile-app",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "src/AppEntry.js",
   "type": "module",
   "private": true,
   "dependencies": {
@@ -31,7 +31,8 @@
     "react-native-screens": "~3.29.0",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-tab-view": "^3.5.2",
-    "react-native-track-player": "^4.1.1"
+    "react-native-track-player": "^4.1.1",
+    "expo-build-properties": "~0.11.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

@@ -5,11 +5,6 @@ import { config } from "./config";
 import { Router } from "./nav/Router";
 import { StatusBar } from "expo-status-bar";
 import "expo-dev-client";
-import TrackPlayer from "react-native-track-player";
-import { PlaybackService } from "./util/playback";
-
-TrackPlayer.registerPlaybackService(() => PlaybackService);
-TrackPlayer.setupPlayer(); // async
 
 export default function App() {
   return (
