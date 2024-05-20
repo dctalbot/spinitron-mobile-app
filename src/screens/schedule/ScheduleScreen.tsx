@@ -21,7 +21,11 @@ export function ScheduleScreen() {
           state: (e) => {
             let nextTitle = "Schedule";
             const index = get(e, "data.state.index", null);
-            const routeNames: Day[] = get(e, "data.state.routeNames", []);
+            const routeNames: Day[] = get(
+              e,
+              "data.state.routeNames",
+              [],
+            ) as Day[];
             if (index === null || routeNames.length === 0) {
               nextTitle = "Schedule";
             } else {
