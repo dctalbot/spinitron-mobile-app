@@ -3,7 +3,7 @@ start:
 	npx expo start --dev-client
 
 .PHONY: start-prod
-start: 
+start-prod: 
 	npx expo start --dev-client --no-dev --minify
 
 .PHONY: test
