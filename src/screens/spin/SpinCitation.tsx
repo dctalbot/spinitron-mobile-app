@@ -41,7 +41,9 @@ function AttrRow({ label, value }: AttrRowProps) {
 }
 
 export function getArtist(data?: SpinData): string | undefined {
-  return data?.va ? "Various Artists" : data?.["artist-custom"] ?? data?.artist;
+  return data?.va
+    ? "Various Artists"
+    : (data?.["artist-custom"] ?? data?.artist);
 }
 
 interface SpinCitationProps {
