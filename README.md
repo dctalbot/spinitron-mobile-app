@@ -14,7 +14,7 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 ## Getting Started
 
 1. Deploy a relay server to proxy requests to the Spinitron API. For example: https://github.com/wcbn/spinitron-proxy
-2. Create an [Expo](https://expo.dev/) account. They will build the app for you.
+2. Create an [Expo](https://expo.dev/) account. They will build your app distribution.
 3. Fork this repository.
 4. On the fork, update the following files to have the app match your brand:
 
@@ -22,7 +22,11 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 - `src/theme/theme.ts` (look and feel)
 - `assets/*` (brand images)
 
-5. Install the Expo CLI: `npm install -g expo-cli`
+5. Install the Expo CLI:
+
+```
+npm install -g expo-cli
+```
 
 ### Android
 
@@ -43,22 +47,4 @@ The maintenance burden mostly consists of [keeping your fork up to date](https:/
 
 ## Contributing
 
-Please run `make check` and fix any errors before opening a pull request.
-
-### Requirements
-
-- Node version specified in `.nvmrc`
-- Create an Expo account and download the app https://expo.dev/client
-
-```
-brew install watchman
-npm install -g expo-cli
-npm install
-```
-
-### Local environment setup
-
-- You may need to change the `eas.projectId` in `app.config.ts` to match the project you have set up in your account.
-- Run `make build-dev`
-- When it is ready, download the build on your phone and install it.
-- Run `make start`
+See [CONTRIBUTING.md](CONTRIBUTING.md).

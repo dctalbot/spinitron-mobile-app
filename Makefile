@@ -1,7 +1,10 @@
-
 .PHONY: start
 start: 
-	npx expo start --tunnel --dev-client --no-dev --minify
+	npx expo start --dev-client
+
+.PHONY: start-prod
+start: 
+	npx expo start --dev-client --no-dev --minify
 
 .PHONY: test
 test: 
