@@ -25,6 +25,7 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 5. Install the Expo CLI:
 
 ```
+npm install -g eas-cli
 npm install -g expo-cli
 ```
 

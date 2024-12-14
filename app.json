@@ -1,7 +1,6 @@
 {
   "expo": {
     "githubUrl": "https://github.com/dctalbot/spinitron-mobile-app",
-    "privacy": "public",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
