@@ -29,3 +29,11 @@ build-staging:
 .PHONY: build-dev
 build-dev: 
 	eas build --profile development --platform all
+
+.PHONY: build-ios-simulator
+build-ios-simulator:
+	eas build --platform ios --profile development-simulator
+
+.PHONY: start-ios-simulator
+start-ios-simulator:
+	eas build:run -p ios

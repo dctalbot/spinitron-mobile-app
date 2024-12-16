@@ -26,3 +26,12 @@ npm install
 ## Code standards
 
 Please run `make check` and fix any errors before opening a pull request.
+
+## Screenshots
+
+- Manually set the `"runtimeVersion"` in `app.json` to some a value like "52.0.17"
+
+```
+make build-ios-simulator
+make start-ios-simulator
+```
