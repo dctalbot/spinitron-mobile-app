@@ -1,10 +1,10 @@
 # spinitron-mobile-app
 
+<div style="display:inline">
 <a href="https://play.google.com/store/apps/details?id=org.wcbn"><img alt="Get it on Google Play" title="Google Play" src="docs/play-store.png" height="40"></a>
-
 <a href="https://apps.apple.com/us/app/wcbn-fm/id6497486716"><img alt="Download on the App Store" title="App Store" src="docs/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" height="40"></a>
+</div>
 
-<br />
 <br />
 
 https://github.com/dctalbot/spinitron-mobile-app/assets/17692467/a8edec13-9b7c-41f4-a914-29441b305c64
