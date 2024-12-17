@@ -4,6 +4,10 @@
   <img alt="Get it on Google Play" title="Google Play" src="docs/play-store.png" height="40">
 </a>
 
+<a href="https://apps.apple.com/us/app/wcbn-fm/id6497486716">
+  <img alt="Download on the App Store" title="App Store" src="docs/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" height="40">
+</a>
+
 <br />
 <br />
 
