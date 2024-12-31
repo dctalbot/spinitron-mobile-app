@@ -1,5 +1,6 @@
 {
   "files.exclude": {
     "**/.expo": true
-  }
+  },
+  "makefile.configureOnOpen": false
 }
