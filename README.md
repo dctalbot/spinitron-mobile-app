@@ -23,7 +23,7 @@ If you want the app but all of this feels overwhelming, you can pay me to take c
 - ✅ No risk of in-house maintainer turnover/abandonment
 - ✅ Help sustain the development of this project
 
-Otherwise, the rest of this document has instructions for how to deploy it yourself.
+Otherwise, the rest of this document has instructions for how to DIY.
 
 ## Prerequisites
 
