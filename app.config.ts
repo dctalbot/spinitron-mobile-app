@@ -56,7 +56,7 @@ export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
   description:
     "Discover new music from the student-run radio station of the University of Michigan.",
   slug: "wcbn-app",
-  version: "52.0.0",
+  version: "52.0.1",
   ios: {
     ...appJSONConfig.ios,
     bundleIdentifier: "org.wcbn",
