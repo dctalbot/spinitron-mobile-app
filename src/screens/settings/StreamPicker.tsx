@@ -17,7 +17,7 @@ export function StreamPicker() {
   return (
     <View>
       <AppText size="lg" style={{ marginBottom: spacing[4] }}>
-        Stream Options
+        Streams
       </AppText>
       <SegmentedControlTab
         values={streams.map((s) => s.text)}
