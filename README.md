@@ -11,20 +11,6 @@ https://github.com/dctalbot/spinitron-mobile-app/assets/17692467/a8edec13-9b7c-4
 
 This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN, the college station where I used to DJ, but any station backed by [Spinitron](https://spinitron.com/) can take it "off the shelf" and have it deployed with minimal effort.
 
-## As a service
-
-If you want the app but all of this feels overwhelming, you can pay me to take care of it. Email [dc4t@pm.me](mailto:dc4t@pm.me) and we can set up some time to chat about your needs. This service includes:
-
-- ✅ A hosted relay server
-- ✅ Basic branding and customization
-- ✅ App store presence (screenshots, icons, descriptions, etc.)
-- ✅ Regular updates
-- ✅ Mentorship hours for students and support hours for general staff
-- ✅ No risk of in-house maintainer turnover/abandonment
-- ✅ Help sustain the development of this project
-
-Otherwise, the rest of this document has instructions for how to DIY.
-
 ## Prerequisites
 
 1. A [spinitron-proxy](https://github.com/wcbn/spinitron-proxy) deployment. This serves as a relay between the app and the Spinitron API.
@@ -65,6 +51,17 @@ npm install -g expo-cli
 ### It's deployed... what now?
 
 The maintenance burden mostly consists of [keeping your fork up to date](https://gist.github.com/CristinaSolana/1885435) with any bug fixes that I commit to this repository. The expected release cadence is about once every 6 months.
+
+## As a service
+
+If you want the app but all of this feels overwhelming, you can pay me to take care of it. Email [dc4t@pm.me](mailto:dc4t@pm.me) and we can set up some time to chat about your needs. This service includes:
+
+- ✅ A hosted relay server
+- ✅ Basic branding and customization
+- ✅ App store presence (screenshots, icons, descriptions, etc.)
+- ✅ Regular updates and maintenance
+- ✅ Mentorship hours for students and support hours for general staff
+- ✅ Help sustain the development of this project
 
 ## Related Projects
 
