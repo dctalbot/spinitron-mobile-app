@@ -90,7 +90,6 @@ export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
   description: extra.description,
   slug: extra.slug,
   version: "52.0.0",
-  sdkVersion: "52.0.0",
   ios: {
     supportsTablet: true,
     infoPlist: { UIBackgroundModes: ["audio"] },
