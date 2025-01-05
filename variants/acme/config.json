@@ -1,0 +1,47 @@
+{
+  "name": "ACME-FM",
+  "description": "Discover new music.",
+  "slug": "ACME-app",
+  "ios": { "bundleIdentifier": "org.ACME" },
+  "android": {
+    "package": "org.ACME",
+    "playStoreUrl": "https://example.com"
+  },
+  "api": {
+    "url": "https://example.com"
+  },
+  "donate": {
+    "text": "Give to ACME",
+    "url": "https://example.com"
+  },
+  "phone": {
+    "text": "Studio request line",
+    "numberFormatted": "(734) 867-5309",
+    "numberRaw": "7348675309"
+  },
+  "chat": {
+    "text": "Message the DJ",
+    "url": "https://example.com"
+  },
+  "streams": [
+    {
+      "text": "Low",
+      "bitrate": "64 kbps",
+      "uri": "http://example.com/ACME-mid.mp3",
+      "default": false
+    }
+  ],
+  "share": {
+    "text": "Share on social media",
+    "message": "I'm listening to ACME-FM!"
+  },
+  "review": {
+    "text": "Write a review!"
+  },
+  "eas": {
+    "projectId": "555d9750-164f-11e9-8b84-313f96953444"
+  },
+  "updates": {
+    "url": "https://u.expo.dev/555d9750-164f-11e9-8b84-313f96953444"
+  }
+}
