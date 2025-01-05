@@ -2,7 +2,7 @@
 
 <div style="display:inline">
 <a href="https://play.google.com/store/apps/details?id=org.wcbn"><img alt="Get it on Google Play" title="Google Play" src="docs/play-store.png" height="40"></a>
-<a href="https://apps.apple.com/us/app/wcbn-fm/id6497486716"><img alt="Download on the App Store" title="App Store" src="docs/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" height="40"></a>
+<a href="https://apps.apple.com/us/app/wcbn-fm/id6497486716"><img alt="Download on the App Store" title="App Store" src="docs/app-store.svg" height="40"></a>
 </div>
 
 <br />
@@ -43,7 +43,7 @@ npm install -g expo-cli
 ### iOS
 
 1. Create a new app project in the Apple Developer Console.
-1. Set `"runtimeVersion": "exposdk:52.0.17"`, in `app.json` (?)
+1. Set `"runtimeVersion": "exposdk:52.0.17"`, in `app.config.ts` (?)
 1. Run `eas build -p ios`
 1. Download the build from Expo
 1. Upload the build to Apple

@@ -1,6 +1,16 @@
 import { ExpoConfig, ConfigContext } from "expo/config";
+import { VariantConfig } from "./src/types/types";
 
-const extra: AppExtra = {
+const extra: VariantConfig = {
+  name: "WCBN-FM Ann Arbor",
+  description:
+    "Discover new music from the student-run radio station of the University of Michigan.",
+  slug: "wcbn-app",
+  ios: { bundleIdentifier: "org.wcbn" },
+  android: {
+    package: "org.wcbn",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=org.wcbn",
+  },
   api: {
     url: "https://spinitron-proxy.d08jp15rftr3s.us-east-2.cs.amazonlightsail.com/api",
   },
@@ -47,27 +57,60 @@ const extra: AppExtra = {
   eas: {
     projectId: "f8dd9750-164f-11e9-8b84-313f96953860",
   },
+  updates: {
+    url: "https://u.expo.dev/f8dd9750-164f-11e9-8b84-313f96953860",
+  },
 } as const;
 
-export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
-  ...appJSONConfig,
+export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
+  ...baseConfig,
+  githubUrl: "https://github.com/dctalbot/spinitron-mobile-app",
+  orientation: "portrait",
+  icon: "./assets/icon.png",
+  userInterfaceStyle: "automatic",
+  splash: {
+    image: "./assets/splash/default.png",
+    resizeMode: "contain",
+    backgroundColor: "#212733",
+  },
+  assetBundlePatterns: ["**/*"],
+  platforms: ["android", "ios"],
+  runtimeVersion: { policy: "appVersion" },
+  plugins: [
+    [
+      "expo-build-properties",
+      {
+        android: {
+          usesCleartextTraffic: true,
+        },
+      },
+    ],
+  ],
   extra,
-  name: "WCBN-FM Ann Arbor",
-  description:
-    "Discover new music from the student-run radio station of the University of Michigan.",
-  slug: "wcbn-app",
+  name: extra.name,
+  description: extra.description,
+  slug: extra.slug,
   version: "52.0.0",
   ios: {
-    ...appJSONConfig.ios,
-    bundleIdentifier: "org.wcbn",
+    supportsTablet: true,
+    infoPlist: { UIBackgroundModes: ["audio"] },
+    ...extra.ios,
   },
   android: {
-    ...appJSONConfig.android,
-    package: "org.wcbn",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=org.wcbn",
+    splash: {
+      backgroundColor: "#212733",
+      resizeMode: "contain",
+      mdpi: "./assets/splash/mdpi.png",
+      hdpi: "./assets/splash/hdpi.png",
+      xhdpi: "./assets/splash/xhdpi.png",
+      xxhdpi: "./assets/splash/xxhdpi.png",
+      xxxhdpi: "./assets/splash/xxxhdpi.png",
+    },
+    permissions: [],
+    ...extra.android,
   },
   updates: {
-    ...appJSONConfig.updates,
-    url: "https://u.expo.dev/f8dd9750-164f-11e9-8b84-313f96953860",
+    fallbackToCacheTimeout: 0,
+    ...extra.updates,
   },
 });
