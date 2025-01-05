@@ -62,7 +62,8 @@ const extra: VariantConfig = {
   },
 } as const;
 
-export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
+export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
+  ...baseConfig,
   githubUrl: "https://github.com/dctalbot/spinitron-mobile-app",
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -112,6 +113,4 @@ export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
     fallbackToCacheTimeout: 0,
     ...extra.updates,
   },
-  // _internal
-  // [Symbol("non-standard")]: true,
 });
