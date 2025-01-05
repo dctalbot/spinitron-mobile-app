@@ -35,3 +35,8 @@ Please run `make check` and fix any errors before opening a pull request.
 make build-ios-simulator
 make start-ios-simulator
 ```
+
+## Privacy Policies
+
+- Make a change in `scripts/PRIVACY_template.md`
+- Run `make privacy-policies`
