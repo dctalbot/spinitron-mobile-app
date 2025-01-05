@@ -1,6 +1,16 @@
 import { ExpoConfig, ConfigContext } from "expo/config";
+import { VariantConfig } from "./src/types/types";
 
-const extra: AppExtra = {
+const extra: VariantConfig = {
+  name: "WCBN-FM Ann Arbor",
+  description:
+    "Discover new music from the student-run radio station of the University of Michigan.",
+  slug: "wcbn-app",
+  ios: { bundleIdentifier: "org.wcbn" },
+  android: {
+    package: "org.wcbn",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=org.wcbn",
+  },
   api: {
     url: "https://spinitron-proxy.d08jp15rftr3s.us-east-2.cs.amazonlightsail.com/api",
   },
@@ -47,6 +57,9 @@ const extra: AppExtra = {
   eas: {
     projectId: "f8dd9750-164f-11e9-8b84-313f96953860",
   },
+  updates: {
+    url: "https://u.expo.dev/f8dd9750-164f-11e9-8b84-313f96953860",
+  },
 } as const;
 
 export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
@@ -72,17 +85,16 @@ export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
       },
     ],
   ],
-  sdkVersion: "52.0.0",
   extra,
-  name: "WCBN-FM Ann Arbor",
-  description:
-    "Discover new music from the student-run radio station of the University of Michigan.",
-  slug: "wcbn-app",
+  name: extra.name,
+  description: extra.description,
+  slug: extra.slug,
   version: "52.0.0",
+  sdkVersion: "52.0.0",
   ios: {
     supportsTablet: true,
     infoPlist: { UIBackgroundModes: ["audio"] },
-    bundleIdentifier: "org.wcbn",
+    ...extra.ios,
   },
   android: {
     splash: {
@@ -95,12 +107,11 @@ export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
       xxxhdpi: "./assets/splash/xxxhdpi.png",
     },
     permissions: [],
-    package: "org.wcbn",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=org.wcbn",
+    ...extra.android,
   },
   updates: {
     fallbackToCacheTimeout: 0,
-    url: "https://u.expo.dev/f8dd9750-164f-11e9-8b84-313f96953860",
+    ...extra.updates,
   },
   // _internal
   // [Symbol("non-standard")]: true,

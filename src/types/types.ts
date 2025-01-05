@@ -1,4 +1,6 @@
-interface AppExtra extends Record<string, unknown> {
+import { ExpoConfig } from "expo/config";
+
+export interface VariantConfig extends Record<string, unknown> {
   api: {
     url: string;
   };
@@ -28,4 +30,10 @@ interface AppExtra extends Record<string, unknown> {
   review?: {
     text: string;
   };
+  name: string;
+  description: string;
+  slug: string;
+  ios: Partial<ExpoConfig["ios"]>;
+  android: Partial<ExpoConfig["android"]>;
+  updates: Partial<ExpoConfig["updates"]>;
 }
