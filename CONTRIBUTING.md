@@ -29,7 +29,7 @@ Please run `make check` and fix any errors before opening a pull request.
 
 ## Screenshots
 
-- Manually set the `"runtimeVersion"` in `app.json` to some a value like "52.0.17"
+- Manually set the `"runtimeVersion"` in `app.config.ts` to some a value like "52.0.17"
 
 ```
 make build-ios-simulator

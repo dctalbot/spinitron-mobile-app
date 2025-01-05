@@ -50,7 +50,29 @@ const extra: AppExtra = {
 } as const;
 
 export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
-  ...appJSONConfig,
+  githubUrl: "https://github.com/dctalbot/spinitron-mobile-app",
+  orientation: "portrait",
+  icon: "./assets/icon.png",
+  userInterfaceStyle: "automatic",
+  splash: {
+    image: "./assets/splash/default.png",
+    resizeMode: "contain",
+    backgroundColor: "#212733",
+  },
+  assetBundlePatterns: ["**/*"],
+  platforms: ["android", "ios"],
+  runtimeVersion: { policy: "appVersion" },
+  plugins: [
+    [
+      "expo-build-properties",
+      {
+        android: {
+          usesCleartextTraffic: true,
+        },
+      },
+    ],
+  ],
+  sdkVersion: "52.0.0",
   extra,
   name: "WCBN-FM Ann Arbor",
   description:
@@ -58,16 +80,28 @@ export default ({ config: appJSONConfig }: ConfigContext): ExpoConfig => ({
   slug: "wcbn-app",
   version: "52.0.0",
   ios: {
-    ...appJSONConfig.ios,
+    supportsTablet: true,
+    infoPlist: { UIBackgroundModes: ["audio"] },
     bundleIdentifier: "org.wcbn",
   },
   android: {
-    ...appJSONConfig.android,
+    splash: {
+      backgroundColor: "#212733",
+      resizeMode: "contain",
+      mdpi: "./assets/splash/mdpi.png",
+      hdpi: "./assets/splash/hdpi.png",
+      xhdpi: "./assets/splash/xhdpi.png",
+      xxhdpi: "./assets/splash/xxhdpi.png",
+      xxxhdpi: "./assets/splash/xxxhdpi.png",
+    },
+    permissions: [],
     package: "org.wcbn",
     playStoreUrl: "https://play.google.com/store/apps/details?id=org.wcbn",
   },
   updates: {
-    ...appJSONConfig.updates,
+    fallbackToCacheTimeout: 0,
     url: "https://u.expo.dev/f8dd9750-164f-11e9-8b84-313f96953860",
   },
+  // _internal
+  // [Symbol("non-standard")]: true,
 });

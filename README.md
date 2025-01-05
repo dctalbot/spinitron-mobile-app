@@ -43,7 +43,7 @@ npm install -g expo-cli
 ### iOS
 
 1. Create a new app project in the Apple Developer Console.
-1. Set `"runtimeVersion": "exposdk:52.0.17"`, in `app.json` (?)
+1. Set `"runtimeVersion": "exposdk:52.0.17"`, in `app.config.ts` (?)
 1. Run `eas build -p ios`
 1. Download the build from Expo
 1. Upload the build to Apple
