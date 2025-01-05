@@ -27,11 +27,17 @@ npm install -g expo-cli
 ## Getting Started
 
 1. Fork this repository.
-2. On the fork, update the following files to have the app match your brand:
+2. On the fork, create a folder under `variants`.
+3. Create the following files in this folder to have the app match your brand. Use `variants/acme` as a reference:
 
-- `app.config.ts` (settings and options)
-- `src/theme/theme.ts` (look and feel)
-- `assets/*` (brand images)
+- `config.json`
+- `assets/icon.png`
+- `assets/splash/xxhdpi.png`
+- `assets/splash/mdpi.png`
+- `assets/splash/xhdpi.png`
+- `assets/splash/hdpi.png`
+- `assets/splash/default.png`
+- `assets/splash/xxxhdpi.png`
 
 ### Android
 

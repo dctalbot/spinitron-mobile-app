@@ -7,24 +7,22 @@ if (!process.env.VARIANT_DIRNAME) {
   throw new Error("VARIANT_DIRNAME not set");
 }
 
-const customConfigPath = path.join(
-  "variants",
-  process.env.VARIANT_DIRNAME,
-  "config.json",
-);
+const variantDirPath = path.join("variants", process.env.VARIANT_DIRNAME);
+const variantConfigPath = path.join(variantDirPath, "config.json");
+const variantAssetsPath = path.join(variantDirPath, "assets");
 
 const extra: VariantConfig = JSON.parse(
-  fs.readFileSync(customConfigPath, "utf8"),
+  fs.readFileSync(variantConfigPath, "utf8"),
 );
 
 export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   ...baseConfig,
   githubUrl: "https://github.com/dctalbot/spinitron-mobile-app",
   orientation: "portrait",
-  icon: "./assets/icon.png",
+  icon: `${variantAssetsPath}/icon.png`,
   userInterfaceStyle: "automatic",
   splash: {
-    image: "./assets/splash/default.png",
+    image: `${variantAssetsPath}/splash/default.png`,
     resizeMode: "contain",
     backgroundColor: "#212733",
   },
@@ -55,11 +53,11 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
     splash: {
       backgroundColor: "#212733",
       resizeMode: "contain",
-      mdpi: "./assets/splash/mdpi.png",
-      hdpi: "./assets/splash/hdpi.png",
-      xhdpi: "./assets/splash/xhdpi.png",
-      xxhdpi: "./assets/splash/xxhdpi.png",
-      xxxhdpi: "./assets/splash/xxxhdpi.png",
+      mdpi: `${variantAssetsPath}/splash/mdpi.png`,
+      hdpi: `${variantAssetsPath}/splash/hdpi.png`,
+      xhdpi: `${variantAssetsPath}/splash/xhdpi.png`,
+      xxhdpi: `${variantAssetsPath}/splash/xxhdpi.png`,
+      xxxhdpi: `${variantAssetsPath}/splash/xxxhdpi.png`,
     },
     permissions: [],
     ...extra.android,
