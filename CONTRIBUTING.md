@@ -17,7 +17,6 @@ npm install
 
 ## Local environment setup
 
-- You may need to change the `eas.projectId` in `app.config.ts` to match the project you have set up in your account.
 - Run `make build-dev`
 - When it is ready, download the build on your phone and install it.
 - Run `make start`

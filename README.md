@@ -28,7 +28,7 @@ npm install -g expo-cli
 
 1. Fork this repository.
 2. On the fork, create a folder under `variants`.
-3. Create the following files in this folder to have the app match your brand. Use `variants/acme` as a reference:
+3. Create the following files in this folder to have the app match your brand. See `variants/acme` for an example:
 
 - `config.json`
 - `assets/icon.png`
@@ -39,10 +39,12 @@ npm install -g expo-cli
 - `assets/splash/default.png`
 - `assets/splash/xxxhdpi.png`
 
+By default, the build process uses the `acme` variant. To use your variant, set the `APP_VARIANT` environment variable to the name of the folder you created.
+
 ### Android
 
 1. Create a new android project in the Google Play Developer Console.
-1. Run `eas build -p android`
+1. Run `APP_VARIANT=foo eas build -p android`
 1. Download the build from Expo
 1. Upload the build to Google Play
 
@@ -50,7 +52,7 @@ npm install -g expo-cli
 
 1. Create a new app project in the Apple Developer Console.
 1. Set `"runtimeVersion": "exposdk:52.0.17"`, in `app.config.ts` (?)
-1. Run `eas build -p ios`
+1. Run `APP_VARIANT=foo eas build -p ios`
 1. Download the build from Expo
 1. Upload the build to Apple
 

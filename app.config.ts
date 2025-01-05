@@ -3,11 +3,8 @@ import path from "path";
 import { ExpoConfig, ConfigContext } from "expo/config";
 import { VariantConfig } from "./src/types/types";
 
-if (!process.env.VARIANT_DIRNAME) {
-  throw new Error("VARIANT_DIRNAME not set");
-}
-
-const variantDirPath = path.join("variants", process.env.VARIANT_DIRNAME);
+const APP_VARIANT = process.env.APP_VARIANT || "acme";
+const variantDirPath = path.join("variants", APP_VARIANT);
 const variantConfigPath = path.join(variantDirPath, "config.json");
 const variantAssetsPath = path.join(variantDirPath, "assets");
 
