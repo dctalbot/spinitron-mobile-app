@@ -37,3 +37,12 @@ build-ios-simulator:
 .PHONY: start-ios-simulator
 start-ios-simulator:
 	eas build:run -p ios
+
+# PRIVACY_FILES := $(shell find variants -name PRIVACY.md)
+
+# .PHONY: privacy-policies
+# privacy-policies: $(PRIVACY_FILES)
+
+.PHONY: privacy-policies
+privacy-policies:
+	./node_modules/.bin/vite-node scripts/build.ts
