@@ -5,7 +5,11 @@ import { VariantConfig } from "./src/types/types";
 
 const APP_VARIANT = process.env.APP_VARIANT || "acme";
 const variantDirPath = path.join("variants", APP_VARIANT);
-const variantConfigPath = path.join(variantDirPath, "config.json");
+const variantConfigPath = path.resolve(
+  __dirname,
+  variantDirPath,
+  "config.json",
+);
 const variantAssetsPath = path.join(variantDirPath, "assets");
 
 const extra: VariantConfig = JSON.parse(
