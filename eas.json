@@ -25,6 +25,11 @@
     "production": {
       "autoIncrement": true,
       "channel": "production"
+    },
+    "production-wcbn": {
+      "env": {
+        "APP_VARIANT": "wcbn"
+      }
     }
   },
   "submit": {
