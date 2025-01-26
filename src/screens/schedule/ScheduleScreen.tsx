@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import * as React from "react";
 import { get } from "lodash-es";
-import { DAYS, Day, getToday } from "../../util/time";
+import { DAYS, getToday } from "../../util/time";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { ScheduleTab } from "./ScheduleTab";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +21,7 @@ export function ScheduleScreen() {
           state: (e) => {
             let nextTitle = "Schedule";
             const index = get(e, "data.state.index", null);
-            const routeNames: Day[] = get(e, "data.state.routeNames", []);
+            const routeNames = get(e, "data.state.routeNames", []);
             if (index === null || routeNames.length === 0) {
               nextTitle = "Schedule";
             } else {
