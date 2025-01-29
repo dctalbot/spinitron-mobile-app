@@ -31,7 +31,8 @@
     "react-native-screens": "~4.4.0",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-tab-view": "^4.0.5",
-    "react-native-track-player": "^4.1.1"
+    "react-native-track-player": "^4.1.1",
+    "expo-splash-screen": "~0.29.21"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
