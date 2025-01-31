@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, ViewProps } from "react-native"; // eslint-disable-line no-restricted-imports
+import { View, ViewProps } from "react-native";
 import { spacing } from "../theme/theme";
 
 export function AppScreen(props: ViewProps) {
