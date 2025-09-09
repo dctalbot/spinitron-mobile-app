@@ -64,6 +64,7 @@ const extra: VariantConfig = {
 
 export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   ...baseConfig,
+  newArchEnabled: false,
   githubUrl: "https://github.com/dctalbot/spinitron-mobile-app",
   orientation: "portrait",
   icon: "./assets/icon.png",
