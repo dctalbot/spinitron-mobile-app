@@ -32,7 +32,7 @@
     "react-native-screens": "~4.11.1",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-tab-view": "^4.1.3",
-    "react-native-track-player": "^4.1.1"
+    "react-native-track-player": "5.0.0-alpha0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",
