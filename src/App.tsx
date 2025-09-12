@@ -5,8 +5,10 @@ import { config } from "./config";
 import { Router } from "./nav/Router";
 import { StatusBar } from "expo-status-bar";
 import "expo-dev-client";
+import { useTheme } from "./theme/useTheme";
 
 export default function App() {
+  const theme = useTheme();
   return (
     <ApiClientProvider
       baseURL={config.api.url}
@@ -16,7 +18,11 @@ export default function App() {
         });
       }}
     >
-      <StatusBar style="auto" />
+      <StatusBar
+        style="auto"
+        translucent={false}
+        backgroundColor={theme.colors.card}
+      />
       <Router />
     </ApiClientProvider>
   );
