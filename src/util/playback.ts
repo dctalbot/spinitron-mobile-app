@@ -9,6 +9,5 @@ export const PlaybackService = async function () {
   TrackPlayer.updateOptions({
     capabilities,
     notificationCapabilities: capabilities,
-    compactCapabilities: capabilities,
   });
 };

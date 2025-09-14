@@ -99,7 +99,10 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   version: "52.1.0",
   ios: {
     supportsTablet: true,
-    infoPlist: { UIBackgroundModes: ["audio"] },
+    infoPlist: {
+      UIBackgroundModes: ["audio"],
+      ITSAppUsesNonExemptEncryption: false,
+    },
     ...extra.ios,
   },
   android: {
