@@ -1,9 +1,9 @@
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import * as React from "react";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import { useShow } from "@dctalbot/react-spinitron";
-import { StackNav, StackRoute } from "../../nav/types";
+import { StackRoute } from "../../nav/types";
 import { getResourceID } from "@dctalbot/react-spinitron";
 import { PersonaPreview } from "./PersonaPreview";
 import { PlaylistList } from "./PlaylistList";
@@ -17,10 +17,8 @@ import { MAX_COUNT } from "@dctalbot/react-spinitron";
 import { AppLink } from "../../ui/AppLink";
 
 function ShowScreen() {
-  const nav = useNavigation<StackNav>();
   const route = useRoute<StackRoute<"Show">>();
   const id = route?.params?.id ?? 0;
-  const title = route?.params?.title ?? "";
   const width = useContentWidth();
 
   const { isPending, error, data } = useShow({ id });
@@ -34,12 +32,6 @@ function ShowScreen() {
     () => (data?.description ?? "").trim(),
     [data?.description],
   );
-
-  React.useEffect(() => {
-    if (title) {
-      nav.setOptions({ title });
-    }
-  }, [title]);
 
   if (isPending)
     return (

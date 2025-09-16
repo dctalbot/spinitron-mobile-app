@@ -12,7 +12,7 @@ export interface Radio {
 export function useRadio(): Radio {
   const { streams, selectedIndex } = useStreams();
   const isPlaying = useIsPlaying();
-  let ui: Radio["ui"] = "spin";
+  let ui: Radio["ui"] = "play";
 
   if (isPlaying.bufferingDuringPlay === true) {
     ui = "spin";

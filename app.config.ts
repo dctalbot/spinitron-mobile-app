@@ -64,6 +64,7 @@ const extra: VariantConfig = {
 
 export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   ...baseConfig,
+  newArchEnabled: true,
   githubUrl: "https://github.com/dctalbot/spinitron-mobile-app",
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -96,10 +97,13 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   name: extra.name,
   description: extra.description,
   slug: extra.slug,
-  version: "52.1.0",
+  version: "53.0.0",
   ios: {
     supportsTablet: true,
-    infoPlist: { UIBackgroundModes: ["audio"] },
+    infoPlist: {
+      UIBackgroundModes: ["audio"],
+      ITSAppUsesNonExemptEncryption: false,
+    },
     ...extra.ios,
   },
   android: {

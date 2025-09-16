@@ -47,10 +47,18 @@ export function Router() {
       <Stack.Screen
         name="Persona"
         component={PersonaView}
-        options={{ headerTitle: undefined }}
+        options={{ title: "" }}
       />
-      <Stack.Screen name="Shows" component={ScheduleScreen} />
-      <Stack.Screen name="Show" component={ShowScreen} />
+      <Stack.Screen
+        name="Shows"
+        component={ScheduleScreen}
+        options={{ headerShadowVisible: false }}
+      />
+      <Stack.Screen
+        name="Show"
+        component={ShowScreen}
+        options={{ title: "" }}
+      />
       <Stack.Screen
         name="Radio"
         component={RadioScreen}
