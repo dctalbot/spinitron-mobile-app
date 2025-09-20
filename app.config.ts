@@ -6,7 +6,10 @@ const extra: VariantConfig = {
   description:
     "Discover new music from the student-run radio station of the University of Michigan.",
   slug: "wcbn-app",
-  ios: { bundleIdentifier: "org.wcbn" },
+  ios: {
+    bundleIdentifier: "org.wcbn",
+    appStoreUrl: "https://apps.apple.com/app/apple-store/id6497486716",
+  },
   android: {
     package: "org.wcbn",
     playStoreUrl: "https://play.google.com/store/apps/details?id=org.wcbn",
