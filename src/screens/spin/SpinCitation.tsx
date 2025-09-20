@@ -78,7 +78,10 @@ export function SpinCitation(props: SpinCitationProps) {
       <AttrRow label="Year" value={data?.released} />
 
       <AttrRow label="Composition" value={data?.work} />
-      <AttrRow label="Composer" value={data?.composer} />
+      <AttrRow
+        label="Composer"
+        value={artistValue === data?.composer ? null : data?.composer}
+      />
       <AttrRow label="Conductor" value={data?.conductor} />
       <AttrRow label="Performers" value={data?.performers} />
       <AttrRow label="Ensemble" value={data?.ensemble} />
