@@ -61,9 +61,9 @@ export function RadioScreen() {
     <View
       style={{
         flex: 1,
+        display: "flex",
         flexDirection: "column",
         padding: spacing[12],
-        gap: spacing[12],
       }}
     >
       <View
@@ -78,9 +78,13 @@ export function RadioScreen() {
 
       <View
         style={{
-          flex: 2,
+          flexGrow: 1,
+          flexShrink: 1,
           alignItems: "center",
           justifyContent: "center",
+          flexDirection: "row",
+          paddingTop: spacing[6],
+          paddingBottom: spacing[6],
         }}
       >
         <SongArt source={song?.image} />
@@ -88,10 +92,12 @@ export function RadioScreen() {
 
       <ScrollView
         style={{
-          flexShrink: 1,
-          flexGrow: 0,
+          flex: 1,
           maxWidth: "100%",
+          minHeight: 150,
           maxHeight: windowHeight / 5,
+          paddingTop: spacing[6],
+          paddingBottom: spacing[6],
         }}
       >
         <SpinCitation id={song?.id ?? 0} />

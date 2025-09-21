@@ -100,7 +100,7 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   name: extra.name,
   description: extra.description,
   slug: extra.slug,
-  version: "53.0.0",
+  version: "53.1.0",
   ios: {
     supportsTablet: true,
     infoPlist: {
