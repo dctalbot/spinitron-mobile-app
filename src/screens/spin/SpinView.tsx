@@ -1,4 +1,9 @@
-import { ActivityIndicator, ScrollView, View } from "react-native";
+import {
+  ActivityIndicator,
+  ScrollView,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -16,6 +21,7 @@ function SpinView() {
   const route = useRoute<StackRoute<"Spin">>();
   const id: number = route?.params?.id ?? 0;
   const song: string = route?.params?.song ?? "";
+  const windowHeight = useWindowDimensions().height;
 
   React.useEffect(() => {
     if (song) {
@@ -52,6 +58,7 @@ function SpinView() {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          maxHeight: windowHeight / 2,
         }}
       >
         <SongArt source={data?.image} />
