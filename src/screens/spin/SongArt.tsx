@@ -7,7 +7,9 @@ import { spacing } from "../../theme/theme";
 export function SongArt(props: Partial<AppImageProps>) {
   // for album art, size can be a rough appx
   // for fallback icons, size is literal (no content fit)
-  const size = useWindowDimensions().width - spacing[64];
+  const maxHeight = useWindowDimensions().height / 2 - spacing[12];
+  const maxWidth = useWindowDimensions().width - spacing[64];
+  const size = Math.min(maxHeight, maxWidth);
 
   return (
     <AppImage
