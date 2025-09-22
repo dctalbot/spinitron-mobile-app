@@ -5,7 +5,11 @@ no_bundle = true
 
 [build]
 cwd = "cloudflare-worker"
+watch_dir = "cloudflare-worker"
 # command = "npx wrangler deploy main.js --no-bundle"
+
+# deploy command npx wrangler deploy main.js --no-bundle
+# path: cloudflare-worker
 
 # [triggers]
 # crons = []
