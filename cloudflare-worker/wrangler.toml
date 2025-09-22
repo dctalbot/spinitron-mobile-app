@@ -1,9 +1,11 @@
 name = "spinitron-mobile-app-cloudflare-worker"
 main = "cloudflare-worker/main.js"
 compatibility_date = "2025-09-21"
+no_bundle = true
 
-# [build]
-# command = "npx wrangler deploy cloudflare-worker/main.js --no-bundle"
+[build]
+cwd = "cloudflare-worker"
+# command = "npx wrangler deploy main.js --no-bundle"
 
 # [triggers]
 # crons = []
