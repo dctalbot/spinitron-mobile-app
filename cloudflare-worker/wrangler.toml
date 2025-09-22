@@ -6,16 +6,7 @@ no_bundle = true
 [build]
 cwd = "cloudflare-worker"
 watch_dir = "cloudflare-worker"
-# command = "npx wrangler deploy main.js --no-bundle"
 
-# deploy command npx wrangler deploy main.js --no-bundle
+#### Cloudflare Workers UI settings ####
+# deploy command: npx wrangler deploy main.js --no-bundle
 # path: cloudflare-worker
-
-# [triggers]
-# crons = []
-
-# [env.production]
-# Add production-specific settings here
-
-# route = { pattern = "example.org/*", zone_name = "example.org" }
-# kv_namespaces = [{ binding = "<MY_NAMESPACE>", id = "<KV_ID>" }]
