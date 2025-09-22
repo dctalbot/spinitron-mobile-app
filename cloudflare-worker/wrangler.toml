@@ -2,12 +2,8 @@ name = "spinitron-mobile-app-cloudflare-worker"
 main = "cloudflare-worker/main.js"
 compatibility_date = "2025-09-21"
 
-# Set to skip dependency install during deploy
-[vars]
-SKIP_DEPENDENCY_INSTALL = true
-
-# [build]
-# command = ""
+[build]
+command = "npx wrangler deploy cloudflare-worker/main.js --no-bundle"
 
 # [triggers]
 # crons = []
