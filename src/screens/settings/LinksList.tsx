@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { View, Linking, Share } from "react-native";
-import * as StoreReview from "expo-store-review";
+import React from "react";
+import { View, Linking, Share, Platform } from "react-native";
+import Constants from "expo-constants";
 import { config } from "../../config";
 
 import { TouchableOpacity, GestureResponderEvent } from "react-native";
@@ -41,16 +41,22 @@ export function Link(props: LinkProps) {
   );
 }
 
-export const LinksList = () => {
-  const [canRequestReview, setCanRequestReview] = useState(true);
+function getReviewURL(): string | null {
+  const androidPackage = Constants.expoConfig?.android?.package || "";
+  const iosAppStoreUrl = Constants.expoConfig?.ios?.appStoreUrl || "";
+  const iosItemId = iosAppStoreUrl.match(/\d+$/)?.[0] || "";
 
-  useEffect(() => {
-    const doAsync = async () => {
-      const hasAction = await StoreReview.hasAction();
-      setCanRequestReview(hasAction);
-    };
-    doAsync();
-  }, []);
+  if (Platform.OS === "android" && androidPackage) {
+    return `market://details?id=${androidPackage}&showAllReviews=true`;
+  }
+  if (["ios", "macos"].includes(Platform.OS) && iosItemId) {
+    return `itms-apps://itunes.apple.com/app/viewContentsUserReviews/id${iosItemId}?action=write-review`;
+  }
+  return null;
+}
+
+export const LinksList = () => {
+  let reviewURL = getReviewURL();
 
   return (
     <View>
@@ -79,9 +85,9 @@ export const LinksList = () => {
           icon={"share-outline"}
         />
       )}
-      {config.review && canRequestReview && (
+      {config.review && reviewURL && (
         <Link
-          onPress={() => StoreReview.requestReview()}
+          onPress={() => Linking.openURL(reviewURL)}
           text={config.review.text}
           icon={"thumbs-up"}
         />

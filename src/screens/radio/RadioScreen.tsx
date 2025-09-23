@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   ScrollView,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { AppIcon } from "../../ui/AppIcon";
@@ -22,6 +23,7 @@ const PLAY_SIZE = 60;
 
 export function RadioScreen() {
   const theme = useTheme();
+  const windowHeight = useWindowDimensions().height;
   const { data: qData } = useSpins(
     { count: 1, page: 1 },
     { refetchInterval: POLL_INTERVAL },
@@ -59,45 +61,62 @@ export function RadioScreen() {
     <View
       style={{
         flex: 1,
+        display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         padding: spacing[12],
       }}
     >
-      <View style={{ rowGap: spacing[12] }}>
-        <View>
-          <ShowLink id={playlistData?.show_id ?? 0} />
-          <PersonaLink id={playlistData?.persona_id ?? 0} />
-        </View>
-
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <SongArt source={song?.image} />
-        </View>
+      <View
+        style={{
+          flexShrink: 1,
+          flexGrow: 0,
+        }}
+      >
+        <ShowLink id={playlistData?.show_id ?? 0} />
+        <PersonaLink id={playlistData?.persona_id ?? 0} />
       </View>
 
-      <View style={{ flexShrink: 1, flexGrow: 1 }}>
-        <ScrollView
-          style={{
-            marginVertical: spacing[12],
-          }}
-        >
+      <View
+        style={{
+          flexGrow: 1,
+          flexShrink: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "row",
+          paddingTop: spacing[6],
+          paddingBottom: spacing[6],
+          maxHeight: windowHeight / 2,
+        }}
+      >
+        <SongArt source={song?.image} />
+      </View>
+
+      <View
+        style={{
+          flexGrow: 1,
+          minHeight: 80,
+          maxHeight: windowHeight / 5,
+          paddingTop: spacing[6],
+          paddingBottom: spacing[6],
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ScrollView>
           <SpinCitation id={song?.id ?? 0} />
         </ScrollView>
+      </View>
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
-        >
-          {r.ui === "spin" ? loader : playPause}
-        </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {r.ui === "spin" ? loader : playPause}
       </View>
     </View>
   );

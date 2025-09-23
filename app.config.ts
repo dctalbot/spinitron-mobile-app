@@ -6,7 +6,10 @@ const extra: VariantConfig = {
   description:
     "Discover new music from the student-run radio station of the University of Michigan.",
   slug: "wcbn-app",
-  ios: { bundleIdentifier: "org.wcbn" },
+  ios: {
+    bundleIdentifier: "org.wcbn",
+    appStoreUrl: "https://apps.apple.com/app/apple-store/id6497486716",
+  },
   android: {
     package: "org.wcbn",
     playStoreUrl: "https://play.google.com/store/apps/details?id=org.wcbn",
@@ -97,7 +100,7 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   name: extra.name,
   description: extra.description,
   slug: extra.slug,
-  version: "53.0.0",
+  version: "53.1.0",
   ios: {
     supportsTablet: true,
     infoPlist: {
