@@ -57,7 +57,6 @@ function PersonasView() {
             </View>
           </TouchableOpacity>
         )}
-        estimatedItemSize={50}
         onEndReached={() => fetchNextPage()}
         ListFooterComponent={() => {
           return (

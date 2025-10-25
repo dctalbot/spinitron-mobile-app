@@ -95,6 +95,7 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
         imageWidth: 200,
       },
     ],
+    ["expo-font"],
   ],
   extra,
   name: extra.name,

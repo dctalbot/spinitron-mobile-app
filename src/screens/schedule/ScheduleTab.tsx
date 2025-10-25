@@ -153,7 +153,6 @@ export function ScheduleTab(props: ScheduleTabProps) {
           </TouchableOpacity>
         );
       }}
-      estimatedItemSize={55}
       ItemSeparatorComponent={AppSeparator}
     />
   );

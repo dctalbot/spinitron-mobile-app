@@ -74,7 +74,6 @@ function SpinList(props: SpinListProps) {
           </TouchableOpacity>
         );
       }}
-      estimatedItemSize={100}
       onEndReached={() => fetchNextPage()}
       ListFooterComponent={() => {
         return (

@@ -52,7 +52,6 @@ export function PlaylistList(props: PlaylistListProps) {
           </View>
         </TouchableOpacity>
       )}
-      estimatedItemSize={100}
       onEndReached={() => fetchNextPage()}
       ListFooterComponent={() => {
         return (

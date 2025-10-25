@@ -56,7 +56,7 @@ function getReviewURL(): string | null {
 }
 
 export const LinksList = () => {
-  let reviewURL = getReviewURL();
+  const reviewURL = getReviewURL();
 
   return (
     <View>
