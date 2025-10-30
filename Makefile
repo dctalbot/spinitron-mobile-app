@@ -13,6 +13,7 @@ test:
 
 .PHONY: check
 check: 
+	npm dedupe
 	npx prettier --log-level warn --write .
 	npx tsc
 	npx eslint . --fix
