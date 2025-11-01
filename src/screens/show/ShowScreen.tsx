@@ -94,7 +94,9 @@ function ShowScreen() {
       )}
 
       <AppListHeader text="Episodes" />
-      <PlaylistList queryInput={{ show_id: id, count: MAX_COUNT }} />
+      <View style={{ flex: 1 }}>
+        <PlaylistList queryInput={{ show_id: id, count: MAX_COUNT }} />
+      </View>
     </View>
   );
 }

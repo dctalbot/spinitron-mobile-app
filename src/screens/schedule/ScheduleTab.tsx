@@ -134,23 +134,25 @@ export function ScheduleTab(props: ScheduleTabProps) {
     return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
-    <FlashList
-      data={listdata}
-      keyExtractor={(item) => String(item?.id)}
-      renderItem={({ item }) => {
-        if (!item) return null;
+    <View style={{ flex: 1 }}>
+      <FlashList
+        data={listdata}
+        keyExtractor={(item) => String(item?.id)}
+        renderItem={({ item }) => {
+          if (!item) return null;
 
-        return (
-          <AppTouchableOpacity
-            onPress={() =>
-              nav.push("Show", { id: item?.id, title: item.title })
-            }
-          >
-            <ShowListItem item={item} />
-          </AppTouchableOpacity>
-        );
-      }}
-      ItemSeparatorComponent={AppSeparator}
-    />
+          return (
+            <AppTouchableOpacity
+              onPress={() =>
+                nav.push("Show", { id: item?.id, title: item.title })
+              }
+            >
+              <ShowListItem item={item} />
+            </AppTouchableOpacity>
+          );
+        }}
+        ItemSeparatorComponent={AppSeparator}
+      />
+    </View>
   );
 }
