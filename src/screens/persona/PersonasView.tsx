@@ -14,10 +14,22 @@ import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 function PersonasView() {
   const nav = useNavigation<StackNav>();
 
-  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    usePersonas({ count: MAX_COUNT });
+  const {
+    data,
+    error,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+  } = usePersonas({ count: MAX_COUNT });
 
   const listdata = data ?? [];
+
+  const onEndReached = () => {
+    if (!isFetching && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage();
+    }
+  };
 
   if (isFetching && listdata.length === 0)
     return (
@@ -58,7 +70,7 @@ function PersonasView() {
             </View>
           </AppTouchableOpacity>
         )}
-        onEndReached={() => fetchNextPage()}
+        onEndReached={() => onEndReached()}
         ListFooterComponent={() => {
           return (
             <ActivityIndicator animating={isFetching || isFetchingNextPage} />

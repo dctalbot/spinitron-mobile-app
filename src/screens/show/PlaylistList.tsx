@@ -16,10 +16,22 @@ interface PlaylistListProps {
 export function PlaylistList(props: PlaylistListProps) {
   const nav = useNavigation<StackNav>();
 
-  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    usePlaylists(props.queryInput);
+  const {
+    data,
+    error,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+  } = usePlaylists(props.queryInput);
 
   const listdata = (data ?? []).filter((i) => i?.start);
+
+  const onEndReached = () => {
+    if (!isFetching && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage();
+    }
+  };
 
   if (isFetching && listdata.length === 0) return null;
 
@@ -52,7 +64,7 @@ export function PlaylistList(props: PlaylistListProps) {
           </View>
         </AppTouchableOpacity>
       )}
-      onEndReached={() => fetchNextPage()}
+      onEndReached={() => onEndReached()}
       ListFooterComponent={() => {
         return (
           <ActivityIndicator animating={isFetching || isFetchingNextPage} />

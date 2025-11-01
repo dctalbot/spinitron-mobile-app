@@ -20,10 +20,22 @@ interface SpinListProps {
 function SpinList(props: SpinListProps) {
   const nav = useNavigation<StackNav>();
 
-  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    useSpins(props.useSpinsInput, { refetchInterval: POLL_INTERVAL });
+  const {
+    data,
+    error,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useSpins(props.useSpinsInput, { refetchInterval: POLL_INTERVAL });
 
   const listdata = data ?? [];
+
+  const onEndReached = () => {
+    if (!isFetching && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage();
+    }
+  };
 
   if (isFetching && listdata.length === 0) return null;
 
@@ -74,7 +86,7 @@ function SpinList(props: SpinListProps) {
           </AppTouchableOpacity>
         );
       }}
-      onEndReached={() => fetchNextPage()}
+      onEndReached={() => onEndReached()}
       ListFooterComponent={() => {
         return (
           <ActivityIndicator animating={isFetching || isFetchingNextPage} />
