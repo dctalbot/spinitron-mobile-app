@@ -1,6 +1,6 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
-
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useSpins } from "@dctalbot/react-spinitron";
@@ -39,7 +39,7 @@ function SpinList(props: SpinListProps) {
         const at: string = item?.start ? formatTime2(item?.start) : "";
 
         return (
-          <TouchableOpacity
+          <AppTouchableOpacity
             onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}
           >
             <View
@@ -71,7 +71,7 @@ function SpinList(props: SpinListProps) {
                 {at && <AppText size="sm">{at}</AppText>}
               </View>
             </View>
-          </TouchableOpacity>
+          </AppTouchableOpacity>
         );
       }}
       onEndReached={() => fetchNextPage()}

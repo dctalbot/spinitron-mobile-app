@@ -1,4 +1,4 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -9,6 +9,7 @@ import { spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
 import { AppImage } from "../../ui/AppImage";
 import { MAX_COUNT } from "@dctalbot/react-spinitron";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 
 function PersonasView() {
   const nav = useNavigation<StackNav>();
@@ -33,7 +34,7 @@ function PersonasView() {
       <FlashList
         data={listdata}
         renderItem={({ item }) => (
-          <TouchableOpacity
+          <AppTouchableOpacity
             onPress={() =>
               nav.push("Persona", { id: item?.id, name: item?.name })
             }
@@ -55,7 +56,7 @@ function PersonasView() {
                 {item?.name}
               </AppText>
             </View>
-          </TouchableOpacity>
+          </AppTouchableOpacity>
         )}
         onEndReached={() => fetchNextPage()}
         ListFooterComponent={() => {

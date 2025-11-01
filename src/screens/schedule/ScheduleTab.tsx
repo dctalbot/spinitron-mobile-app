@@ -1,9 +1,5 @@
-import {
-  ActivityIndicator,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { ActivityIndicator, View, useWindowDimensions } from "react-native";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -144,13 +140,13 @@ export function ScheduleTab(props: ScheduleTabProps) {
         if (!item) return null;
 
         return (
-          <TouchableOpacity
+          <AppTouchableOpacity
             onPress={() =>
               nav.push("Show", { id: item?.id, title: item.title })
             }
           >
             <ShowListItem item={item} />
-          </TouchableOpacity>
+          </AppTouchableOpacity>
         );
       }}
       ItemSeparatorComponent={AppSeparator}

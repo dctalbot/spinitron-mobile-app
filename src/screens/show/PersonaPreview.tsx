@@ -1,4 +1,5 @@
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../../nav/types";
@@ -20,7 +21,7 @@ export function PersonaPreview(props: PersonaPreviewProps) {
   if (!data?.name) return null;
 
   return (
-    <TouchableOpacity
+    <AppTouchableOpacity
       onPress={() =>
         nav.push("Persona", {
           id: persona_id,
@@ -35,6 +36,6 @@ export function PersonaPreview(props: PersonaPreviewProps) {
       >
         <AppText>{data.name}</AppText>
       </View>
-    </TouchableOpacity>
+    </AppTouchableOpacity>
   );
 }

@@ -1,10 +1,11 @@
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import { useShow } from "@dctalbot/react-spinitron";
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../../nav/types";
 import { AppText } from "../../ui/AppText";
 import { spacing } from "../../theme/theme";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 
 interface ShowPreviewProps {
   id: number;
@@ -22,7 +23,7 @@ export function ShowPreview(props: ShowPreviewProps) {
   if (!isPending && !data?.title) return null;
 
   return (
-    <TouchableOpacity
+    <AppTouchableOpacity
       style={{
         padding: spacing["12"],
       }}
@@ -36,6 +37,6 @@ export function ShowPreview(props: ShowPreviewProps) {
       <View>
         <AppText>{data.title}</AppText>
       </View>
-    </TouchableOpacity>
+    </AppTouchableOpacity>
   );
 }

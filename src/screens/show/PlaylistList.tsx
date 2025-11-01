@@ -1,6 +1,6 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
-
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { StackNav } from "../../nav/types";
@@ -29,7 +29,7 @@ export function PlaylistList(props: PlaylistListProps) {
     <FlashList
       data={listdata}
       renderItem={({ item }) => (
-        <TouchableOpacity
+        <AppTouchableOpacity
           onPress={() => nav.push("Playlist", { id: item?.id })}
           style={{ width: "100%" }}
         >
@@ -50,7 +50,7 @@ export function PlaylistList(props: PlaylistListProps) {
               {formatTime(item?.start ?? "")}
             </AppText>
           </View>
-        </TouchableOpacity>
+        </AppTouchableOpacity>
       )}
       onEndReached={() => fetchNextPage()}
       ListFooterComponent={() => {

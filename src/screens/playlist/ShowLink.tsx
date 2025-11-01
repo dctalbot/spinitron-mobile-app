@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import * as React from "react";
 
 import { useNavigation } from "@react-navigation/native";
@@ -23,7 +23,7 @@ export function ShowLink({ id }: ShowLinkProps) {
   }
 
   return (
-    <TouchableOpacity
+    <AppTouchableOpacity
       onPress={() =>
         nav.push("Show", {
           id,
@@ -40,6 +40,6 @@ export function ShowLink({ id }: ShowLinkProps) {
       >
         {title}
       </AppText>
-    </TouchableOpacity>
+    </AppTouchableOpacity>
   );
 }
