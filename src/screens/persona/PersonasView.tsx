@@ -45,6 +45,7 @@ function PersonasView() {
     <View style={[{ flex: 1 }]}>
       <FlashList
         data={listdata}
+        keyExtractor={(item) => String(item?.id)}
         renderItem={({ item }) => (
           <AppTouchableOpacity
             onPress={() =>

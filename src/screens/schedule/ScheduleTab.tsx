@@ -136,6 +136,7 @@ export function ScheduleTab(props: ScheduleTabProps) {
   return (
     <FlashList
       data={listdata}
+      keyExtractor={(item) => String(item?.id)}
       renderItem={({ item }) => {
         if (!item) return null;
 

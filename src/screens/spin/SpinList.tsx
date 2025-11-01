@@ -45,6 +45,7 @@ function SpinList(props: SpinListProps) {
   return (
     <FlashList
       data={listdata}
+      keyExtractor={(item) => String(item?.id)}
       renderItem={({ item }) => {
         const song: string = item?.song ?? "";
         const artist: string = getArtist(item) ?? "";

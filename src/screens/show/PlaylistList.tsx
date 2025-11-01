@@ -40,6 +40,7 @@ export function PlaylistList(props: PlaylistListProps) {
   return (
     <FlashList
       data={listdata}
+      keyExtractor={(item) => String(item?.id)}
       renderItem={({ item }) => (
         <AppTouchableOpacity
           onPress={() => nav.push("Playlist", { id: item?.id })}
