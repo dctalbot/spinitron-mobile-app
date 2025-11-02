@@ -9,12 +9,11 @@ import {
 import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { AppIcon } from "../../ui/AppIcon";
 import { useRadio } from "./useRadio";
-import { useSpins } from "@dctalbot/react-spinitron";
+import { usePlaylists, useSpins } from "@dctalbot/react-spinitron";
 import { SpinCitation } from "../spin/SpinCitation";
 import { spacing } from "../../theme/theme";
 import { SongArt } from "../spin/SongArt";
 import { PersonaLink } from "../playlist/PersonaLink";
-import { usePlaylist } from "@dctalbot/react-spinitron";
 import { ShowLink } from "../playlist/ShowLink";
 import { useTheme } from "../../theme/useTheme";
 
@@ -24,18 +23,27 @@ const PLAY_SIZE = 60;
 export function RadioScreen() {
   const theme = useTheme();
   const windowHeight = useWindowDimensions().height;
-  const { data: qData } = useSpins(
-    { count: 1, page: 1 },
+  const { data: _data1 } = usePlaylists(
+    {
+      count: 1,
+      page: 1,
+      end: String(new Date()),
+    },
     { refetchInterval: POLL_INTERVAL },
   );
 
-  const listdata = qData ?? [];
-  const song = listdata.length > 0 ? listdata[0] : null;
+  const playlistData = _data1 && _data1.length > 0 ? _data1[0] : null;
 
-  const { data: playlistData } = usePlaylist(
-    { id: song?.playlist_id ?? 0 },
-    { enabled: Boolean(song?.playlist_id) },
+  const { data: _data2 } = useSpins(
+    {
+      count: 1,
+      page: 1,
+      playlist_id: playlistData?.id,
+    },
+    { refetchInterval: POLL_INTERVAL, enabled: Boolean(playlistData?.id) },
   );
+
+  const song = _data2 && _data2.length > 0 ? _data2[0] : null;
 
   const r = useRadio();
 
