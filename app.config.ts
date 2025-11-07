@@ -95,12 +95,13 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
         imageWidth: 200,
       },
     ],
+    ["expo-font"],
   ],
   extra,
   name: extra.name,
   description: extra.description,
   slug: extra.slug,
-  version: "53.1.0",
+  version: "54.0.0",
   ios: {
     supportsTablet: true,
     infoPlist: {

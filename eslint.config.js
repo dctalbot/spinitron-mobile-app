@@ -13,6 +13,7 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import reactRecommended from "eslint-plugin-react/configs/recommended.js";
+import globals from "globals";
 
 const custom = {
   rules: {
@@ -54,9 +55,18 @@ const ignore = {
   ignores: [".expo", "babel.config.js", "babel.config.cjs"],
 };
 
+const langOptions = {
+  languageOptions: {
+    globals: {
+      ...globals.browser,
+      ...globals.jest,
+    },
+  },
+};
+
 const defaults = tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.strict,
 );
 
-export default defaults.concat(reactRecommended, custom, ignore);
+export default defaults.concat(reactRecommended, custom, ignore, langOptions);

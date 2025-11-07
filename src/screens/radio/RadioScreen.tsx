@@ -3,10 +3,10 @@ import * as React from "react";
 import {
   ActivityIndicator,
   ScrollView,
-  TouchableOpacity,
   useWindowDimensions,
   View,
 } from "react-native";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { AppIcon } from "../../ui/AppIcon";
 import { useRadio } from "./useRadio";
 import { useSpins } from "@dctalbot/react-spinitron";
@@ -40,7 +40,7 @@ export function RadioScreen() {
   const r = useRadio();
 
   const playPause = (
-    <TouchableOpacity
+    <AppTouchableOpacity
       style={{ width: "auto" }}
       onPress={() => (r.ui === "stop" ? r.stop() : r.play())}
       disabled={r.ui === "spin"}
@@ -50,7 +50,7 @@ export function RadioScreen() {
         size={PLAY_SIZE}
         color={theme.colors.primary}
       />
-    </TouchableOpacity>
+    </AppTouchableOpacity>
   );
 
   const loader = (

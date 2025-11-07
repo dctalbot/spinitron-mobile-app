@@ -3,7 +3,8 @@ import { View, Linking, Share, Platform } from "react-native";
 import Constants from "expo-constants";
 import { config } from "../../config";
 
-import { TouchableOpacity, GestureResponderEvent } from "react-native";
+import { GestureResponderEvent } from "react-native";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { AppText } from "../../ui/AppText";
 import { AppIcon } from "../../ui/AppIcon";
 import { spacing } from "../../theme/theme";
@@ -18,7 +19,7 @@ interface LinkProps {
 export function Link(props: LinkProps) {
   const theme = useTheme();
   return (
-    <TouchableOpacity
+    <AppTouchableOpacity
       style={{
         flexDirection: "row",
         alignItems: "center",
@@ -37,7 +38,7 @@ export function Link(props: LinkProps) {
       >
         <AppText>{props.text}</AppText>
       </View>
-    </TouchableOpacity>
+    </AppTouchableOpacity>
   );
 }
 
@@ -56,7 +57,7 @@ function getReviewURL(): string | null {
 }
 
 export const LinksList = () => {
-  let reviewURL = getReviewURL();
+  const reviewURL = getReviewURL();
 
   return (
     <View>

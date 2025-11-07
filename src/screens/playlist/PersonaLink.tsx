@@ -1,4 +1,4 @@
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import * as React from "react";
 
 import { useNavigation } from "@react-navigation/native";
@@ -6,6 +6,7 @@ import { StackNav } from "../../nav/types";
 import { AppText } from "../../ui/AppText";
 import { useTheme } from "../../theme/useTheme";
 import { usePersona } from "@dctalbot/react-spinitron";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 
 interface PersonaLinkProps {
   id: number;
@@ -29,7 +30,7 @@ export function PersonaLink({ id }: PersonaLinkProps) {
         <AppText>with </AppText>
       </AppText>
 
-      <TouchableOpacity
+      <AppTouchableOpacity
         onPress={() =>
           nav.push("Persona", {
             id,
@@ -42,7 +43,7 @@ export function PersonaLink({ id }: PersonaLinkProps) {
         >
           {name}
         </AppText>
-      </TouchableOpacity>
+      </AppTouchableOpacity>
     </View>
   );
 }

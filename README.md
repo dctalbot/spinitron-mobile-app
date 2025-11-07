@@ -13,7 +13,12 @@ This is a cross-platform mobile app (for iOS and Android) that I wrote for WCBN,
 
 ## Prerequisites
 
-1. A [spinitron-proxy](https://github.com/wcbn/spinitron-proxy) deployment. This serves as a relay between the app and the Spinitron API.
+1. A Spinitron API proxy deployment. Some options:
+
+- A standard Go http server released as an OCI image: https://github.com/wcbn/spinitron-proxy
+- A Cloudflare Worker serverless function : https://github.com/dctalbot/spinitron-mobile-app/tree/main/cloudflare-worker
+- Or roll your own
+
 2. An [Expo](https://expo.dev/) account for building the app distributions.
 3. A [Google Play Developer account](https://play.google.com) for Android.
 4. An [Apple Developer account](https://developer.apple.com) for iOS.
@@ -54,14 +59,7 @@ The maintenance burden mostly consists of [keeping your fork up to date](https:/
 
 ## As a service
 
-If you want the app but all of this feels overwhelming, you can pay me to take care of it. Email [dc4t@pm.me](mailto:dc4t@pm.me) and we can set up some time to chat about your needs. This service includes:
-
-- ✅ A hosted relay server
-- ✅ Basic branding and customization
-- ✅ App store presence (screenshots, icons, descriptions, etc.)
-- ✅ Regular updates and maintenance
-- ✅ Mentorship hours for students and support hours for general staff
-- ✅ Help sustain the development of this project
+If you want the app but all of this feels overwhelming, you can pay me to take care of it. Email [dc4t@pm.me](mailto:dc4t@pm.me) and we can set up some time to chat.
 
 ## Related Projects
 

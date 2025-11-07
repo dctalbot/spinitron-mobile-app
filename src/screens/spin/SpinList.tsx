@@ -1,6 +1,6 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
-
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useSpins } from "@dctalbot/react-spinitron";
@@ -20,10 +20,22 @@ interface SpinListProps {
 function SpinList(props: SpinListProps) {
   const nav = useNavigation<StackNav>();
 
-  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    useSpins(props.useSpinsInput, { refetchInterval: POLL_INTERVAL });
+  const {
+    data,
+    error,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useSpins(props.useSpinsInput, { refetchInterval: POLL_INTERVAL });
 
   const listdata = data ?? [];
+
+  const onEndReached = () => {
+    if (!isFetching && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage();
+    }
+  };
 
   if (isFetching && listdata.length === 0) return null;
 
@@ -33,13 +45,14 @@ function SpinList(props: SpinListProps) {
   return (
     <FlashList
       data={listdata}
+      keyExtractor={(item) => String(item?.id)}
       renderItem={({ item }) => {
         const song: string = item?.song ?? "";
         const artist: string = getArtist(item) ?? "";
         const at: string = item?.start ? formatTime2(item?.start) : "";
 
         return (
-          <TouchableOpacity
+          <AppTouchableOpacity
             onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}
           >
             <View
@@ -71,11 +84,10 @@ function SpinList(props: SpinListProps) {
                 {at && <AppText size="sm">{at}</AppText>}
               </View>
             </View>
-          </TouchableOpacity>
+          </AppTouchableOpacity>
         );
       }}
-      estimatedItemSize={100}
-      onEndReached={() => fetchNextPage()}
+      onEndReached={() => onEndReached()}
       ListFooterComponent={() => {
         return (
           <ActivityIndicator animating={isFetching || isFetchingNextPage} />

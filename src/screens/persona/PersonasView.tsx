@@ -1,4 +1,4 @@
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -9,14 +9,27 @@ import { spacing } from "../../theme/theme";
 import { AppText } from "../../ui/AppText";
 import { AppImage } from "../../ui/AppImage";
 import { MAX_COUNT } from "@dctalbot/react-spinitron";
+import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 
 function PersonasView() {
   const nav = useNavigation<StackNav>();
 
-  const { data, error, fetchNextPage, isFetching, isFetchingNextPage } =
-    usePersonas({ count: MAX_COUNT });
+  const {
+    data,
+    error,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+  } = usePersonas({ count: MAX_COUNT });
 
   const listdata = data ?? [];
+
+  const onEndReached = () => {
+    if (!isFetching && !isFetchingNextPage && hasNextPage) {
+      fetchNextPage();
+    }
+  };
 
   if (isFetching && listdata.length === 0)
     return (
@@ -32,8 +45,9 @@ function PersonasView() {
     <View style={[{ flex: 1 }]}>
       <FlashList
         data={listdata}
+        keyExtractor={(item) => String(item?.id)}
         renderItem={({ item }) => (
-          <TouchableOpacity
+          <AppTouchableOpacity
             onPress={() =>
               nav.push("Persona", { id: item?.id, name: item?.name })
             }
@@ -55,10 +69,9 @@ function PersonasView() {
                 {item?.name}
               </AppText>
             </View>
-          </TouchableOpacity>
+          </AppTouchableOpacity>
         )}
-        estimatedItemSize={50}
-        onEndReached={() => fetchNextPage()}
+        onEndReached={() => onEndReached()}
         ListFooterComponent={() => {
           return (
             <ActivityIndicator animating={isFetching || isFetchingNextPage} />
