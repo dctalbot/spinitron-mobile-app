@@ -13,6 +13,7 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import reactRecommended from "eslint-plugin-react/configs/recommended.js";
+import reactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 
 const custom = {
@@ -69,4 +70,10 @@ const defaults = tseslint.config(
   ...tseslint.configs.strict,
 );
 
-export default defaults.concat(reactRecommended, custom, ignore, langOptions);
+export default defaults.concat(
+  reactRecommended,
+  reactHooks.configs.flat.recommended,
+  custom,
+  ignore,
+  langOptions,
+);
