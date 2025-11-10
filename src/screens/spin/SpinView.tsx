@@ -27,7 +27,7 @@ function SpinView() {
     if (song) {
       nav.setOptions({ title: song });
     }
-  }, [song]);
+  }, [song, nav]);
 
   const { isPending, error, data } = useSpin({ id });
 

@@ -87,14 +87,14 @@ export function PersonaView() {
       )}
       <>
         {showIDs.length > 0 && (
-          <>
+          <View style={{ flex: 1 }}>
             <AppListHeader text="Shows" />
             <ScrollView>
               {showIDs.map((id) => (
                 <ShowPreview key={id} id={id} />
               ))}
             </ScrollView>
-          </>
+          </View>
         )}
       </>
     </View>
@@ -105,5 +105,6 @@ const styles = StyleSheet.create({
   bio: {
     padding: spacing[12],
     maxHeight: 150,
+    flexGrow: 0,
   },
 });
