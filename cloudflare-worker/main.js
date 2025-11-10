@@ -39,7 +39,7 @@ function getTTL(path) {
 const SPINITRON_BASE = "https://spinitron.com";
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env, _ctx) {
     const url = new URL(request.url);
     const apiKey = env.SPINITRON_API_KEY;
     if (!apiKey) {
