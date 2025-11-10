@@ -66,10 +66,6 @@ export function getTime(input?: string): string {
 
   try {
     const d = new Date(input);
-    if (Number.isNaN(d.getTime())) {
-      return "";
-    }
-
     let hours = d.getHours();
     const minutes = d.getMinutes();
     const ampm = hours >= 12 ? "PM" : "AM";
