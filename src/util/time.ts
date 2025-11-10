@@ -68,7 +68,7 @@ export function getTime(input?: string): string {
 
   try {
     result = dayjs(input).format("LT");
-  } catch (e) {
+  } catch {
     return "";
   }
   if (!result) {

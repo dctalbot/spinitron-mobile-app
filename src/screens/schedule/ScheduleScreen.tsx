@@ -14,8 +14,8 @@ export function ScheduleScreen() {
     <View style={[{ flex: 1 }]}>
       <Tab.Navigator
         initialRouteName={getToday()}
-        screenOptions={({ route }) => ({
-          title: "foo",
+        screenOptions={() => ({
+          title: "Schedule",
         })}
         screenListeners={{
           state: (e) => {
