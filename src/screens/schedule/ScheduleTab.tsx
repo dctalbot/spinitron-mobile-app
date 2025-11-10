@@ -11,7 +11,6 @@ import { AppText } from "../../ui/AppText";
 import { AppSeparator } from "../../ui/AppSeparator";
 import { fontSize, fontWeight, spacing } from "../../theme/theme";
 import { getResourceID } from "@dctalbot/react-spinitron";
-import { get } from "lodash-es";
 import { usePersona } from "@dctalbot/react-spinitron";
 import { useTheme } from "../../theme/useTheme";
 
@@ -23,7 +22,7 @@ function ShowListItem(props: ShowListItemProps) {
   const theme = useTheme();
   const name = props.item?.title;
   const at = getTime(props.item?.start);
-  const personaIDs = get(props.item, "_links.personas", []).map(
+  const personaIDs = (props?.item?._links?.personas ?? []).map(
     (
       x: any, // eslint-disable-line @typescript-eslint/no-explicit-any
     ) => getResourceID(x.href),
@@ -44,7 +43,7 @@ function ShowListItem(props: ShowListItemProps) {
   if (personaIDs.length > 1) {
     host = `rotating hosts`;
   } else {
-    host = get(data, "name", "");
+    host = data?.name ?? "";
   }
   if (host.toLowerCase() === "rotating hosts") {
     host = "rotating hosts";
