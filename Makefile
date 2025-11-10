@@ -16,7 +16,7 @@ check:
 	npm dedupe
 	npx prettier --log-level warn --write .
 	npx tsc
-	npx eslint . --fix
+	npx oxlint . --fix
 	npx vitest --run
 	npx expo-doctor
 
