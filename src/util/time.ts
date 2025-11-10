@@ -43,7 +43,7 @@ export function fmtOnAt(input?: string): string {
 // }
 
 export function getToday(): Day {
-  return dayjs().format("dddd") as Day;
+  return DAYS[new Date().getDay()];
 }
 
 export function getScheduleDayRange(day: Day): [string, string] {
