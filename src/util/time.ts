@@ -60,19 +60,27 @@ export function getScheduleDayRange(day: Day): [string, string] {
 // getTime returns 12-hour time and AM/PM.
 // If the input is invalid, an empty string is returned.
 export function getTime(input?: string): string {
-  let result = "";
-
   if (!input) {
     return "";
   }
 
   try {
-    result = dayjs(input).format("LT");
-  } catch (e) {
+    const d = new Date(input);
+    if (Number.isNaN(d.getTime())) {
+      return "";
+    }
+
+    let hours = d.getHours();
+    const minutes = d.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    if (hours === 0) {
+      hours = 12;
+    }
+    const minutesStr = minutes.toString().padStart(2, "0");
+
+    return `${hours}:${minutesStr} ${ampm}`;
+  } catch {
     return "";
   }
-  if (!result) {
-    return "";
-  }
-  return result;
 }
