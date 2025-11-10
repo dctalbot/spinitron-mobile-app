@@ -10,7 +10,6 @@ import { Day, getScheduleDayRange, getTime } from "../../util/time";
 import { AppText } from "../../ui/AppText";
 import { AppSeparator } from "../../ui/AppSeparator";
 import { fontSize, fontWeight, spacing } from "../../theme/theme";
-import dayjs from "dayjs";
 import { getResourceID } from "@dctalbot/react-spinitron";
 import { get } from "lodash-es";
 import { usePersona } from "@dctalbot/react-spinitron";
@@ -119,7 +118,7 @@ export function ScheduleTab(props: ScheduleTabProps) {
   });
 
   const listdata = (data ?? []).filter(
-    (i) => Boolean(i?.title && i?.start) && dayjs(i?.start) >= dayjs(start),
+    (i) => i?.title && i?.start && Date.parse(i.start) >= Date.parse(start),
   );
 
   if (isFetching && listdata.length === 0) {
