@@ -43,7 +43,7 @@ export function fmtOnAt(input?: string): string {
 // }
 
 export function getToday(): Day {
-  return dayjs().format("dddd") as Day;
+  return DAYS[new Date().getDay()];
 }
 
 export function getScheduleDayRange(day: Day): [string, string] {
@@ -60,19 +60,23 @@ export function getScheduleDayRange(day: Day): [string, string] {
 // getTime returns 12-hour time and AM/PM.
 // If the input is invalid, an empty string is returned.
 export function getTime(input?: string): string {
-  let result = "";
-
   if (!input) {
     return "";
   }
 
   try {
-    result = dayjs(input).format("LT");
+    const d = new Date(input);
+    let hours = d.getHours();
+    const minutes = d.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    if (hours === 0) {
+      hours = 12;
+    }
+    const minutesStr = minutes.toString().padStart(2, "0");
+
+    return `${hours}:${minutesStr} ${ampm}`;
   } catch {
     return "";
   }
-  if (!result) {
-    return "";
-  }
-  return result;
 }

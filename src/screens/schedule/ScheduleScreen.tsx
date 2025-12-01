@@ -1,6 +1,5 @@
 import { View } from "react-native";
 import * as React from "react";
-import { get } from "lodash-es";
 import { DAYS, getToday } from "../../util/time";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { ScheduleTab } from "./ScheduleTab";
@@ -20,8 +19,8 @@ export function ScheduleScreen() {
         screenListeners={{
           state: (e) => {
             let nextTitle = "Schedule";
-            const index = get(e, "data.state.index", null);
-            const routeNames = get(e, "data.state.routeNames", []);
+            const index = e?.data?.state?.index ?? null;
+            const routeNames = e?.data?.state?.routeNames ?? [];
             if (index === null || routeNames.length === 0) {
               nextTitle = "Schedule";
             } else {

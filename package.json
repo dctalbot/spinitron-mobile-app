@@ -26,8 +26,6 @@
     "expo-status-bar": "~3.0.8",
     "expo-system-ui": "~6.0.8",
     "expo-updates": "~29.0.12",
-    "globals": "^16.4.0",
-    "lodash-es": "^4.17.21",
     "react": "19.1.0",
     "react-native": "0.81.5",
     "react-native-pager-view": "6.9.1",
@@ -40,7 +38,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.4",
-    "@types/lodash-es": "^4.17.12",
     "@types/react": "~19.1.10",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "oxlint": "^1.26.0",
