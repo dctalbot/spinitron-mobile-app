@@ -96,6 +96,7 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
     ],
     ["expo-font"],
     ["expo-image"],
+    ["expo-status-bar"],
   ],
   extra,
   name: extra.name,
