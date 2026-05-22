@@ -11,12 +11,8 @@ interface AppListHeaderProps {
 export function AppListHeader(props: AppListHeaderProps) {
   const theme = useTheme();
   return (
-    <View
-      style={{ backgroundColor: theme.colors.border, padding: spacing["4"] }}
-    >
-      <AppText style={{ fontWeight: fontWeight["semibold"] }}>
-        {props.text}
-      </AppText>
+    <View style={{ backgroundColor: theme.colors.border, padding: spacing["4"] }}>
+      <AppText style={{ fontWeight: fontWeight["semibold"] }}>{props.text}</AppText>
     </View>
   );
 }

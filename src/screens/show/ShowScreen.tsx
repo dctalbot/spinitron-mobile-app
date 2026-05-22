@@ -23,15 +23,9 @@ function ShowScreen() {
 
   const { isPending, error, data } = useShow({ id });
 
-  const cat = React.useMemo(
-    () => (data?.category ?? "").trim(),
-    [data?.category],
-  );
+  const cat = React.useMemo(() => (data?.category ?? "").trim(), [data?.category]);
 
-  const desc = React.useMemo(
-    () => (data?.description ?? "").trim(),
-    [data?.description],
-  );
+  const desc = React.useMemo(() => (data?.description ?? "").trim(), [data?.description]);
 
   if (isPending)
     return (
@@ -40,8 +34,7 @@ function ShowScreen() {
       </View>
     );
 
-  if (error)
-    return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  if (error) return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   const personaIDs: number[] = (data?._links?.personas ?? [])
     .map((p) => p.href as string) // typecast because the filters handle empty values

@@ -1,11 +1,6 @@
 import * as React from "react";
 
-import {
-  ActivityIndicator,
-  ScrollView,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { ActivityIndicator, ScrollView, useWindowDimensions, View } from "react-native";
 import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { AppIcon } from "../../ui/AppIcon";
 import { useRadio } from "./useRadio";
@@ -24,10 +19,7 @@ const PLAY_SIZE = 60;
 export function RadioScreen() {
   const theme = useTheme();
   const windowHeight = useWindowDimensions().height;
-  const { data: qData } = useSpins(
-    { count: 1, page: 1 },
-    { refetchInterval: POLL_INTERVAL },
-  );
+  const { data: qData } = useSpins({ count: 1, page: 1 }, { refetchInterval: POLL_INTERVAL });
 
   const listdata = qData ?? [];
   const song = listdata.length > 0 ? listdata[0] : null;
@@ -53,9 +45,7 @@ export function RadioScreen() {
     </AppTouchableOpacity>
   );
 
-  const loader = (
-    <ActivityIndicator size="large" style={{ height: PLAY_SIZE }} />
-  );
+  const loader = <ActivityIndicator size="large" style={{ height: PLAY_SIZE }} />;
 
   return (
     <View

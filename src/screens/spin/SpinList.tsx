@@ -20,14 +20,10 @@ interface SpinListProps {
 function SpinList(props: SpinListProps) {
   const nav = useNavigation<StackNav>();
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    isFetching,
-    isFetchingNextPage,
-    hasNextPage,
-  } = useSpins(props.useSpinsInput, { refetchInterval: POLL_INTERVAL });
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } = useSpins(
+    props.useSpinsInput,
+    { refetchInterval: POLL_INTERVAL },
+  );
 
   const listdata = data ?? [];
 
@@ -39,8 +35,7 @@ function SpinList(props: SpinListProps) {
 
   if (isFetching && listdata.length === 0) return null;
 
-  if (error)
-    return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  if (error) return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <FlashList
@@ -52,20 +47,14 @@ function SpinList(props: SpinListProps) {
         const at: string = item?.start ? formatTime2(item?.start) : "";
 
         return (
-          <AppTouchableOpacity
-            onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}
-          >
+          <AppTouchableOpacity onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}>
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
               }}
             >
-              <AppImage
-                source={item?.image}
-                size={ITEM_SIZE}
-                icon="disc-outline"
-              />
+              <AppImage source={item?.image} size={ITEM_SIZE} icon="disc-outline" />
               <View
                 style={{
                   flexDirection: "column",
@@ -75,11 +64,7 @@ function SpinList(props: SpinListProps) {
                   flexShrink: 1,
                 }}
               >
-                {song && (
-                  <AppText style={{ fontWeight: fontWeight.bold }}>
-                    {song}
-                  </AppText>
-                )}
+                {song && <AppText style={{ fontWeight: fontWeight.bold }}>{song}</AppText>}
                 {artist && <AppText size="sm">{artist}</AppText>}
                 {at && <AppText size="sm">{at}</AppText>}
               </View>
@@ -89,9 +74,7 @@ function SpinList(props: SpinListProps) {
       }}
       onEndReached={() => onEndReached()}
       ListFooterComponent={() => {
-        return (
-          <ActivityIndicator animating={isFetching || isFetchingNextPage} />
-        );
+        return <ActivityIndicator animating={isFetching || isFetchingNextPage} />;
       }}
     />
   );

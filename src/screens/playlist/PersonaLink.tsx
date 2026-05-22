@@ -38,11 +38,7 @@ export function PersonaLink({ id }: PersonaLinkProps) {
           })
         }
       >
-        <AppText
-          style={{ fontStyle: "italic", color: theme.nav.colors.primary }}
-        >
-          {name}
-        </AppText>
+        <AppText style={{ fontStyle: "italic", color: theme.nav.colors.primary }}>{name}</AppText>
       </AppTouchableOpacity>
     </View>
   );

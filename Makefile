@@ -14,7 +14,7 @@ test:
 .PHONY: check
 check: 
 	npm dedupe
-	npx prettier --log-level warn --write .
+	npx oxfmt warn --write .
 	npx tsc
 	npx oxlint . --fix
 	npx vitest --run

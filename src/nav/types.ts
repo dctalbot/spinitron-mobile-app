@@ -14,7 +14,4 @@ export type StackParamList = {
 };
 
 export type StackNav = NavProp<StackParamList, keyof StackParamList>;
-export type StackRoute<T extends keyof StackParamList> = RouteProp<
-  StackParamList,
-  T
->;
+export type StackRoute<T extends keyof StackParamList> = RouteProp<StackParamList, T>;

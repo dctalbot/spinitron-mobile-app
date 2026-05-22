@@ -48,11 +48,7 @@ export function getToday(): Day {
 
 export function getScheduleDayRange(day: Day): [string, string] {
   const offset = DAYS.indexOf(day);
-  const start = dayjs()
-    .add(1, "week")
-    .startOf("week")
-    .add(offset, "day")
-    .add(6, "hour");
+  const start = dayjs().add(1, "week").startOf("week").add(offset, "day").add(6, "hour");
   const end = start.add(1, "day").subtract(1, "second");
   return [start.format(), end.format()];
 }

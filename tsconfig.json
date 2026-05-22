@@ -14,12 +14,6 @@
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": [
-    "legacy",
-    "node_modules",
-    "babel.config.cjs",
-    "metro.config.js",
-    "jest.config.js"
-  ],
+  "exclude": ["legacy", "node_modules", "babel.config.cjs", "metro.config.js", "jest.config.js"],
   "extends": "expo/tsconfig.base"
 }

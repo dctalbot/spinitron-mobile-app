@@ -37,8 +37,7 @@ export function PersonaView() {
       </View>
     );
 
-  if (error)
-    return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  if (error) return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={[{ flex: 1 }]}>
