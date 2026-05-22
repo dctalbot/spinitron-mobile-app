@@ -1,7 +1,7 @@
 .PHONY: start
 start: 
 	npm i
-	npx expo start --dev-client
+	npx expo start --dev-client --clear
 
 .PHONY: start-prod
 start-prod: 
