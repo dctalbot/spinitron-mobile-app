@@ -39,37 +39,17 @@ export function Router() {
       initialRouteName={props.initialRouteName}
       screenOptions={{ headerShown: true }}
     >
-      <Stack.Screen
-        name="Personas"
-        component={PersonasView}
-        options={{ headerTitle: "DJs" }}
-      />
-      <Stack.Screen
-        name="Persona"
-        component={PersonaView}
-        options={{ title: "" }}
-      />
+      <Stack.Screen name="Personas" component={PersonasView} options={{ headerTitle: "DJs" }} />
+      <Stack.Screen name="Persona" component={PersonaView} options={{ title: "" }} />
       <Stack.Screen
         name="Shows"
         component={ScheduleScreen}
         options={{ headerShadowVisible: false }}
       />
-      <Stack.Screen
-        name="Show"
-        component={ShowScreen}
-        options={{ title: "" }}
-      />
-      <Stack.Screen
-        name="Radio"
-        component={RadioScreen}
-        options={{ headerTitle: "Radio" }}
-      />
+      <Stack.Screen name="Show" component={ShowScreen} options={{ title: "" }} />
+      <Stack.Screen name="Radio" component={RadioScreen} options={{ headerTitle: "Radio" }} />
       <Stack.Screen name="Playlist" component={PlaylistView} options={{}} />
-      <Stack.Screen
-        name="Spins"
-        component={SpinsScreen}
-        options={{ headerTitle: "Playlist" }}
-      />
+      <Stack.Screen name="Spins" component={SpinsScreen} options={{ headerTitle: "Playlist" }} />
       <Stack.Screen name="Spin" component={SpinView} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>

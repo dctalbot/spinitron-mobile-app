@@ -1,7 +1,7 @@
 .PHONY: start
 start: 
 	npm i
-	npx expo start --dev-client
+	npx expo start --dev-client --clear
 
 .PHONY: start-prod
 start-prod: 
@@ -14,7 +14,7 @@ test:
 .PHONY: check
 check: 
 	npm dedupe
-	npx prettier --log-level warn --write .
+	npx oxfmt warn --write .
 	npx tsc
 	npx oxlint . --fix
 	npx vitest --run

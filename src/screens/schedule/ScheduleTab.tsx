@@ -128,8 +128,7 @@ export function ScheduleTab(props: ScheduleTabProps) {
     );
   }
 
-  if (error)
-    return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  if (error) return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={{ flex: 1 }}>
@@ -141,9 +140,7 @@ export function ScheduleTab(props: ScheduleTabProps) {
 
           return (
             <AppTouchableOpacity
-              onPress={() =>
-                nav.push("Show", { id: item?.id, title: item.title })
-              }
+              onPress={() => nav.push("Show", { id: item?.id, title: item.title })}
             >
               <ShowListItem item={item} />
             </AppTouchableOpacity>

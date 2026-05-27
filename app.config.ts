@@ -19,7 +19,7 @@ const extra: VariantConfig = {
   },
   donate: {
     text: "Give to WCBN",
-    url: "https://leadersandbest.umich.edu/find/#!/give/basket/fund/361991",
+    url: "https://giving.umich.edu/um/w/wcbn-gift-fund-361991",
   },
   phone: {
     text: "Studio request line",
@@ -67,7 +67,6 @@ const extra: VariantConfig = {
 
 export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
   ...baseConfig,
-  newArchEnabled: true,
   githubUrl: "https://github.com/dctalbot/spinitron-mobile-app",
   orientation: "portrait",
   icon: "./assets/icon.png",
@@ -96,12 +95,13 @@ export default ({ config: baseConfig }: ConfigContext): ExpoConfig => ({
       },
     ],
     ["expo-font"],
+    ["expo-image"],
   ],
   extra,
   name: extra.name,
   description: extra.description,
   slug: extra.slug,
-  version: "54.0.0",
+  version: "55.0.0",
   ios: {
     supportsTablet: true,
     infoPlist: {

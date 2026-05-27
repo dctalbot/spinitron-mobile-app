@@ -14,14 +14,9 @@ import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 function PersonasView() {
   const nav = useNavigation<StackNav>();
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    isFetching,
-    isFetchingNextPage,
-    hasNextPage,
-  } = usePersonas({ count: MAX_COUNT });
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } = usePersonas({
+    count: MAX_COUNT,
+  });
 
   const listdata = data ?? [];
 
@@ -38,8 +33,7 @@ function PersonasView() {
       </View>
     );
 
-  if (error)
-    return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  if (error) return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View style={[{ flex: 1 }]}>
@@ -48,9 +42,7 @@ function PersonasView() {
         keyExtractor={(item) => String(item?.id)}
         renderItem={({ item }) => (
           <AppTouchableOpacity
-            onPress={() =>
-              nav.push("Persona", { id: item?.id, name: item?.name })
-            }
+            onPress={() => nav.push("Persona", { id: item?.id, name: item?.name })}
           >
             <View
               style={{
@@ -73,9 +65,7 @@ function PersonasView() {
         )}
         onEndReached={() => onEndReached()}
         ListFooterComponent={() => {
-          return (
-            <ActivityIndicator animating={isFetching || isFetchingNextPage} />
-          );
+          return <ActivityIndicator animating={isFetching || isFetchingNextPage} />;
         }}
       />
     </View>

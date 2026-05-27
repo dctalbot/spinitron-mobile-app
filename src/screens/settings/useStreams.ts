@@ -28,11 +28,7 @@ export function useStreams() {
   }));
 
   const setStreamAsync = async (index: number) => {
-    if (
-      index === selectedIndex ||
-      index < 0 ||
-      index >= config.streams.length
-    ) {
+    if (index === selectedIndex || index < 0 || index >= config.streams.length) {
       return;
     }
     await AsyncStorage.setItem(STREAM_INDEX_KEY, index.toString());

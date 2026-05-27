@@ -16,14 +16,9 @@ interface PlaylistListProps {
 export function PlaylistList(props: PlaylistListProps) {
   const nav = useNavigation<StackNav>();
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    isFetching,
-    isFetchingNextPage,
-    hasNextPage,
-  } = usePlaylists(props.queryInput);
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } = usePlaylists(
+    props.queryInput,
+  );
 
   const listdata = (data ?? []).filter((i) => i?.start);
 
@@ -67,9 +62,7 @@ export function PlaylistList(props: PlaylistListProps) {
       )}
       onEndReached={() => onEndReached()}
       ListFooterComponent={() => {
-        return (
-          <ActivityIndicator animating={isFetching || isFetchingNextPage} />
-        );
+        return <ActivityIndicator animating={isFetching || isFetchingNextPage} />;
       }}
     />
   );

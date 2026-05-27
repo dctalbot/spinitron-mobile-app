@@ -1,9 +1,4 @@
-import {
-  ActivityIndicator,
-  ScrollView,
-  useWindowDimensions,
-  View,
-} from "react-native";
+import { ActivityIndicator, ScrollView, useWindowDimensions, View } from "react-native";
 import * as React from "react";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -40,8 +35,7 @@ function SpinView() {
       </View>
     );
 
-  if (error)
-    return <AppText>{"An error has occurred: " + error.message}</AppText>;
+  if (error) return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
     <View
