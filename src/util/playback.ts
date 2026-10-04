@@ -1,13 +1,14 @@
-import TrackPlayer, { Event, Capability } from "react-native-track-player";
+import TrackPlayer, { PlayerCommand } from "@rntp/player";
 
-export const PlaybackService = async function () {
-  const capabilities = [Capability.Play, Capability.Pause, Capability.Stop];
-
-  TrackPlayer.addEventListener(Event.RemotePlay, () => TrackPlayer.play());
-  TrackPlayer.addEventListener(Event.RemoteStop, () => TrackPlayer.stop());
-  TrackPlayer.addEventListener(Event.RemotePause, () => TrackPlayer.pause());
-  TrackPlayer.updateOptions({
-    capabilities,
-    notificationCapabilities: capabilities,
+export function registerPlaybackSession() {
+  TrackPlayer.registerPlaybackSession(() => {
+    TrackPlayer.setupPlayer({
+      contentType: "music",
+      handleAudioBecomingNoisy: true,
+      android: { wakeMode: "network" },
+    });
+    TrackPlayer.setCommands({
+      capabilities: [PlayerCommand.PlayPause, PlayerCommand.Stop],
+    });
   });
-};
+}

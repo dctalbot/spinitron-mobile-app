@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useStreams } from "../settings/useStreams";
 import Constants from "expo-constants";
-import TrackPlayer, { useIsPlaying } from "react-native-track-player";
+import TrackPlayer, { PlaybackState, useIsPlaying, usePlaybackState } from "@rntp/player";
 
 export interface Radio {
   play: () => Promise<void>;
@@ -11,40 +11,36 @@ export interface Radio {
 
 export function useRadio(): Radio {
   const { streams, selectedIndex } = useStreams();
-  const isPlaying = useIsPlaying();
-  let ui: Radio["ui"] = "play";
+  const playing = useIsPlaying();
+  const playbackState = usePlaybackState();
 
-  if (isPlaying.bufferingDuringPlay === true) {
+  let ui: Radio["ui"] = "play";
+  if (playbackState === PlaybackState.Buffering) {
     ui = "spin";
-  } else if (isPlaying.playing === true) {
+  } else if (playing) {
     ui = "stop";
-  } else if (isPlaying.playing === false) {
-    ui = "play";
   }
 
   useEffect(() => {
     return () => {
-      TrackPlayer.reset();
+      TrackPlayer.stop();
+      TrackPlayer.clear();
     };
   }, []);
 
   const stop = async () => {
-    await TrackPlayer.reset();
+    TrackPlayer.stop();
+    TrackPlayer.clear();
   };
 
   const play = async () => {
-    await stop();
-
-    await TrackPlayer.add([
-      {
-        id: selectedIndex,
-        url: streams[selectedIndex].uri,
-        title: Constants.expoConfig?.name,
-        isLiveStream: true,
-      },
-    ]);
-
-    await TrackPlayer.play();
+    TrackPlayer.setMediaItem({
+      mediaId: String(selectedIndex),
+      url: streams[selectedIndex].uri,
+      title: Constants.expoConfig?.name,
+      isLive: true,
+    });
+    TrackPlayer.play();
   };
 
   return {

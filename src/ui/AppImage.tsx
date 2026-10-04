@@ -1,4 +1,5 @@
 import * as React from "react";
+import { View } from "react-native";
 import { Image, ImageProps } from "expo-image"; // eslint-disable-line no-restricted-imports
 import { AppIcon, AppIconProps } from "./AppIcon";
 import { mzstaticUpgrade } from "../util/mzstatic";
@@ -9,26 +10,47 @@ export interface AppImageProps extends ImageProps {
 }
 
 export function AppImage(props: AppImageProps) {
-  const { size = 80, source: _src, ...rest } = props;
-  const [imgFailure, setImgFailure] = React.useState(false);
-  let source = _src;
+  const { size = 80, source: _src, recyclingKey, transition = 0, icon, style, ...rest } = props;
+  const sourceKey = typeof _src === "string" ? _src : null;
+  const resolvedKey = recyclingKey ?? sourceKey;
+  const [failedKey, setFailedKey] = React.useState<string | null>(null);
+  const failed = resolvedKey != null && failedKey === resolvedKey;
 
-  if (!source || imgFailure) {
-    return <AppIcon name={props.icon} size={size} />;
-  }
-
-  if (typeof source === "string") {
-    source = mzstaticUpgrade(source, size);
-  }
+  const source =
+    sourceKey && !failed
+      ? mzstaticUpgrade(sourceKey, size)
+      : !sourceKey && _src && !failed
+        ? _src
+        : null;
 
   return (
-    <Image
-      style={[{ width: size, aspectRatio: 1 }]}
-      contentFit="cover"
-      transition={500}
-      onError={() => setImgFailure(true)}
-      source={source}
-      {...rest}
-    />
+    <View
+      style={[
+        {
+          width: size,
+          height: size,
+          alignItems: "center",
+          justifyContent: "center",
+        },
+        style,
+      ]}
+    >
+      {/* Always mounted so recycled list cells never flash an empty hole */}
+      <AppIcon name={icon} size={size} style={{ position: "absolute" }} />
+      {source ? (
+        <Image
+          style={{ width: size, height: size }}
+          contentFit="cover"
+          transition={transition}
+          cachePolicy="memory-disk"
+          recyclingKey={resolvedKey}
+          onError={() => {
+            if (resolvedKey != null) setFailedKey(resolvedKey);
+          }}
+          source={source}
+          {...rest}
+        />
+      ) : null}
+    </View>
   );
 }
