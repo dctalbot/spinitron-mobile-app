@@ -1,4 +1,4 @@
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, useWindowDimensions, View } from "react-native";
 import * as React from "react";
 
 import { FlashList } from "@shopify/flash-list";
@@ -11,8 +11,44 @@ import { AppImage } from "../../ui/AppImage";
 import { MAX_COUNT } from "@dctalbot/react-spinitron";
 import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 
-function PersonasView() {
+const ITEM_SIZE = 50;
+
+type PersonaItem = NonNullable<ReturnType<typeof usePersonas>["data"]>[number];
+
+const PersonaListItem = React.memo(function PersonaListItem(props: { item: PersonaItem }) {
   const nav = useNavigation<StackNav>();
+  const { item } = props;
+  const id = item?.id;
+
+  return (
+    <AppTouchableOpacity onPress={() => nav.push("Persona", { id, name: item?.name })}>
+      <View
+        style={{
+          height: ITEM_SIZE,
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <AppImage
+          size={ITEM_SIZE}
+          source={item?.image}
+          icon="person-outline"
+          recyclingKey={id != null ? String(id) : undefined}
+        />
+        <AppText
+          style={{
+            marginLeft: spacing[12],
+          }}
+        >
+          {item?.name}
+        </AppText>
+      </View>
+    </AppTouchableOpacity>
+  );
+});
+
+function PersonasView() {
+  const { height } = useWindowDimensions();
 
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } = usePersonas({
     count: MAX_COUNT,
@@ -20,53 +56,37 @@ function PersonasView() {
 
   const listdata = data ?? [];
 
-  const onEndReached = () => {
+  const onEndReached = React.useCallback(() => {
     if (!isFetching && !isFetchingNextPage && hasNextPage) {
       fetchNextPage();
     }
-  };
+  }, [fetchNextPage, hasNextPage, isFetching, isFetchingNextPage]);
+
+  const renderItem = React.useCallback(({ item }: { item: PersonaItem }) => {
+    return <PersonaListItem item={item} />;
+  }, []);
+
+  const keyExtractor = React.useCallback((item: PersonaItem) => String(item?.id), []);
 
   if (isFetching && listdata.length === 0)
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
-        <ActivityIndicator></ActivityIndicator>
+        <ActivityIndicator />
       </View>
     );
 
   if (error) return <AppText>{"An error has occurred: " + error.message}</AppText>;
 
   return (
-    <View style={[{ flex: 1 }]}>
+    <View style={{ flex: 1 }}>
       <FlashList
         data={listdata}
-        keyExtractor={(item) => String(item?.id)}
-        renderItem={({ item }) => (
-          <AppTouchableOpacity
-            onPress={() => nav.push("Persona", { id: item?.id, name: item?.name })}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <AppImage size={50} source={item?.image} icon="person-outline" />
-              <AppText
-                style={[
-                  {
-                    marginLeft: spacing[12],
-                  },
-                ]}
-              >
-                {item?.name}
-              </AppText>
-            </View>
-          </AppTouchableOpacity>
-        )}
-        onEndReached={() => onEndReached()}
-        ListFooterComponent={() => {
-          return <ActivityIndicator animating={isFetching || isFetchingNextPage} />;
-        }}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        drawDistance={height * 5}
+        maintainVisibleContentPosition={{ disabled: true }}
+        onEndReached={onEndReached}
+        ListFooterComponent={<ActivityIndicator animating={isFetching || isFetchingNextPage} />}
       />
     </View>
   );

@@ -1,4 +1,4 @@
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, useWindowDimensions, View } from "react-native";
 import * as React from "react";
 import { AppTouchableOpacity } from "../../ui/AppTouchableOpacity";
 import { FlashList } from "@shopify/flash-list";
@@ -14,12 +14,56 @@ import { AppImage } from "../../ui/AppImage";
 const ITEM_SIZE = 80;
 const POLL_INTERVAL = 30000; // 30 seconds
 
+type SpinItem = NonNullable<ReturnType<typeof useSpins>["data"]>[number];
+
+const SpinListItem = React.memo(function SpinListItem(props: { item: SpinItem }) {
+  const nav = useNavigation<StackNav>();
+  const { item } = props;
+  const song: string = item?.song ?? "";
+  const artist: string = getArtist(item) ?? "";
+  const at: string = item?.start ? formatTime2(item?.start) : "";
+  const id = item?.id;
+
+  return (
+    <AppTouchableOpacity onPress={() => nav.push("Spin", { id, song: item?.song })}>
+      <View
+        style={{
+          height: ITEM_SIZE,
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <AppImage
+          source={item?.image}
+          size={ITEM_SIZE}
+          icon="disc-outline"
+          recyclingKey={id != null ? String(id) : undefined}
+        />
+        <View
+          style={{
+            flexDirection: "column",
+            justifyContent: "center",
+            paddingLeft: spacing[12],
+            paddingRight: spacing[12],
+            height: ITEM_SIZE,
+            flexShrink: 1,
+          }}
+        >
+          {song ? <AppText style={{ fontWeight: fontWeight.bold }}>{song}</AppText> : null}
+          {artist ? <AppText size="sm">{artist}</AppText> : null}
+          {at ? <AppText size="sm">{at}</AppText> : null}
+        </View>
+      </View>
+    </AppTouchableOpacity>
+  );
+});
+
 interface SpinListProps {
   useSpinsInput: Parameters<typeof useSpins>[0];
 }
-function SpinList(props: SpinListProps) {
-  const nav = useNavigation<StackNav>();
 
+function SpinList(props: SpinListProps) {
+  const { height } = useWindowDimensions();
   const { data, error, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage } = useSpins(
     props.useSpinsInput,
     { refetchInterval: POLL_INTERVAL },
@@ -27,11 +71,17 @@ function SpinList(props: SpinListProps) {
 
   const listdata = data ?? [];
 
-  const onEndReached = () => {
+  const onEndReached = React.useCallback(() => {
     if (!isFetching && !isFetchingNextPage && hasNextPage) {
       fetchNextPage();
     }
-  };
+  }, [fetchNextPage, hasNextPage, isFetching, isFetchingNextPage]);
+
+  const renderItem = React.useCallback(({ item }: { item: SpinItem }) => {
+    return <SpinListItem item={item} />;
+  }, []);
+
+  const keyExtractor = React.useCallback((item: SpinItem) => String(item?.id), []);
 
   if (isFetching && listdata.length === 0) return null;
 
@@ -40,42 +90,12 @@ function SpinList(props: SpinListProps) {
   return (
     <FlashList
       data={listdata}
-      keyExtractor={(item) => String(item?.id)}
-      renderItem={({ item }) => {
-        const song: string = item?.song ?? "";
-        const artist: string = getArtist(item) ?? "";
-        const at: string = item?.start ? formatTime2(item?.start) : "";
-
-        return (
-          <AppTouchableOpacity onPress={() => nav.push("Spin", { id: item?.id, song: item?.song })}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <AppImage source={item?.image} size={ITEM_SIZE} icon="disc-outline" />
-              <View
-                style={{
-                  flexDirection: "column",
-                  paddingLeft: spacing[12],
-                  paddingRight: spacing[12],
-                  minHeight: "100%",
-                  flexShrink: 1,
-                }}
-              >
-                {song && <AppText style={{ fontWeight: fontWeight.bold }}>{song}</AppText>}
-                {artist && <AppText size="sm">{artist}</AppText>}
-                {at && <AppText size="sm">{at}</AppText>}
-              </View>
-            </View>
-          </AppTouchableOpacity>
-        );
-      }}
-      onEndReached={() => onEndReached()}
-      ListFooterComponent={() => {
-        return <ActivityIndicator animating={isFetching || isFetchingNextPage} />;
-      }}
+      keyExtractor={keyExtractor}
+      renderItem={renderItem}
+      drawDistance={height * 5}
+      maintainVisibleContentPosition={{ disabled: true }}
+      onEndReached={onEndReached}
+      ListFooterComponent={<ActivityIndicator animating={isFetching || isFetchingNextPage} />}
     />
   );
 }
