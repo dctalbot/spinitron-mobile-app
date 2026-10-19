@@ -42,23 +42,23 @@ function SpinView() {
       style={{
         flex: 1,
         flexDirection: "column",
-        justifyContent: "space-between",
         padding: spacing[12],
         rowGap: spacing[12],
       }}
     >
       <View
         style={{
+          width: "100%",
+          height: windowHeight / 2 - spacing[12],
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          maxHeight: windowHeight / 2,
         }}
       >
         <SongArt source={data?.image} />
       </View>
 
-      <View style={{ flexShrink: 1, flexGrow: 1 }}>
+      <View style={{ flex: 1, minHeight: 0 }}>
         <ScrollView>
           <SpinCitation id={id} />
         </ScrollView>

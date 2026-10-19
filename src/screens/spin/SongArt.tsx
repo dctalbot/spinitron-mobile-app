@@ -1,28 +1,45 @@
 import * as React from "react";
 
-import { useWindowDimensions } from "react-native";
+import { LayoutChangeEvent, useWindowDimensions, View } from "react-native";
 import { AppImage, AppImageProps } from "../../ui/AppImage";
-import { spacing } from "../../theme/theme";
+import { estimateSongArtSize, getSongArtSize } from "./songArtLayout";
 
 export function SongArt(props: Partial<AppImageProps>) {
-  // for album art, size can be a rough appx
-  // for fallback icons, size is literal (no content fit)
-  const maxHeight = useWindowDimensions().height / 2 - spacing[12];
-  const maxWidth = useWindowDimensions().width - spacing[64];
-  const size = Math.min(maxHeight, maxWidth);
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const estimate = estimateSongArtSize({ windowWidth, windowHeight });
+  const [size, setSize] = React.useState(estimate);
+  const [prevEstimate, setPrevEstimate] = React.useState(estimate);
+
+  // Re-seed only when the window changes (e.g. rotation). Do not use an
+  // effect — that would overwrite onLayout after the first measure.
+  if (estimate !== prevEstimate) {
+    setPrevEstimate(estimate);
+    setSize(estimate);
+  }
+
+  const onLayout = React.useCallback((e: LayoutChangeEvent) => {
+    const { width, height } = e.nativeEvent.layout;
+    const next = getSongArtSize(width, height);
+    setSize((prev) => (prev === next ? prev : next));
+  }, []);
 
   return (
-    <AppImage
-      alt="Song cover art"
-      source={props.source}
-      icon="disc-outline"
-      size={size}
+    <View
+      onLayout={onLayout}
       style={{
-        height: "100%",
-        maxWidth: "100%",
-        maxHeight: "100%",
-        aspectRatio: 1,
+        flex: 1,
+        width: "100%",
+        minHeight: 0,
+        alignItems: "center",
+        justifyContent: "center",
       }}
-    />
+    >
+      <AppImage
+        alt="Song cover art"
+        source={props.source}
+        icon="disc-outline"
+        size={size}
+      />
+    </View>
   );
 }
