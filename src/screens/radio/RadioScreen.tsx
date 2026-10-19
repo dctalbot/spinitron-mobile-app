@@ -12,9 +12,9 @@ import { PersonaLink } from "../playlist/PersonaLink";
 import { usePlaylist } from "@dctalbot/react-spinitron";
 import { ShowLink } from "../playlist/ShowLink";
 import { useTheme } from "../../theme/useTheme";
+import { SONG_ART_PLAY_SIZE } from "../spin/songArtLayout";
 
 const POLL_INTERVAL = 10000; // 10 seconds
-const PLAY_SIZE = 60;
 
 export function RadioScreen() {
   const theme = useTheme();
@@ -39,28 +39,26 @@ export function RadioScreen() {
     >
       <AppIcon
         name={r.ui === "stop" ? "stop" : "play"}
-        size={PLAY_SIZE}
+        size={SONG_ART_PLAY_SIZE}
         color={theme.colors.primary}
       />
     </AppTouchableOpacity>
   );
 
-  const loader = <ActivityIndicator size="large" style={{ height: PLAY_SIZE }} />;
+  const loader = <ActivityIndicator size="large" style={{ height: SONG_ART_PLAY_SIZE }} />;
 
   return (
     <View
       style={{
         flex: 1,
-        display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
         padding: spacing[12],
       }}
     >
       <View
         style={{
-          flexShrink: 1,
           flexGrow: 0,
+          flexShrink: 0,
         }}
       >
         <ShowLink id={playlistData?.show_id ?? 0} />
@@ -69,14 +67,13 @@ export function RadioScreen() {
 
       <View
         style={{
-          flexGrow: 1,
-          flexShrink: 1,
+          flex: 1,
+          minHeight: 0,
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "row",
           paddingTop: spacing[6],
           paddingBottom: spacing[6],
-          maxHeight: windowHeight / 2,
         }}
       >
         <SongArt source={song?.image} />
@@ -84,7 +81,7 @@ export function RadioScreen() {
 
       <View
         style={{
-          flexGrow: 1,
+          flexGrow: 0,
           minHeight: 80,
           maxHeight: windowHeight / 5,
           paddingTop: spacing[6],
