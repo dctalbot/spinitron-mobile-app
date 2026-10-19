@@ -5,13 +5,18 @@ import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "@react-navigation/native";
 import { useSpins } from "@dctalbot/react-spinitron";
 import { StackNav } from "../../nav/types";
-import { fontWeight, spacing } from "../../theme/theme";
+import { fontWeight } from "../../theme/theme";
 import { getArtist } from "./SpinCitation";
 import { formatTime2 } from "../../util/time";
 import { AppText } from "../../ui/AppText";
 import { AppImage } from "../../ui/AppImage";
+import {
+  getSpinListItemRowStyle,
+  getSpinListItemTextColumnStyle,
+  getSpinListItemTextProps,
+  SPIN_LIST_ART_SIZE,
+} from "./spinListItemLayout";
 
-const ITEM_SIZE = 80;
 const POLL_INTERVAL = 30000; // 30 seconds
 
 type SpinItem = NonNullable<ReturnType<typeof useSpins>["data"]>[number];
@@ -23,35 +28,33 @@ const SpinListItem = React.memo(function SpinListItem(props: { item: SpinItem })
   const artist: string = getArtist(item) ?? "";
   const at: string = item?.start ? formatTime2(item?.start) : "";
   const id = item?.id;
+  const textProps = getSpinListItemTextProps();
 
   return (
     <AppTouchableOpacity onPress={() => nav.push("Spin", { id, song: item?.song })}>
-      <View
-        style={{
-          height: ITEM_SIZE,
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+      <View style={getSpinListItemRowStyle()}>
         <AppImage
           source={item?.image}
-          size={ITEM_SIZE}
+          size={SPIN_LIST_ART_SIZE}
           icon="disc-outline"
           recyclingKey={id != null ? String(id) : undefined}
         />
-        <View
-          style={{
-            flexDirection: "column",
-            justifyContent: "center",
-            paddingLeft: spacing[12],
-            paddingRight: spacing[12],
-            height: ITEM_SIZE,
-            flexShrink: 1,
-          }}
-        >
-          {song ? <AppText style={{ fontWeight: fontWeight.bold }}>{song}</AppText> : null}
-          {artist ? <AppText size="sm">{artist}</AppText> : null}
-          {at ? <AppText size="sm">{at}</AppText> : null}
+        <View style={getSpinListItemTextColumnStyle()}>
+          {song ? (
+            <AppText {...textProps} style={{ fontWeight: fontWeight.bold }}>
+              {song}
+            </AppText>
+          ) : null}
+          {artist ? (
+            <AppText {...textProps} size="sm">
+              {artist}
+            </AppText>
+          ) : null}
+          {at ? (
+            <AppText {...textProps} size="sm">
+              {at}
+            </AppText>
+          ) : null}
         </View>
       </View>
     </AppTouchableOpacity>
